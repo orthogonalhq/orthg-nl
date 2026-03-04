@@ -21,7 +21,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 const firaCode = Fira_Code({
   variable: "--font-fira-code",
-  weight: ["500"],
+  weight: ["300", "500"],
   subsets: ["latin"],
 });
 

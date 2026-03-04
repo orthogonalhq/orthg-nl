@@ -4,7 +4,8 @@
   --background: #000000;
   --foreground: #ffffff;
   --muted: #888888;
-  --accent: #cc3333;
+  --accent: #FA5D2B;
+  --accent-glow: #FA8E2E;
   --card: #141414;
   --card-border: #222222;
 }
@@ -35,4 +36,109 @@ body {
 
 .font-accent {
   font-family: var(--font-fira-code), ui-monospace, monospace;
+}
+
+/* Ambient orb animations */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-20px, 15px) scale(0.95); }
+  75% { transform: translate(15px, 25px) scale(1.02); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out both;
+}
+
+/* Accent gradient utilities */
+.accent-gradient {
+  background: linear-gradient(135deg, #FA8E2E, #FA5D2B);
+}
+
+.accent-gradient-text {
+  background: linear-gradient(135deg, #FA8E2E, #FA5D2B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.accent-glow {
+  box-shadow: 0 0 20px rgba(250, 142, 46, 0.15), 0 0 60px rgba(250, 93, 43, 0.08);
+  transition: box-shadow 0.2s ease;
+}
+
+.accent-glow:hover {
+  box-shadow: 0 0 28px rgba(250, 142, 46, 0.3), 0 0 80px rgba(250, 93, 43, 0.15);
+}
+
+/* Terminal panel styling */
+.terminal-text {
+  font-family: var(--font-fira-code), ui-monospace, monospace;
+  font-weight: 300;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  text-rendering: optimizeSpeed;
+  font-smooth: never;
+}
+
+/* CRT scanlines overlay */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.025) 2px,
+    rgba(0, 0, 0, 0.025) 4px
+  );
+}
+
+/* Phosphor text glow */
+.phosphor {
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.03);
+}
+
+/* Blinking terminal cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Text selection — solid color because Firefox ignores alpha on ::selection */
+::selection {
+  background: #c23e0af9;
+  color: #000000;
+  -webkit-text-fill-color: #000000;
+  text-shadow: none;
+}
+
+/* Film grain overlay */
+.grain {
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
