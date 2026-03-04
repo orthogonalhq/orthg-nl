@@ -21,7 +21,7 @@ const GRAIN = {
     basePop: 0.0,
     maxPop: 0.3,
     popAlphaMin: 3,
-    popAlphaMax: 12,
+    popAlphaMax: 29,
     baseAlpha: 2,
   } as GrainParams,
 
@@ -30,11 +30,11 @@ const GRAIN = {
     basePop: 0.0,
     maxPop: 0.3,
     popAlphaMin: 3,
-    popAlphaMax: 8,
+    popAlphaMax: 24,
     baseAlpha: 2,
   } as GrainParams,
 
-  breathMs: 36000,       // duration of one full lo→hi→lo cycle
+  breathMs: 120000,       // duration of one full lo→hi→lo cycle
   scale: 0.5,           // canvas resolution (0.25 = quarter res)
   densityMaps: [
     { src: "/density-map-16x9.png", ar: 16 / 9 },   // landscape
