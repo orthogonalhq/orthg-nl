@@ -43,7 +43,7 @@ const GRAIN = {
   ],
   densityMapFallback: "/density-map.png",
   overrideHoldMs: 1000,  // how long a knob override lasts after release
-  releaseEaseMs: 1500,  // ease-back duration after override expires
+  releaseEaseMs: 15000,  // ease-back duration after override expires
 };
 
 const GRAIN_KEYS: (keyof GrainParams)[] = [
