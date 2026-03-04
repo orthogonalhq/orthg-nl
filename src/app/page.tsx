@@ -388,6 +388,10 @@ export default function Home() {
 
   return (
     <div className="scanlines phosphor relative flex min-h-svh flex-col items-center justify-center overflow-hidden bg-black px-6">
+      {/* Vignette — top & bottom */}
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-30 h-[20vh] bg-linear-to-b from-black/60 to-transparent" />
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 h-[20vh] bg-linear-to-t from-black/60 to-transparent" />
+
       {/* Animated grain overlay */}
       <canvas
         ref={grainRef}
@@ -486,7 +490,7 @@ export default function Home() {
       >
         {/* Grain tuner terminal — docked above footer */}
         {showKnobs && (
-          <div className="scanlines terminal-text phosphor absolute bottom-full right-0 w-[420px] text-[13px] border border-white/[0.06] border-b-0 bg-black/95 backdrop-blur-3xl">
+          <div className="scanlines terminal-text phosphor absolute bottom-full right-0 w-[420px] text-[13px] border border-white/[0.06] border-b-0 bg-black/30 backdrop-blur-3xl">
             {/* Corner brackets — top only */}
             <div className="absolute -top-px -left-px w-3 h-3 border-t border-l border-white/20" />
             <div className="absolute -top-px -right-px w-3 h-3 border-t border-r border-white/20" />
