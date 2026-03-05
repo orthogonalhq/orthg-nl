@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Montserrat_Alternates, IBM_Plex_Mono, Fira_Code } from "next/font/google";
+import { GrainProvider } from "@/components/grain-overlay";
 import "./globals.css";
 
 const geist = Geist({
@@ -40,7 +41,7 @@ export default function RootLayout({
       <body
         className={`${geist.variable} ${montserratAlternates.variable} ${ibmPlexMono.variable} ${firaCode.variable} antialiased`}
       >
-        {children}
+        <GrainProvider>{children}</GrainProvider>
       </body>
     </html>
   );
