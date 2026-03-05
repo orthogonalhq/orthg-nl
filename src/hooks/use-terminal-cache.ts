@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { createHeadlessEngine, type HeadlessEngine } from "@/hooks/use-headless-engine";
 import { runTerminalSequence } from "@/lib/run-terminal-sequence";
 
@@ -17,6 +17,7 @@ interface CacheEntry {
 /** Create and run headless terminal engines for all tabs in parallel — only when visible */
 export function useTerminalCache(tabs: TabDef[], isVisible: boolean) {
   const cacheRef = useRef<Map<string, CacheEntry>>(new Map());
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (!isVisible) return;
@@ -40,6 +41,8 @@ export function useTerminalCache(tabs: TabDef[], isVisible: boolean) {
       }
     }
 
+    setReady(true);
+
     return () => {
       for (const entry of cache.values()) {
         entry.engine.abort();
@@ -48,6 +51,7 @@ export function useTerminalCache(tabs: TabDef[], isVisible: boolean) {
   }, [isVisible]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function getEngine(key: string): HeadlessEngine | null {
+    if (!ready) return null;
     return cacheRef.current.get(key)?.engine ?? null;
   }
 

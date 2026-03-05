@@ -51,14 +51,16 @@ export function parseLineToSegs(line: string): { segs: Seg[]; spinResult?: Seg[]
     const eqIdx = afterPipe.lastIndexOf(" =");
     if (eqIdx !== -1) {
       const desc = afterPipe.slice(0, eqIdx + 1);
-      const status = afterPipe.slice(eqIdx + 2);
+      const rawStatus = afterPipe.slice(eqIdx + 2);
+      const dim = rawStatus.startsWith("~");
+      const status = dim ? rawStatus.slice(1) : rawStatus;
       return {
         segs: [
           { text: labelStr, cls: "text-white/50" },
           { text: "│ ", cls: "text-white/15" },
           { text: desc },
         ],
-        spinResult: [{ text: status, cls: "text-green-400/40" }],
+        spinResult: [{ text: status, cls: dim ? "text-white/20" : "text-green-400/40" }],
       };
     }
 
@@ -183,6 +185,14 @@ export function TabPanel({ lines, tabKey, defaultContent, cachedEngine }: TabPan
     prevKeyRef.current = tabKey;
     prevEngineRef.current = cachedEngine ?? null;
 
+    // Same tab, engine just became available — update it in place
+    if (tabKey !== null && tabKey === prevKey && cachedEngine && !prevEngine) {
+      setActiveEngine(cachedEngine);
+      setActiveLines(lines!);
+      setPhase("show");
+      return;
+    }
+
     // null → null: default
     if (tabKey === null && prevKey === null) {
       setPhase("default");
@@ -226,21 +236,23 @@ export function TabPanel({ lines, tabKey, defaultContent, cachedEngine }: TabPan
   }, []);
 
   return (
-    <div className="border-t border-white/[0.06] lg:border-t-0 p-6 md:p-10 bg-[rgba(255,255,255,0.01)] min-h-[280px]">
-      {phase === "default" && defaultContent}
-      {phase === "glitch-out" && (
-        <GlitchOutLines lines={prevRenderedText} onComplete={handleGlitchOutComplete} />
-      )}
-      {phase === "morph" && (
-        <MorphLines
-          sourceLines={prevRenderedText}
-          targetLines={targetRenderedText}
-          onComplete={handleMorphComplete}
-        />
-      )}
-      {phase === "show" && activeEngine && (
-        <CachedEngineViewer engine={activeEngine} lines={activeLines} />
-      )}
+    <div className="border-t border-white/[0.06] lg:border-t-0 bg-[rgba(255,255,255,0.01)] min-h-[280px] flex flex-col">
+      <div className="p-6 md:p-10 flex-1 overflow-y-auto">
+        {phase === "default" && defaultContent}
+        {phase === "glitch-out" && (
+          <GlitchOutLines lines={prevRenderedText} onComplete={handleGlitchOutComplete} />
+        )}
+        {phase === "morph" && (
+          <MorphLines
+            sourceLines={prevRenderedText}
+            targetLines={targetRenderedText}
+            onComplete={handleMorphComplete}
+          />
+        )}
+        {phase === "show" && activeEngine && (
+          <CachedEngineViewer engine={activeEngine} lines={activeLines} />
+        )}
+      </div>
     </div>
   );
 }
