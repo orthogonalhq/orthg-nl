@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
@@ -9,8 +10,9 @@ export const metadata: Metadata = {
 export default function InvestorsPage() {
   return (
     <div className="flex min-h-svh flex-col bg-black">
+      <Header />
       {/* Main content */}
-      <main className="flex flex-1 flex-col items-center px-6 py-12 gap-8">
+      <main className="flex flex-1 flex-col items-center px-6 pt-20 pb-12 gap-8">
         <h1 className="font-mono text-3xl sm:text-4xl font-semibold tracking-[-0.03em]">
           Investor Relations.
         </h1>
