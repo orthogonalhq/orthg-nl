@@ -13,29 +13,29 @@ export interface GrainParams {
 
 export const GRAIN = {
   lo: {
-    churnRate: 0.2,
+    churnRate: 0.13,
     basePop: 0.0,
     maxPop: 0.3,
     popAlphaMin: 3,
     popAlphaMax: 30,
-    baseAlpha: 6.5,
+    baseAlpha: 5,
   } as GrainParams,
 
   hi: {
-    churnRate: 0.8,
+    churnRate: 0.33,
     basePop: 0.0,
     maxPop: 0.3,
     popAlphaMin: 3,
     popAlphaMax: 24,
-    baseAlpha: 7,
+    baseAlpha: 6,
   } as GrainParams,
 
   breathMs: 120000,
-  scale: 0.5,
+  scale: 1,
   densityMaps: [
-    { src: "/density-map-16x9.png", ar: 16 / 9 },
-    { src: "/density-map-1x1.png",  ar: 1 },
-    { src: "/density-map-9x16.png", ar: 9 / 16 },
+    { src: "/density-map-16x9.png", ar: 16 / 9, scale: 1.5, offsetY: -0.10, zone3: { scale: 1.25, offsetX: 0.10, offsetY: 0.075 } },
+    { src: "/density-map-1x1.png",  ar: 1,      scale: 1,   offsetY: 0,     zone3: null },
+    { src: "/density-map-9x16.png", ar: 9 / 16, scale: 1,   offsetY: 0,     zone3: { scale: 1.75, offsetX: 0, offsetY: 0.15 } },
   ],
   densityMapFallback: "/density-map.png",
   overrideHoldMs: 1000,
@@ -108,7 +108,11 @@ export function useGrain(
     let densityLoaded = false;
     let currentSrc = "";
 
-    function pickDensitySource() {
+    let currentEntryScale = 1;
+    let currentEntryOffsetY = 0;
+    let currentZone3: { scale: number; offsetX: number; offsetY: number } | null = null;
+
+    function pickDensityEntry() {
       const viewportAr = window.innerWidth / window.innerHeight;
       let best = GRAIN.densityMaps[0];
       let bestDist = Math.abs(Math.log(best.ar / viewportAr));
@@ -119,15 +123,18 @@ export function useGrain(
           bestDist = dist;
         }
       }
-      return best.src;
+      return best;
     }
 
     function loadDensitySource() {
-      const src = pickDensitySource();
-      if (src === currentSrc) return;
-      currentSrc = src;
+      const entry = pickDensityEntry();
+      if (entry.src === currentSrc) return;
+      currentSrc = entry.src;
+      currentEntryScale = entry.scale;
+      currentEntryOffsetY = entry.offsetY;
+      currentZone3 = entry.zone3;
       densityLoaded = false;
-      densityImg.src = src;
+      densityImg.src = entry.src;
     }
 
     function buildDensityMap() {
@@ -138,7 +145,7 @@ export function useGrain(
       offscreen.height = h;
       const offCtx = offscreen.getContext("2d")!;
 
-      const ds = currentDensityScale;
+      const ds = currentDensityScale * currentEntryScale;
       const imgAspect = densityImg.width / densityImg.height;
       const canvasAspect = w / h;
       let drawW: number, drawH: number, drawX: number, drawY: number;
@@ -155,11 +162,13 @@ export function useGrain(
         drawY = (h - drawH) / 2;
       }
 
-      // Apply density scale: shrink and anchor to bottom-center
-      drawW *= ds;
-      drawH *= ds;
-      drawX = w - drawW;         // anchor to right
-      drawY = h - drawH;        // anchor to bottom
+      // Apply density scale: scale from center
+      const inZone3 = currentDensityScale < 1;
+      const z3 = inZone3 && currentZone3 ? currentZone3 : null;
+      drawW *= ds * (z3 ? z3.scale : 1);
+      drawH *= ds * (z3 ? z3.scale : 1);
+      drawX = (w - drawW) / 2 + (z3 ? w * z3.offsetX : 0);
+      drawY = (h - drawH) / 2 + h * (z3 ? z3.offsetY : currentEntryOffsetY);
 
       offCtx.drawImage(densityImg, drawX, drawY, drawW, drawH);
       const mapData = offCtx.getImageData(0, 0, w, h).data;
