@@ -13,21 +13,21 @@ export interface GrainParams {
 
 export const GRAIN = {
   lo: {
-    churnRate: 0.04,
+    churnRate: 0.2,
     basePop: 0.0,
     maxPop: 0.3,
     popAlphaMin: 3,
-    popAlphaMax: 29,
-    baseAlpha: 2,
+    popAlphaMax: 30,
+    baseAlpha: 6.5,
   } as GrainParams,
 
   hi: {
-    churnRate: 1.0,
+    churnRate: 0.8,
     basePop: 0.0,
     maxPop: 0.3,
     popAlphaMin: 3,
     popAlphaMax: 24,
-    baseAlpha: 2,
+    baseAlpha: 7,
   } as GrainParams,
 
   breathMs: 120000,
@@ -231,9 +231,10 @@ export function useGrain(
         }
       }
 
-      // Scroll attenuation: scale popAlphaMax by scroll position
+      // Scroll attenuation: scale pop alpha and base alpha by scroll position
       if (scrollAttenuationRef?.current !== undefined) {
         p.popAlphaMax = p.popAlphaMax * scrollAttenuationRef.current;
+        p.baseAlpha *= Math.sqrt(scrollAttenuationRef.current);
       }
 
       displayRef.current = p;
