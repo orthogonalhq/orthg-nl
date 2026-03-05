@@ -18,15 +18,7 @@ export default function Home() {
         <Hero />
         <div className="relative">
           {/* Rail lines connecting terminal boxes */}
-          <div
-            className="pointer-events-none absolute inset-0 z-10 px-6 md:px-12 lg:px-20"
-            style={{
-              maskImage:
-                "linear-gradient(to bottom, transparent 180px, black 220px, black calc(100% - 60px), transparent calc(100% - 30px))",
-              WebkitMaskImage:
-                "linear-gradient(to bottom, transparent 180px, black 220px, black calc(100% - 60px), transparent calc(100% - 30px))",
-            }}
-          >
+          <div className="rail-mask pointer-events-none absolute inset-0 z-10 px-6 md:px-12 lg:px-20">
             <div className="mx-auto h-full max-w-5xl border-l border-r border-white/[0.06]" />
           </div>
           <SixWalls />
