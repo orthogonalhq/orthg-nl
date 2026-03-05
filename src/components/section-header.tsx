@@ -18,7 +18,7 @@ export function SectionHeader({
   children,
 }: SectionHeaderProps) {
   return (
-    <div className={`mb-8 ${center ? "text-center" : ""} ${className}`}>
+    <div className={`mb-8 ${center ? "text-center" : "pr-4"} ${className}`}>
       <SectionLabel>{label}</SectionLabel>
       <SectionHeading size={size}>{children}</SectionHeading>
     </div>
