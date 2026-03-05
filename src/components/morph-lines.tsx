@@ -81,9 +81,9 @@ export function MorphLines({ sourceLines, targetLines, durationMs = 400, onCompl
   }, [sourceLines, targetLines, durationMs, onComplete]);
 
   return (
-    <div className="terminal-text text-[12px] leading-[1.8] text-white/45 relative">
+    <div className="terminal-text text-[12px] leading-[1.8] t-panel-label relative">
       {displays.map((d, i) => (
-        <p key={i} style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }} className="text-white/55">
+        <p key={i} style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }} className="t-body">
           {d}
         </p>
       ))}

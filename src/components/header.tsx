@@ -8,7 +8,7 @@ export function Header() {
           <Logo />
         </a>
       </div>
-      <span className="ml-auto px-5 py-3 text-[11px] uppercase tracking-[0.2em] text-white/15">
+      <span className="ml-auto px-5 py-3 text-[11px] uppercase tracking-[0.2em] t-ghost">
         orthg.nl
       </span>
     </header>

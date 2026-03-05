@@ -17,27 +17,27 @@ export function Footer({ children }: FooterProps) {
 
       {/* Footer bar */}
       <footer className="terminal-text flex items-center border-t border-white/[0.06] bg-[#0a0a0a]">
-        <span className="font-brand border-r border-white/[0.06] px-5 py-3 text-sm font-semibold tracking-[-0.05em] text-white/45">
+        <span className="font-brand border-r border-white/[0.06] px-5 py-3 text-sm font-semibold tracking-[-0.05em] t-panel-label">
           O°
         </span>
         {children ?? (
           <>
             <a
               href="/investors"
-              className="cursor-pointer border-r border-white/[0.06] px-5 py-3 text-[11px] uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-accent"
+              className="cursor-pointer border-r border-white/[0.06] px-5 py-3 text-[11px] uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent"
             >
               Investors
             </a>
             <button
               data-tuner-toggle
               onClick={() => setShowTuner((v: boolean) => !v)}
-              className="cursor-pointer border-r border-white/[0.06] px-5 py-3 text-[11px] uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-accent"
+              className="cursor-pointer border-r border-white/[0.06] px-5 py-3 text-[11px] uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent"
             >
               {showTuner ? "Hide tuner" : "Tuner"}
             </button>
           </>
         )}
-        <span className="ml-auto px-5 py-3 font-accent text-[11px] font-medium text-white/15">
+        <span className="ml-auto px-5 py-3 font-accent text-[11px] font-medium t-ghost">
           Sovereign AI for everyone.
         </span>
       </footer>

@@ -73,7 +73,7 @@ export function EmailCapture({
         <div className="absolute -bottom-px -right-px w-2.5 h-2.5 border-b border-r border-white/20" />
 
         <div className="flex flex-1 items-center gap-3 pl-4">
-          <span className="terminal-text text-white/15 text-sm shrink-0">&gt;</span>
+          <span className="terminal-text t-ghost text-sm shrink-0">&gt;</span>
           <input
             type="text"
             placeholder={placeholder}
@@ -86,7 +86,7 @@ export function EmailCapture({
               }
             }}
             disabled={formStatus === "loading"}
-            className="terminal-text w-full bg-transparent py-3 text-base text-foreground outline-none placeholder:text-white/30 disabled:opacity-50"
+            className="terminal-text w-full bg-transparent py-3 text-base text-foreground outline-none placeholder:t-meta disabled:opacity-50"
           />
         </div>
         <button
@@ -97,7 +97,7 @@ export function EmailCapture({
           {formStatus === "loading" ? "Sending..." : buttonText}
         </button>
       </form>
-      <p className={`terminal-text mt-3 text-[11px] tracking-[0.15em] uppercase ${formStatus === "success" ? "text-green-400/80" : formStatus === "duplicate" ? "text-pink-300/80" : formStatus === "error" ? "text-accent/80" : "text-white/15"}`}>
+      <p className={`terminal-text mt-3 text-[11px] tracking-[0.15em] uppercase ${formStatus === "success" ? "text-green-400/80" : formStatus === "duplicate" ? "text-pink-300/80" : formStatus === "error" ? "text-accent/80" : "t-ghost"}`}>
         {glitchedStatus}
       </p>
     </div>

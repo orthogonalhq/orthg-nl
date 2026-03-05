@@ -34,9 +34,9 @@ export function AgentSessionSequence() {
 
   const label = (name: string, cls?: string): Seg => ({
     text: name.padEnd(LABEL_W),
-    cls: cls ?? (name ? "text-white/50" : "text-white/15"),
+    cls: cls ?? (name ? "t-panel-label" : "t-ghost"),
   });
-  const sep: Seg = { text: "│ ", cls: "text-white/15" };
+  const sep: Seg = { text: "│ ", cls: "t-ghost" };
 
   const runSequence = useCallback(async () => {
     const { typeLine, addBlank, addInstant, spinStandalone, spinOnLine, finish, wait } = engine;
@@ -54,27 +54,27 @@ export function AgentSessionSequence() {
     addBlank();
 
     await typeLine([label("cortex", "text-accent/60"), sep, { text: "Decomposing into 3 subtasks" }], 14);
-    await spinOnLine(600, [{ text: "...", cls: "text-white/15" }]);
+    await spinOnLine(600, [{ text: "...", cls: "t-ghost" }]);
     await wait(200);
 
     await typeLine(
-      [label("agent-1", "text-white/30"), sep, { text: "Searching web: " }, { text: '"sovereign AI platforms 2025"', cls: "text-white/15" }],
+      [label("agent-1", "t-meta"), sep, { text: "Searching web: " }, { text: '"sovereign AI platforms 2025"', cls: "t-ghost" }],
       0,
     );
     await wait(100);
 
     await typeLine(
-      [label("agent-2", "text-white/30"), sep, { text: "Querying memory: " }, { text: "prior research on AI sovereignty", cls: "text-white/15" }],
+      [label("agent-2", "t-meta"), sep, { text: "Querying memory: " }, { text: "prior research on AI sovereignty", cls: "t-ghost" }],
       0,
     );
     await wait(100);
 
     await typeLine(
-      [label("agent-3", "text-white/30"), sep, { text: "Indexing sources" }],
+      [label("agent-3", "t-meta"), sep, { text: "Indexing sources" }],
       0,
     );
     await spinOnLine(800 + Math.random() * 400, [
-      { text: " 12 found, filtering...", cls: "text-white/15" },
+      { text: " 12 found, filtering...", cls: "t-ghost" },
     ]);
 
     await wait(400);
@@ -88,14 +88,14 @@ export function AgentSessionSequence() {
       label("cortex", "text-accent/60"),
       sep,
       { text: "Draft ready. " },
-      { text: "2,400 words. 3 key findings.", cls: "text-white/50" },
+      { text: "2,400 words. 3 key findings.", cls: "t-panel-label" },
     ]);
 
     await wait(400);
     addBlank();
 
     await typeLine(
-      [label("memory"), sep, { text: "Experience indexed: " }, { text: "competitor-analysis", cls: "text-white/30" }],
+      [label("memory"), sep, { text: "Experience indexed: " }, { text: "competitor-analysis", cls: "t-meta" }],
       12,
     );
     await wait(120);
@@ -109,8 +109,8 @@ export function AgentSessionSequence() {
 
     await typeLine(
       [
-        { text: "Task complete. ", cls: "text-white/30" },
-        { text: "Elapsed: 4m 12s", cls: "text-white/15" },
+        { text: "Task complete. ", cls: "t-meta" },
+        { text: "Elapsed: 4m 12s", cls: "t-ghost" },
       ],
       30,
     );
@@ -126,7 +126,7 @@ export function AgentSessionSequence() {
   }, [isVisible, runSequence]);
 
   return (
-    <div ref={ref} className="terminal-text text-[12px] leading-[1.8] text-white/45 relative">
+    <div ref={ref} className="terminal-text text-[12px] leading-[1.8] t-panel-label relative">
       {/* Ghost lines — invisible but reserve final height */}
       <div className="invisible" aria-hidden="true">
         {GHOST_LINES.map((text, i) => (

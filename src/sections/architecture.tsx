@@ -1,5 +1,7 @@
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
+import { PanelBar } from "@/components/panel-bar";
+import { CardTitle } from "@/components/card-title";
 
 const LAYERS = [
   {
@@ -52,11 +54,7 @@ export function Architecture() {
         {/* Architecture diagram — single bordered container with stacked layers */}
         <Reveal delay={100}>
           <div className="border-y border-white/[0.06]">
-            {/* Header */}
-            <div className="border-b border-white/[0.06] px-6 md:px-10 py-3 flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/45">nous::layers</span>
-              <span className="terminal-text text-[10px] text-white/15">Cognitive Stack</span>
-            </div>
+            <PanelBar label="nous::layers" meta="Cognitive Stack" />
 
             {/* Layers — shared grid so the vertical divider aligns across all rows */}
             <div className="grid grid-cols-1 md:grid-cols-[240px_1fr]">
@@ -69,14 +67,14 @@ export function Architecture() {
                     <div className="flex w-full items-start justify-between gap-4">
                       <div className="min-w-0 overflow-visible">
                         <div className="flex items-baseline gap-2">
-                          <span className={`text-[10px] leading-none relative -top-px ${layer.status === "active" ? "text-green-400/40" : "text-white/15"}`}>●</span>
+                          <span className={`text-[10px] leading-none relative -top-px ${layer.status === "active" ? "text-green-400/40" : "t-ghost"}`}>●</span>
                           <span className="font-mono text-sm font-semibold text-accent">{layer.name}</span>
                         </div>
-                        <div className="terminal-text text-[10px] text-white/30 mt-1 pl-[18px] whitespace-nowrap">
+                        <div className="terminal-text text-[10px] t-meta mt-1 pl-[18px] whitespace-nowrap">
                           ← {layer.brain}
                         </div>
                       </div>
-                      <span className="terminal-text text-[10px] text-white/10 shrink-0 pt-1 text-right">PID {layer.pid}</span>
+                      <span className="terminal-text text-[10px] t-faint shrink-0 pt-1 text-right">PID {layer.pid}</span>
                     </div>
                   </div>
 
@@ -84,10 +82,8 @@ export function Architecture() {
                   <div className={`px-6 md:px-10 py-5 ${
                     i < LAYERS.length - 1 ? "border-b border-white/[0.06]" : ""
                   }`}>
-                    <p className="terminal-text text-xs uppercase tracking-[0.15em] text-white/55 mb-1.5">
-                      {layer.desc}
-                    </p>
-                    <p className="terminal-text text-xs text-white/40 leading-relaxed">
+                    <CardTitle className="mb-1.5">{layer.desc}</CardTitle>
+                    <p className="terminal-text text-xs t-nav leading-relaxed">
                       {layer.detail}
                     </p>
                   </div>

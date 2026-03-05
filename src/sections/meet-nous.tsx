@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
+import { PanelBar } from "@/components/panel-bar";
 import { BodyText } from "@/components/body-text";
 import { TerminalSequence } from "@/components/terminal-sequence";
 import { TabPanel } from "@/components/tab-panel";
@@ -144,11 +145,7 @@ export function MeetNous() {
         <Reveal delay={100}>
           {/* Full-width bordered container */}
           <div className="border-y border-white/[0.06] overflow-hidden">
-            {/* Top: header bar */}
-            <div className="border-b border-white/[0.06] px-6 md:px-10 py-3 flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/45">nous::core</span>
-              <span className="terminal-text text-[10px] text-white/15">Yours By Design</span>
-            </div>
+            <PanelBar label="nous::core" meta="Yours By Design" />
 
             {/* Content: split layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -168,8 +165,8 @@ export function MeetNous() {
                           : "border-white/[0.06] hover:border-white/[0.12] hover:bg-white/[0.02]"
                       }`}
                     >
-                      <p className="terminal-text text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1">{tab.label}</p>
-                      <p className="font-mono text-sm font-semibold text-white/70">{tab.value}</p>
+                      <p className="terminal-text text-[10px] uppercase tracking-[0.2em] t-nav mb-1">{tab.label}</p>
+                      <p className="font-mono text-sm font-semibold t-stat-value">{tab.value}</p>
                     </button>
                   ))}
                 </div>

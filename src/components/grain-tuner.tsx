@@ -87,10 +87,10 @@ export function GrainTuner() {
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
       >
-        <span className="uppercase tracking-[0.25em] text-white/55 text-[11px]">
-          <span className="text-white/15 mr-1">&gt;</span>grain.sys
+        <span className="uppercase tracking-[0.25em] t-body text-[11px]">
+          <span className="t-ghost mr-1">&gt;</span>grain.sys
         </span>
-        <span className="text-white/30 tabular-nums text-[11px]">
+        <span className="t-meta tabular-nums text-[11px]">
           T+{elapsed}
         </span>
       </div>
@@ -104,11 +104,11 @@ export function GrainTuner() {
           return (
             <div key={key} className="py-[6px]">
               <div className="flex items-center justify-between mb-1.5">
-                <span className={`uppercase tracking-[0.15em] text-[11px] ${isOverridden ? "text-accent" : "text-white/45"}`}>
-                  <span className={`mr-1.5 ${isOverridden ? "text-accent/50" : "text-white/15"}`}>$</span>
+                <span className={`uppercase tracking-[0.15em] text-[11px] ${isOverridden ? "text-accent" : "t-panel-label"}`}>
+                  <span className={`mr-1.5 ${isOverridden ? "text-accent/50" : "t-ghost"}`}>$</span>
                   {label}
                 </span>
-                <span className={`tabular-nums text-[12px] ${isOverridden ? "text-accent" : "text-white/50"}`}>
+                <span className={`tabular-nums text-[12px] ${isOverridden ? "text-accent" : "t-card-desc"}`}>
                   {val.toFixed(step < 0.01 ? 4 : step < 1 ? 2 : 0)}
                 </span>
               </div>
@@ -133,8 +133,8 @@ export function GrainTuner() {
 
         {/* Status footer */}
         <div className="flex items-center justify-between mt-5 pt-3 border-t border-white/[0.06]">
-          <span className="uppercase tracking-[0.2em] text-[10px] text-white/15">orthg.nl::grain</span>
-          <span className="text-white/15 text-[10px] flex items-center gap-1">
+          <span className="uppercase tracking-[0.2em] text-[10px] t-ghost">orthg.nl::grain</span>
+          <span className="t-ghost text-[10px] flex items-center gap-1">
             <span className="cursor-blink">&#9608;</span>
             <span className="uppercase tracking-[0.2em]">sys.ok</span>
           </span>

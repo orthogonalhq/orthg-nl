@@ -37,7 +37,7 @@ export function parseLineToSegs(line: string): { segs: Seg[]; spinResult?: Seg[]
     return {
       segs: [
         { text: "$ ", cls: "text-accent/60" },
-        { text: line.slice(2), cls: "text-white/50" },
+        { text: line.slice(2), cls: "t-panel-label" },
       ],
       isCommand: true,
     };
@@ -56,18 +56,18 @@ export function parseLineToSegs(line: string): { segs: Seg[]; spinResult?: Seg[]
       const status = dim ? rawStatus.slice(1) : rawStatus;
       return {
         segs: [
-          { text: labelStr, cls: "text-white/50" },
-          { text: "│ ", cls: "text-white/15" },
+          { text: labelStr, cls: "t-panel-label" },
+          { text: "│ ", cls: "t-ghost" },
           { text: desc },
         ],
-        spinResult: [{ text: status, cls: dim ? "text-white/30" : "text-green-400/40" }],
+        spinResult: [{ text: status, cls: dim ? "t-meta" : "text-green-400/40" }],
       };
     }
 
     return {
       segs: [
-        { text: labelStr, cls: "text-white/50" },
-        { text: "│ ", cls: "text-white/15" },
+        { text: labelStr, cls: "t-panel-label" },
+        { text: "│ ", cls: "t-ghost" },
         { text: afterPipe },
       ],
     };
@@ -90,7 +90,7 @@ function CachedEngineViewer({ engine, lines }: { engine: HeadlessEngine; lines: 
   const ghostLines = lines.filter((l) => l !== "---").map((l) => l.replace(/ =\S+$/, ""));
 
   return (
-    <div className="terminal-text text-[12px] leading-[1.8] text-white/45 relative">
+    <div className="terminal-text text-[12px] leading-[1.8] t-panel-label relative">
       <div className="invisible" aria-hidden="true">
         {ghostLines.map((text, i) => (
           <p key={i} style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{text}</p>
@@ -162,7 +162,7 @@ function GlitchOutLines({
   return (
     <div className="flex flex-col gap-3">
       {displays.map((d, i) => (
-        <p key={i} className="terminal-text text-xs text-white/55 leading-relaxed min-h-[1.25em]">
+        <p key={i} className="terminal-text text-xs t-body leading-relaxed min-h-[1.25em]">
           {d}
         </p>
       ))}

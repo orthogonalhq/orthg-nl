@@ -27,7 +27,7 @@ export function CTA() {
         </div>
 
         {/* Terminal prompt */}
-        <p className="terminal-text text-[11px] text-white/15 mt-6">
+        <p className="terminal-text text-[11px] t-ghost mt-6">
           <span className="terminal-prefix">$</span> nous init --sovereign <span className="cursor-blink">&#9608;</span>
         </p>
 
@@ -35,7 +35,7 @@ export function CTA() {
         <div className="flex items-center gap-8 mt-4">
           <a
             href="/investors"
-            className="terminal-text text-xs uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-accent"
+            className="terminal-text text-xs uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent"
           >
             Invest →
           </a>

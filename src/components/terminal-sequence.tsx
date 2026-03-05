@@ -37,21 +37,21 @@ export function TerminalSequence() {
 
   const label = (name: string): Seg => ({
     text: name.padEnd(LABEL_W),
-    cls: name ? "text-white/50" : "text-white/15",
+    cls: name ? "t-panel-label" : "t-ghost",
   });
-  const sep: Seg = { text: "│ ", cls: "text-white/15" };
+  const sep: Seg = { text: "│ ", cls: "t-ghost" };
 
   const runSequence = useCallback(async () => {
     const { typeLine, addBlank, spinStandalone, spinOnLine, finish, wait } = engine;
 
     await typeLine(
-      [{ text: "$ ", cls: "text-accent/60" }, { text: "nous init", cls: "text-white/50" }],
+      [{ text: "$ ", cls: "text-accent/60" }, { text: "nous init", cls: "t-panel-label" }],
       55,
     );
     await wait(150);
     await spinStandalone(800);
 
-    await typeLine([{ text: "Initializing cognitive architecture...", cls: "text-white/15" }], 18);
+    await typeLine([{ text: "Initializing cognitive architecture...", cls: "t-ghost" }], 18);
     await spinStandalone(900);
 
     addBlank();
@@ -72,7 +72,7 @@ export function TerminalSequence() {
     addBlank();
 
     await typeLine(
-      [{ text: "$ ", cls: "text-accent/60" }, { text: "nous status", cls: "text-white/50" }],
+      [{ text: "$ ", cls: "text-accent/60" }, { text: "nous status", cls: "t-panel-label" }],
       45,
     );
     await wait(150);
@@ -80,9 +80,9 @@ export function TerminalSequence() {
 
     addBlank();
 
-    await typeLine([label("models"), sep, { text: "ollama:llama3 " }, { text: "local", cls: "text-white/30" }], 12);
+    await typeLine([label("models"), sep, { text: "ollama:llama3 " }, { text: "local", cls: "t-meta" }], 12);
     await wait(80);
-    await typeLine([label(""), sep, { text: "claude-3.5 " }, { text: "routed", cls: "text-white/30" }], 12);
+    await typeLine([label(""), sep, { text: "claude-3.5 " }, { text: "routed", cls: "t-meta" }], 12);
     await wait(80);
     await typeLine([label("memory"), sep, { text: "2,847 experiences indexed" }], 12);
     await wait(80);
@@ -93,7 +93,7 @@ export function TerminalSequence() {
 
     addBlank();
 
-    await typeLine([{ text: "Sovereign AI for everyone.", cls: "text-white/30" }], 35);
+    await typeLine([{ text: "Sovereign AI for everyone.", cls: "t-meta" }], 35);
 
     finish();
   }, [engine]);
@@ -106,7 +106,7 @@ export function TerminalSequence() {
   }, [isVisible, runSequence]);
 
   return (
-    <div ref={ref} className="terminal-text text-[12px] leading-[1.8] text-white/45 relative">
+    <div ref={ref} className="terminal-text text-[12px] leading-[1.8] t-panel-label relative">
       {/* Ghost lines — invisible but reserve final height */}
       <div className="invisible" aria-hidden="true">
         {GHOST_LINES.map((text, i) => (

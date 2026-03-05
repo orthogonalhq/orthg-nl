@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
+import { PanelBar } from "@/components/panel-bar";
+import { CardTitle } from "@/components/card-title";
 import { AgentSessionSequence } from "@/components/agent-session-sequence";
 import { TabPanel } from "@/components/tab-panel";
 import { useTerminalCache } from "@/hooks/use-terminal-cache";
@@ -252,11 +254,7 @@ export function Capabilities() {
 
         <Reveal delay={100}>
           <div className="border-y border-white/[0.06] overflow-hidden">
-            {/* Header bar */}
-            <div className="border-b border-white/[0.06] px-6 md:px-10 py-3 flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/45">nous::modules</span>
-              <span className="terminal-text text-[10px] text-white/15">6 Loaded</span>
-            </div>
+            <PanelBar label="nous::modules" meta="6 Loaded" />
 
             {/* Desktop: split layout */}
             <div className="hidden lg:grid lg:grid-cols-2">
@@ -276,8 +274,8 @@ export function Capabilities() {
                       activeTab === cap.key ? "text-accent/60" : "text-accent/40"
                     }`} />
                     <div>
-                      <h3 className="font-mono text-sm font-semibold text-white/80 mb-1">{cap.title}</h3>
-                      <p className="terminal-text text-xs text-white/45 leading-relaxed">{cap.desc}</p>
+                      <CardTitle className="mb-1">{cap.title}</CardTitle>
+                      <p className="terminal-text text-xs t-card-desc leading-relaxed">{cap.desc}</p>
                     </div>
                   </button>
                 ))}
@@ -308,11 +306,11 @@ export function Capabilities() {
                       activeTab === cap.key ? "text-accent/60" : "text-accent/40"
                     }`} />
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-mono text-sm font-semibold text-white/80 mb-1">{cap.title}</h3>
-                      <p className="terminal-text text-xs text-white/45 leading-relaxed">{cap.desc}</p>
+                      <CardTitle className="mb-1">{cap.title}</CardTitle>
+                      <p className="terminal-text text-xs t-card-desc leading-relaxed">{cap.desc}</p>
                     </div>
                     <span className={`terminal-text text-[10px] mt-1 shrink-0 transition-transform duration-200 ${
-                      activeTab === cap.key ? "text-accent/40 rotate-90" : "text-white/15"
+                      activeTab === cap.key ? "text-accent/40 rotate-90" : "t-ghost"
                     }`}>▸</span>
                   </button>
                   {activeTab === cap.key && (
