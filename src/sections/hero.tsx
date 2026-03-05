@@ -20,7 +20,7 @@ export function Hero() {
         {/* Hero heading */}
         <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           <SectionHeading as="h1" size="hero" className="phosphor-pulse">Nous</SectionHeading>
-          <p className="terminal-text text-[11px] uppercase tracking-[0.25em] text-white/20 mt-2">
+          <p className="terminal-text text-[11px] uppercase tracking-[0.25em] text-white/30 mt-2">
            A Neural Orchestration Unification System
           </p>
           <BodyText className="max-w-lg text-xl text-accent mt-4">

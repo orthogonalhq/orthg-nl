@@ -86,7 +86,7 @@ export function EmailCapture({
               }
             }}
             disabled={formStatus === "loading"}
-            className="terminal-text w-full bg-transparent py-3 text-base text-foreground outline-none placeholder:text-white/20 disabled:opacity-50"
+            className="terminal-text w-full bg-transparent py-3 text-base text-foreground outline-none placeholder:text-white/30 disabled:opacity-50"
           />
         </div>
         <button

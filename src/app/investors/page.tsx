@@ -29,7 +29,7 @@ export default function InvestorsPage() {
 
         {/* Contact */}
         <div className="text-center">
-          <p className="text-[14px] tracking-[0.05em] text-white/25 mb-1">
+          <p className="text-[14px] tracking-[0.05em] text-white/40 mb-1">
             For inquiries, contact
           </p>
           <a
@@ -43,7 +43,7 @@ export default function InvestorsPage() {
       <Footer>
         <a
           href="/"
-          className="cursor-pointer border-r border-white/[0.06] px-5 py-3 text-[11px] uppercase tracking-[0.2em] text-white/25 transition-colors hover:text-accent"
+          className="cursor-pointer border-r border-white/[0.06] px-5 py-3 text-[11px] uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-accent"
         >
           Home
         </a>

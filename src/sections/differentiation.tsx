@@ -12,7 +12,7 @@ export function Differentiation() {
           <SectionHeading size="large" className="mb-8">
             They built the neurons.
             <br className="hidden sm:block" />
-            <span className="text-white/30">We&apos;re building the brain.</span>
+            <span className="text-white/45">We&apos;re building the brain.</span>
           </SectionHeading>
         </Reveal>
 
@@ -30,7 +30,7 @@ export function Differentiation() {
             <p className="terminal-text text-[10px] text-white/15 uppercase tracking-[0.2em] mb-4">
               <span className="terminal-prefix">&gt;</span>signal intercept
             </p>
-            <p className="font-mono text-base sm:text-lg text-white/25 italic leading-relaxed">
+            <p className="font-mono text-base sm:text-lg text-white/40 italic leading-relaxed">
               &ldquo;We&apos;re going to see the first one-person billion-dollar company pretty soon.&rdquo;
             </p>
             <p className="terminal-text text-xs text-white/15 mt-4 flex items-center gap-2">

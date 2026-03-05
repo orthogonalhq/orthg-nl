@@ -35,7 +35,7 @@ export function CTA() {
         <div className="flex items-center gap-8 mt-4">
           <a
             href="/investors"
-            className="terminal-text text-xs uppercase tracking-[0.2em] text-white/25 transition-colors hover:text-accent"
+            className="terminal-text text-xs uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-accent"
           >
             Invest →
           </a>

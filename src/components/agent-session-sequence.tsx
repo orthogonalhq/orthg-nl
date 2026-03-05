@@ -58,19 +58,19 @@ export function AgentSessionSequence() {
     await wait(200);
 
     await typeLine(
-      [label("agent-1", "text-white/20"), sep, { text: "Searching web: " }, { text: '"sovereign AI platforms 2025"', cls: "text-white/15" }],
+      [label("agent-1", "text-white/30"), sep, { text: "Searching web: " }, { text: '"sovereign AI platforms 2025"', cls: "text-white/15" }],
       0,
     );
     await wait(100);
 
     await typeLine(
-      [label("agent-2", "text-white/20"), sep, { text: "Querying memory: " }, { text: "prior research on AI sovereignty", cls: "text-white/15" }],
+      [label("agent-2", "text-white/30"), sep, { text: "Querying memory: " }, { text: "prior research on AI sovereignty", cls: "text-white/15" }],
       0,
     );
     await wait(100);
 
     await typeLine(
-      [label("agent-3", "text-white/20"), sep, { text: "Indexing sources" }],
+      [label("agent-3", "text-white/30"), sep, { text: "Indexing sources" }],
       0,
     );
     await spinOnLine(800 + Math.random() * 400, [
@@ -95,7 +95,7 @@ export function AgentSessionSequence() {
     addBlank();
 
     await typeLine(
-      [label("memory"), sep, { text: "Experience indexed: " }, { text: "competitor-analysis", cls: "text-white/20" }],
+      [label("memory"), sep, { text: "Experience indexed: " }, { text: "competitor-analysis", cls: "text-white/30" }],
       12,
     );
     await wait(120);
@@ -109,7 +109,7 @@ export function AgentSessionSequence() {
 
     await typeLine(
       [
-        { text: "Task complete. ", cls: "text-white/20" },
+        { text: "Task complete. ", cls: "text-white/30" },
         { text: "Elapsed: 4m 12s", cls: "text-white/15" },
       ],
       30,
@@ -126,7 +126,7 @@ export function AgentSessionSequence() {
   }, [isVisible, runSequence]);
 
   return (
-    <div ref={ref} className="terminal-text text-[12px] leading-[1.8] text-white/30 relative">
+    <div ref={ref} className="terminal-text text-[12px] leading-[1.8] text-white/45 relative">
       {/* Ghost lines — invisible but reserve final height */}
       <div className="invisible" aria-hidden="true">
         {GHOST_LINES.map((text, i) => (

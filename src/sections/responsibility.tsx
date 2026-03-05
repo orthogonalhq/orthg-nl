@@ -40,7 +40,7 @@ export function Responsibility() {
         <Reveal delay={100}>
           <div className="border-y border-white/[0.06] overflow-hidden">
             <div className="px-6 md:px-10 py-3 border-b border-white/[0.06] flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">nous::protocol</span>
+              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/45">nous::protocol</span>
               <span className="terminal-text text-[10px] text-white/15">Universal Basic Income</span>
             </div>
 
@@ -58,7 +58,7 @@ export function Responsibility() {
                     idx % 2 === 0 ? "md:border-r" : ""
                   } ${idx < 2 ? "border-b" : ""} border-white/[0.06]`}
                 >
-                  <span className="terminal-text text-[10px] uppercase tracking-[0.2em] text-white/20">{p.label}</span>
+                  <span className="terminal-text text-[10px] uppercase tracking-[0.2em] text-white/30">{p.label}</span>
                   <h3 className="font-mono text-sm font-semibold text-white/80 mt-3 mb-3">{p.title}</h3>
                   <BodyText>{p.body}</BodyText>
                 </div>

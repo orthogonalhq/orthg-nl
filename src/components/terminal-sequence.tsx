@@ -80,9 +80,9 @@ export function TerminalSequence() {
 
     addBlank();
 
-    await typeLine([label("models"), sep, { text: "ollama:llama3 " }, { text: "local", cls: "text-white/20" }], 12);
+    await typeLine([label("models"), sep, { text: "ollama:llama3 " }, { text: "local", cls: "text-white/30" }], 12);
     await wait(80);
-    await typeLine([label(""), sep, { text: "claude-3.5 " }, { text: "routed", cls: "text-white/20" }], 12);
+    await typeLine([label(""), sep, { text: "claude-3.5 " }, { text: "routed", cls: "text-white/30" }], 12);
     await wait(80);
     await typeLine([label("memory"), sep, { text: "2,847 experiences indexed" }], 12);
     await wait(80);
@@ -93,7 +93,7 @@ export function TerminalSequence() {
 
     addBlank();
 
-    await typeLine([{ text: "Sovereign AI for everyone.", cls: "text-white/20" }], 35);
+    await typeLine([{ text: "Sovereign AI for everyone.", cls: "text-white/30" }], 35);
 
     finish();
   }, [engine]);
@@ -106,7 +106,7 @@ export function TerminalSequence() {
   }, [isVisible, runSequence]);
 
   return (
-    <div ref={ref} className="terminal-text text-[12px] leading-[1.8] text-white/30 relative">
+    <div ref={ref} className="terminal-text text-[12px] leading-[1.8] text-white/45 relative">
       {/* Ghost lines — invisible but reserve final height */}
       <div className="invisible" aria-hidden="true">
         {GHOST_LINES.map((text, i) => (

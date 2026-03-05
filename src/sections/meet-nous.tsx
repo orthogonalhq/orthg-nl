@@ -146,7 +146,7 @@ export function MeetNous() {
           <div className="border-y border-white/[0.06] overflow-hidden">
             {/* Top: header bar */}
             <div className="border-b border-white/[0.06] px-6 md:px-10 py-3 flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">nous::core</span>
+              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/45">nous::core</span>
               <span className="terminal-text text-[10px] text-white/15">Yours By Design</span>
             </div>
 
@@ -168,7 +168,7 @@ export function MeetNous() {
                           : "border-white/[0.06] hover:border-white/[0.12] hover:bg-white/[0.02]"
                       }`}
                     >
-                      <p className="terminal-text text-[10px] uppercase tracking-[0.2em] text-white/25 mb-1">{tab.label}</p>
+                      <p className="terminal-text text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1">{tab.label}</p>
                       <p className="font-mono text-sm font-semibold text-white/70">{tab.value}</p>
                     </button>
                   ))}

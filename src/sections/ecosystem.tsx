@@ -18,7 +18,7 @@ export function Ecosystem() {
           <div className="border-y border-white/[0.06] overflow-hidden">
             {/* Header bar */}
             <div className="px-6 md:px-10 py-3 border-b border-white/[0.06] flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">nous::ecosystem</span>
+              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/45">nous::ecosystem</span>
               <span className="terminal-text text-[10px] text-white/15">Open Source</span>
             </div>
 
@@ -36,7 +36,7 @@ export function Ecosystem() {
                   <span className="terminal-prefix">›</span>
                   <span className="terminal-text text-accent/60 text-xs uppercase tracking-[0.2em]">Marketplace</span>
                 </div>
-                <p className="terminal-text text-xs text-white/30 leading-relaxed">
+                <p className="terminal-text text-xs text-white/45 leading-relaxed">
                   Discover and install community-built skills and packages. Publish your own. Earn revenue as a creator.
                 </p>
                 <p className="terminal-text text-[10px] text-white/10 mt-3">nous install &lt;skill&gt;</p>
@@ -46,7 +46,7 @@ export function Ecosystem() {
                   <span className="terminal-prefix">›</span>
                   <span className="terminal-text text-accent/60 text-xs uppercase tracking-[0.2em]">Open Source</span>
                 </div>
-                <p className="terminal-text text-xs text-white/30 leading-relaxed">
+                <p className="terminal-text text-xs text-white/45 leading-relaxed">
                   The runtime is public. The architecture is auditable. Fork it, extend it, contribute back.
                 </p>
                 <p className="terminal-text text-[10px] text-white/10 mt-3">git clone nous-core</p>
@@ -56,7 +56,7 @@ export function Ecosystem() {
                   <span className="terminal-prefix">›</span>
                   <span className="terminal-text text-accent/60 text-xs uppercase tracking-[0.2em]">Nous Cloud</span>
                 </div>
-                <p className="terminal-text text-xs text-white/30 leading-relaxed">
+                <p className="terminal-text text-xs text-white/45 leading-relaxed">
                   Don&apos;t want to self-host? We run it for you. Sovereign by default — your data stays yours.
                 </p>
                 <p className="terminal-text text-[10px] text-white/10 mt-3">nous deploy --sovereign</p>

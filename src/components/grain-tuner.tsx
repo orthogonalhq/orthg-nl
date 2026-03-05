@@ -87,10 +87,10 @@ export function GrainTuner() {
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
       >
-        <span className="uppercase tracking-[0.25em] text-white/40 text-[11px]">
+        <span className="uppercase tracking-[0.25em] text-white/55 text-[11px]">
           <span className="text-white/15 mr-1">&gt;</span>grain.sys
         </span>
-        <span className="text-white/20 tabular-nums text-[11px]">
+        <span className="text-white/30 tabular-nums text-[11px]">
           T+{elapsed}
         </span>
       </div>
@@ -104,7 +104,7 @@ export function GrainTuner() {
           return (
             <div key={key} className="py-[6px]">
               <div className="flex items-center justify-between mb-1.5">
-                <span className={`uppercase tracking-[0.15em] text-[11px] ${isOverridden ? "text-accent" : "text-white/30"}`}>
+                <span className={`uppercase tracking-[0.15em] text-[11px] ${isOverridden ? "text-accent" : "text-white/45"}`}>
                   <span className={`mr-1.5 ${isOverridden ? "text-accent/50" : "text-white/15"}`}>$</span>
                   {label}
                 </span>

@@ -54,7 +54,7 @@ export function Architecture() {
           <div className="border-y border-white/[0.06]">
             {/* Header */}
             <div className="border-b border-white/[0.06] px-6 md:px-10 py-3 flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">nous::layers</span>
+              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/45">nous::layers</span>
               <span className="terminal-text text-[10px] text-white/15">Cognitive Stack</span>
             </div>
 
@@ -70,9 +70,9 @@ export function Architecture() {
                       <div className="min-w-0 overflow-visible">
                         <div className="flex items-baseline gap-2">
                           <span className={`text-[10px] leading-none relative -top-px ${layer.status === "active" ? "text-green-400/40" : "text-white/15"}`}>●</span>
-                          <span className="font-mono text-sm font-semibold text-accent/80">{layer.name}</span>
+                          <span className="font-mono text-sm font-semibold text-accent">{layer.name}</span>
                         </div>
-                        <div className="terminal-text text-[10px] text-white/20 mt-1 pl-[18px] whitespace-nowrap">
+                        <div className="terminal-text text-[10px] text-white/30 mt-1 pl-[18px] whitespace-nowrap">
                           ← {layer.brain}
                         </div>
                       </div>
@@ -84,10 +84,10 @@ export function Architecture() {
                   <div className={`px-6 md:px-10 py-5 ${
                     i < LAYERS.length - 1 ? "border-b border-white/[0.06]" : ""
                   }`}>
-                    <p className="terminal-text text-xs uppercase tracking-[0.15em] text-white/40 mb-1.5">
+                    <p className="terminal-text text-xs uppercase tracking-[0.15em] text-white/55 mb-1.5">
                       {layer.desc}
                     </p>
-                    <p className="terminal-text text-xs text-white/25 leading-relaxed">
+                    <p className="terminal-text text-xs text-white/40 leading-relaxed">
                       {layer.detail}
                     </p>
                   </div>

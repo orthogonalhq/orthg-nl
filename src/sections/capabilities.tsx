@@ -254,7 +254,7 @@ export function Capabilities() {
           <div className="border-y border-white/[0.06] overflow-hidden">
             {/* Header bar */}
             <div className="border-b border-white/[0.06] px-6 md:px-10 py-3 flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">nous::modules</span>
+              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/45">nous::modules</span>
               <span className="terminal-text text-[10px] text-white/15">6 Loaded</span>
             </div>
 
@@ -277,7 +277,7 @@ export function Capabilities() {
                     }`} />
                     <div>
                       <h3 className="font-mono text-sm font-semibold text-white/80 mb-1">{cap.title}</h3>
-                      <p className="terminal-text text-xs text-white/30 leading-relaxed">{cap.desc}</p>
+                      <p className="terminal-text text-xs text-white/45 leading-relaxed">{cap.desc}</p>
                     </div>
                   </button>
                 ))}
@@ -309,7 +309,7 @@ export function Capabilities() {
                     }`} />
                     <div className="flex-1 min-w-0">
                       <h3 className="font-mono text-sm font-semibold text-white/80 mb-1">{cap.title}</h3>
-                      <p className="terminal-text text-xs text-white/30 leading-relaxed">{cap.desc}</p>
+                      <p className="terminal-text text-xs text-white/45 leading-relaxed">{cap.desc}</p>
                     </div>
                     <span className={`terminal-text text-[10px] mt-1 shrink-0 transition-transform duration-200 ${
                       activeTab === cap.key ? "text-accent/40 rotate-90" : "text-white/15"

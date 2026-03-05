@@ -27,7 +27,7 @@ export function SixWalls() {
           <div className="border-y border-white/[0.06] divide-y divide-white/[0.06]">
             {/* Header bar */}
             <div className="px-6 md:px-10 py-3 flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">nous::security</span>
+              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/45">nous::security</span>
               <span className="terminal-text text-[10px] text-red-400/30">6 Critical</span>
             </div>
             {/* Row 1 */}
@@ -38,7 +38,7 @@ export function SixWalls() {
                   <h3 className="font-mono text-sm font-semibold tracking-[-0.01em] mb-2 text-white/80">
                     {wall.title}
                   </h3>
-                  <p className="terminal-text text-xs text-white/30 leading-relaxed">
+                  <p className="terminal-text text-xs text-white/45 leading-relaxed">
                     {wall.body}
                   </p>
                 </div>
@@ -52,7 +52,7 @@ export function SixWalls() {
                   <h3 className="font-mono text-sm font-semibold tracking-[-0.01em] mb-2 text-white/80">
                     {wall.title}
                   </h3>
-                  <p className="terminal-text text-xs text-white/30 leading-relaxed">
+                  <p className="terminal-text text-xs text-white/45 leading-relaxed">
                     {wall.body}
                   </p>
                 </div>
