@@ -170,14 +170,14 @@ body {
 
 /* Rail line mask — responsive fade points */
 .rail-mask {
-  -webkit-mask-image: linear-gradient(to bottom, transparent 180px, black 220px, black calc(100% - 60px), transparent calc(100% - 30px));
-  mask-image: linear-gradient(to bottom, transparent 180px, black 220px, black calc(100% - 60px), transparent calc(100% - 30px));
+  -webkit-mask-image: linear-gradient(to bottom, transparent 40px, black 80px, black calc(100% - 60px), transparent calc(100% - 30px));
+  mask-image: linear-gradient(to bottom, transparent 40px, black 80px, black calc(100% - 60px), transparent calc(100% - 30px));
 }
 
 @media (min-width: 1024px) {
   .rail-mask {
-    -webkit-mask-image: linear-gradient(to bottom, transparent 268px, black 300px, black calc(100% - 110px), transparent calc(100% - 80px));
-    mask-image: linear-gradient(to bottom, transparent 268px, black 300px, black calc(100% - 110px), transparent calc(100% - 80px));
+    -webkit-mask-image: linear-gradient(to bottom, transparent 210px, black 250px, black calc(100% - 110px), transparent calc(100% - 80px));
+    mask-image: linear-gradient(to bottom, transparent 210px, black 250px, black calc(100% - 110px), transparent calc(100% - 80px));
   }
 }
 
