@@ -14,14 +14,12 @@ export function CTA() {
       <div className="flex flex-col items-center gap-6">
         <SectionLabel>Get started</SectionLabel>
         <SectionHeading size="large">
-          Sovereign AI
-          <br />
-          for everyone.
+          Your agent is waiting.
         </SectionHeading>
         <BodyText>
-          The code is open. The runtime works today.
+          Open source. Autonomous. Yours.
           <br className="hidden sm:block" />
-          Come build with us.
+          Join the waitlist for early access.
         </BodyText>
 
         <div className="mt-4 z-30">

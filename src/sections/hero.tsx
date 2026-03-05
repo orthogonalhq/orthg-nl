@@ -20,14 +20,14 @@ export function Hero() {
         {/* Hero heading */}
         <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           <SectionHeading as="h1" size="hero" className="phosphor-pulse">
-            The OS for human-level AI
+            Your agent. Your rules.
           </SectionHeading>
         </div>
 
         {/* Body */}
         <div className="animate-fade-in-up" style={{ animationDelay: "0.35s" }}>
-          <BodyText className="max-w-md">
-            Nous is an open-source AI operating system that runs on your machine, learns from your life, and answers only to you.
+          <BodyText className="max-w-lg">
+            An autonomous AI agent that knows you, works for you, and belongs to you — across every device.
           </BodyText>
         </div>
 

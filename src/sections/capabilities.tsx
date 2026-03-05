@@ -5,6 +5,8 @@ import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
 import { AgentSessionSequence } from "@/components/agent-session-sequence";
 import { TabPanel } from "@/components/tab-panel";
+import { useTerminalCache } from "@/hooks/use-terminal-cache";
+import { useIntersectionReveal } from "@/hooks/use-intersection-reveal";
 
 function IconVoice({ className }: { className?: string }) {
   return (
@@ -70,9 +72,14 @@ const CAPABILITY_TABS = [
     desc: "Converse with your entire agent mesh. Build skills by talking. Resolve escalations from a voice note.",
     icon: IconVoice,
     content: [
-      "Talk to it through Telegram. Over a phone call. Through your microphone. A Discord bot.",
-      "Have it monitor your security cameras. Pick up on your laptop where you left off on your phone.",
-      "Resolve an escalation from a voice note. The context follows you because the mind is one mind.",
+      "$ nous voice --channels",
+      "---",
+      "telegram  │ voice + text =connected",
+      "phone     │ direct call =connected",
+      "discord   │ bot integration =connected",
+      "---",
+      "Pick up on your laptop where you left off on your phone.",
+      "The context follows you because the mind is one mind.",
     ],
   },
   {
@@ -81,9 +88,14 @@ const CAPABILITY_TABS = [
     desc: "Multi-step projects that run for days. Governed, auditable, improving over time.",
     icon: IconAgents,
     content: [
-      "Delegate multi-step projects and trust them to execute with accuracy and auditability over days and weeks.",
-      "Every step is governed: your AI knows what it can handle alone, what it should flag, and what it must ask you about.",
-      "A workflow that needed your approval on every step in week one might run autonomously by month three — because it's proven it can.",
+      "$ nous agent --delegate",
+      "---",
+      "scope     │ multi-step projects =days/weeks",
+      "govern    │ per-step permissions =enforced",
+      "audit     │ full action log =tamper-evident",
+      "---",
+      "Every step is governed: it knows what to handle alone and what to ask you about.",
+      "Week one it asks for every approval. Month three it runs autonomously — earned trust.",
     ],
   },
   {
@@ -92,10 +104,14 @@ const CAPABILITY_TABS = [
     desc: "Natural language + visual skill builder. Schedule tasks at any interval. Create digital employees.",
     icon: IconSkills,
     content: [
-      "Build workflows, projects, and skills using natural language prompting AND a visual skill builder simultaneously.",
-      "Schedule tasks at any interval — hourly, daily, weekly — or have them running 24/7.",
-      "Use this to build businesses. Create digital employees. Automate your personal operations.",
-      "This isn't a prompt chain. It's delegation to an intelligence that gets more capable over time.",
+      "$ nous skills --builder",
+      "---",
+      "input     │ natural language + visual =simultaneous",
+      "schedule  │ hourly, daily, 24/7 =configurable",
+      "output    │ digital employees =autonomous",
+      "---",
+      "Build workflows using prompts and a visual builder at the same time.",
+      "This isn't a prompt chain. It's delegation to intelligence that compounds.",
     ],
   },
   {
@@ -104,9 +120,14 @@ const CAPABILITY_TABS = [
     desc: "Your local AI becomes the central hub via MCP. Every tool feeds intelligence back.",
     icon: IconGateway,
     content: [
-      "Nous exposes an MCP server. Your local AI becomes the central knowledge base for your entire network.",
-      "Connect it to every application that supports MCP. Every tool you use becomes a source of intelligence.",
-      "Your entire ecosystem of services learning faster, because they share a mind.",
+      "$ nous gateway --mcp-status",
+      "---",
+      "server    │ MCP exposed =active",
+      "clients   │ connected applications =12",
+      "sync      │ bidirectional intelligence =live",
+      "---",
+      "Every app that supports MCP becomes a source of intelligence.",
+      "Your entire ecosystem learns faster because it shares a mind.",
     ],
   },
   {
@@ -115,9 +136,14 @@ const CAPABILITY_TABS = [
     desc: "Any provider — local or cloud. Nous suggests the best model for the job, including what runs on your hardware.",
     icon: IconModels,
     content: [
-      "Run on any provider — Ollama, OpenAI, Anthropic, Mistral, Groq, your own fine-tunes. Mix and match.",
-      "Nous measures your local compute power and tells you what you can run on your own hardware. Or just let it auto-select.",
-      "Models are swappable compute. Your intelligence lives in the memory layer. When a better model drops, plug it in.",
+      "$ nous models --available",
+      "---",
+      "local     │ ollama:llama3 =ready",
+      "cloud     │ claude-3.5, gpt-4, mistral =routed",
+      "custom    │ your fine-tunes =supported",
+      "---",
+      "Nous measures your hardware and suggests what you can run locally.",
+      "Models are swappable compute. Your intelligence lives in the memory layer.",
     ],
   },
   {
@@ -126,15 +152,22 @@ const CAPABILITY_TABS = [
     desc: "Telegram. Phone call. Discord. Pick up on your laptop where you left off on your phone.",
     icon: IconEverywhere,
     content: [
-      "You don't need dozens of project chat groups and hundreds of scattered threads — although you can organize it that way.",
-      "Talk to it through Telegram. Over a phone call. Through your microphone. A Discord bot.",
-      "The communication surface is open and extensible, not a single locked-down interface.",
+      "$ nous surfaces --list",
+      "---",
+      "app       │ nous desktop =active",
+      "mobile    │ telegram, voice =active",
+      "cli       │ nous-cli =active",
+      "---",
+      "No more dozens of chat groups and scattered threads.",
+      "The communication surface is open and extensible — not locked down.",
     ],
   },
 ];
 
 export function Capabilities() {
   const [activeTab, setActiveTab] = useState<string | null>(null);
+  const { ref: sectionRef, isVisible } = useIntersectionReveal({ threshold: 0.15 });
+  const cache = useTerminalCache(CAPABILITY_TABS.map((t) => ({ key: t.key, content: t.content })), isVisible);
 
   const handleTabClick = (key: string) => {
     setActiveTab((prev) => (prev === key ? null : key));
@@ -143,11 +176,11 @@ export function Capabilities() {
   const activeTabData = CAPABILITY_TABS.find((t) => t.key === activeTab);
 
   return (
-    <section id="capabilities" className="relative px-6 md:px-12 lg:px-20 py-20 md:py-28">
+    <section ref={sectionRef} id="capabilities" className="relative px-6 md:px-12 lg:px-20 py-20 md:py-28">
       <div className="mx-auto max-w-5xl">
         <Reveal>
           <SectionHeader label="Capabilities" className="max-w-2xl">
-            What your AI can finally do.
+            What your agent can do.
           </SectionHeader>
         </Reveal>
 
@@ -159,8 +192,8 @@ export function Capabilities() {
               <span className="terminal-text text-[10px] text-white/15">6 loaded</span>
             </div>
 
-            {/* Split: left list + right visual */}
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+            {/* Desktop: split layout */}
+            <div className="hidden lg:grid lg:grid-cols-2">
               {/* Left: stacked capability rows */}
               <div className="lg:border-r border-white/[0.06] divide-y divide-white/[0.06]">
                 {CAPABILITY_TABS.map((cap) => (
@@ -189,7 +222,43 @@ export function Capabilities() {
                 tabKey={activeTab}
                 lines={activeTabData?.content ?? null}
                 defaultContent={<AgentSessionSequence />}
+                cachedEngine={activeTab ? cache.getEngine(activeTab) : null}
               />
+            </div>
+
+            {/* Mobile: accordion layout */}
+            <div className="lg:hidden divide-y divide-white/[0.06]">
+              {CAPABILITY_TABS.map((cap) => (
+                <div key={cap.key}>
+                  <button
+                    onClick={() => handleTabClick(cap.key)}
+                    className={`w-full px-6 md:px-8 py-5 flex items-start gap-3 text-left transition-colors ${
+                      activeTab === cap.key
+                        ? "bg-white/[0.03]"
+                        : "hover:bg-white/[0.02]"
+                    }`}
+                  >
+                    <cap.icon className={`w-4 h-4 mt-0.5 shrink-0 ${
+                      activeTab === cap.key ? "text-accent/60" : "text-accent/40"
+                    }`} />
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-mono text-sm font-semibold text-white/80 mb-1">{cap.title}</h3>
+                      <p className="terminal-text text-xs text-white/30 leading-relaxed">{cap.desc}</p>
+                    </div>
+                    <span className={`terminal-text text-[10px] mt-1 shrink-0 transition-transform duration-200 ${
+                      activeTab === cap.key ? "text-accent/40 rotate-90" : "text-white/15"
+                    }`}>▸</span>
+                  </button>
+                  {activeTab === cap.key && (
+                    <TabPanel
+                      tabKey={cap.key}
+                      lines={cap.content}
+                      defaultContent={null}
+                      cachedEngine={cache.getEngine(cap.key)}
+                    />
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </Reveal>
