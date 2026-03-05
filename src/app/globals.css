@@ -87,6 +87,22 @@ body {
   box-shadow: 0 0 28px rgba(250, 142, 46, 0.3), 0 0 80px rgba(250, 93, 43, 0.15);
 }
 
+/* ── Typography tokens ────────────────────────────────────────────────
+   Semantic color classes — tune brightness here, never in components.
+   Mobile overrides live in the @media block below. */
+.t-heading-dim  { color: rgb(255 255 255 / 0.50); }
+.t-card-title   { color: rgb(255 255 255 / 0.90); }
+.t-stat-value   { color: rgb(255 255 255 / 0.80); }
+.t-body         { color: rgb(255 255 255 / 0.60); }
+.t-card-desc    { color: rgb(255 255 255 / 0.50); }
+.t-panel-label  { color: rgb(255 255 255 / 0.50); }
+.t-panel-meta   { color: rgb(255 255 255 / 0.20); }
+.t-nav          { color: rgb(255 255 255 / 0.45); }
+.t-sub-label    { color: rgb(255 255 255 / 0.35); }
+.t-meta         { color: rgb(255 255 255 / 0.30); }
+.t-ghost        { color: rgb(255 255 255 / 0.15); }
+.t-faint        { color: rgb(255 255 255 / 0.10); }
+
 /* Terminal panel styling */
 .terminal-text {
   font-family: var(--font-fira-code), ui-monospace, monospace;
@@ -183,17 +199,19 @@ body {
 
 /* Mobile contrast adjustments — compress opacity range for phone screens */
 @media (max-width: 767px) {
-  /* Text: compress opacity range for small screens */
-  .text-white\/80 { color: rgb(255 255 255 / 0.75); }
-  .text-white\/70 { color: rgb(255 255 255 / 0.65); }
-  .text-white\/55 { color: rgb(255 255 255 / 0.60); }
-  .text-white\/50 { color: rgb(255 255 255 / 0.55); }
-  .text-white\/45 { color: rgb(255 255 255 / 0.50); }
-  .text-white\/40 { color: rgb(255 255 255 / 0.45); }
-  .text-white\/30 { color: rgb(255 255 255 / 0.35); }
-  .text-white\/15 { color: rgb(255 255 255 / 0.25); }
-  .text-white\/10 { color: rgb(255 255 255 / 0.18); }
-  .text-white\/5  { color: rgb(255 255 255 / 0.12); }
+  /* Typography tokens: compress opacity range for small screens */
+  .t-card-title   { color: rgb(255 255 255 / 0.85); }
+  .t-stat-value   { color: rgb(255 255 255 / 0.75); }
+  .t-body         { color: rgb(255 255 255 / 0.58); }
+  .t-heading-dim  { color: rgb(255 255 255 / 0.48); }
+  .t-card-desc    { color: rgb(255 255 255 / 0.48); }
+  .t-panel-label  { color: rgb(255 255 255 / 0.48); }
+  .t-nav          { color: rgb(255 255 255 / 0.43); }
+  .t-sub-label    { color: rgb(255 255 255 / 0.33); }
+  .t-meta         { color: rgb(255 255 255 / 0.30); }
+  .t-panel-meta   { color: rgb(255 255 255 / 0.22); }
+  .t-ghost        { color: rgb(255 255 255 / 0.18); }
+  .t-faint        { color: rgb(255 255 255 / 0.14); }
 
   /* Borders: boost structural lines */
   [class*="border-white"][class*="0.06"],
