@@ -27,8 +27,8 @@ export function SixWalls() {
           <div className="border-y border-white/[0.06] divide-y divide-white/[0.06]">
             {/* Header bar */}
             <div className="px-6 md:px-10 py-3 flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">diagnostic report</span>
-              <span className="terminal-text text-[10px] text-red-400/30">6 critical</span>
+              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">nous::security</span>
+              <span className="terminal-text text-[10px] text-red-400/30">6 Critical</span>
             </div>
             {/* Row 1 */}
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">

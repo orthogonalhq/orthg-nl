@@ -18,8 +18,8 @@ export function Ecosystem() {
           <div className="border-y border-white/[0.06] overflow-hidden">
             {/* Header bar */}
             <div className="px-6 md:px-10 py-3 border-b border-white/[0.06] flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">ecosystem::core</span>
-              <span className="terminal-text text-[10px] text-white/15">open source</span>
+              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">nous::ecosystem</span>
+              <span className="terminal-text text-[10px] text-white/15">Open Source</span>
             </div>
 
             {/* Body text */}
@@ -33,7 +33,7 @@ export function Ecosystem() {
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="terminal-prefix">$</span>
+                  <span className="terminal-prefix">›</span>
                   <span className="terminal-text text-accent/60 text-xs uppercase tracking-[0.2em]">Marketplace</span>
                 </div>
                 <p className="terminal-text text-xs text-white/30 leading-relaxed">
@@ -43,7 +43,7 @@ export function Ecosystem() {
               </div>
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="terminal-prefix">$</span>
+                  <span className="terminal-prefix">›</span>
                   <span className="terminal-text text-accent/60 text-xs uppercase tracking-[0.2em]">Open Source</span>
                 </div>
                 <p className="terminal-text text-xs text-white/30 leading-relaxed">
@@ -53,7 +53,7 @@ export function Ecosystem() {
               </div>
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="terminal-prefix">$</span>
+                  <span className="terminal-prefix">›</span>
                   <span className="terminal-text text-accent/60 text-xs uppercase tracking-[0.2em]">Nous Cloud</span>
                 </div>
                 <p className="terminal-text text-xs text-white/30 leading-relaxed">

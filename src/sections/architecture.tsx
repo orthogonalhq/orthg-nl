@@ -54,12 +54,8 @@ export function Architecture() {
           <div className="border-y border-white/[0.06]">
             {/* Header */}
             <div className="border-b border-white/[0.06] px-6 md:px-10 py-3 flex items-center justify-between">
-              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">
-                Cognitive layers
-              </span>
-              <span className="terminal-text text-[10px] text-white/15">
-                The Brain → Nous
-              </span>
+              <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">nous::layers</span>
+              <span className="terminal-text text-[10px] text-white/15">Cognitive Stack</span>
             </div>
 
             {/* Layers — shared grid so the vertical divider aligns across all rows */}

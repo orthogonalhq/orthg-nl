@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
 import { BodyText } from "@/components/body-text";
@@ -9,7 +9,32 @@ import { TabPanel } from "@/components/tab-panel";
 import { useTerminalCache } from "@/hooks/use-terminal-cache";
 import { useIntersectionReveal } from "@/hooks/use-intersection-reveal";
 
-const TABS = [
+function detectOS(): "windows" | "macos" | "linux" {
+  if (typeof navigator === "undefined") return "macos";
+  const ua = navigator.userAgent.toLowerCase();
+  if (ua.includes("win")) return "windows";
+  if (ua.includes("mac")) return "macos";
+  return "linux";
+}
+
+function buildInstallContent(os: "windows" | "macos" | "linux"): string[] {
+  const tag = (key: "windows" | "macos" | "linux") => key === os ? "=recommended" : "=~available";
+  return [
+    "$ nous install --help",
+    "---",
+    `windows   │ nous-desktop.exe ${tag("windows")}`,
+    `macos     │ nous-desktop.dmg ${tag("macos")}`,
+    `linux     │ nous-desktop.AppImage ${tag("linux")}`,
+    `cli       │ curl -sL get.nous.dev | sh =~available`,
+    `git       │ git clone nous-core =~latest`,
+    "---",
+    "One command. Any platform. Running in under a minute.",
+    "Your data stays local. Your agent starts immediately.",
+    "Free forever.",
+  ];
+}
+
+const STATIC_TABS = [
   {
     key: "memory",
     label: "Memory",
@@ -88,12 +113,21 @@ const TABS = [
 ];
 
 export function MeetNous() {
-  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<string | null>("install");
   const { ref: sectionRef, isVisible } = useIntersectionReveal({ threshold: 0.15 });
+
+  const TABS = useMemo(() => {
+    const os = detectOS();
+    return [
+      { key: "install", label: "Install", value: "Every platform", content: buildInstallContent(os) },
+      ...STATIC_TABS,
+    ];
+  }, []);
+
   const cache = useTerminalCache(TABS.map((t) => ({ key: t.key, content: t.content })), isVisible);
 
   const handleTabClick = (key: string) => {
-    setActiveTab((prev) => (prev === key ? null : key));
+    setActiveTab(key);
   };
 
   const activeTabData = TABS.find((t) => t.key === activeTab);
@@ -113,9 +147,7 @@ export function MeetNous() {
             {/* Top: header bar */}
             <div className="border-b border-white/[0.06] px-6 md:px-10 py-3 flex items-center justify-between">
               <span className="terminal-text text-[11px] uppercase tracking-[0.2em] text-white/30">nous::core</span>
-              <span className="terminal-text text-[10px] text-white/15">
-                yours by design
-              </span>
+              <span className="terminal-text text-[10px] text-white/15">Yours By Design</span>
             </div>
 
             {/* Content: split layout */}

@@ -19,16 +19,21 @@ export function Hero() {
 
         {/* Hero heading */}
         <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-          <SectionHeading as="h1" size="hero" className="phosphor-pulse">
-            Your agent. Your rules.
-          </SectionHeading>
+          <SectionHeading as="h1" size="hero" className="phosphor-pulse">Nous</SectionHeading>
+          <p className="terminal-text text-[11px] uppercase tracking-[0.25em] text-white/20 mt-2">
+           A Neural Orchestration Unification System
+          </p>
+          <BodyText className="max-w-lg text-xl text-accent mt-4">
+            Open Source. Free. Forever.
+          </BodyText>
         </div>
 
         {/* Body */}
         <div className="animate-fade-in-up" style={{ animationDelay: "0.35s" }}>
-          <BodyText className="max-w-lg">
-            An autonomous AI agent that knows you, works for you, and belongs to you — across every device.
+          <BodyText className="max-w-lg text-xl">
+            An autonomous AI agent that knows you, works for you, and belongs entirely to you.
           </BodyText>
+          
         </div>
 
         {/* Email capture */}
