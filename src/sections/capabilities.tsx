@@ -171,7 +171,7 @@ const CAPABILITY_TABS = [
   },
   {
     key: "models",
-    title: "Any model. Your choice.",
+    title: "Every model is supported.",
     desc: "Any provider — local or cloud. Nous suggests the best model for the job, including what runs on your hardware.",
     icon: IconModels,
     content: [
@@ -246,7 +246,7 @@ export function Capabilities() {
       <div className="mx-auto max-w-5xl">
         <Reveal>
           <SectionHeader label="Capabilities" className="max-w-2xl">
-            What your agent can do.
+            The next level of intelligence.
           </SectionHeader>
         </Reveal>
 
