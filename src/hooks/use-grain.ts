@@ -16,7 +16,7 @@ export const GRAIN = {
     churnRate: 0.13,
     basePop: 0.0,
     maxPop: 0.3,
-    popAlphaMin: 3,
+    popAlphaMin: 4,
     popAlphaMax: 30,
     baseAlpha: 5,
   } as GrainParams,
@@ -25,7 +25,7 @@ export const GRAIN = {
     churnRate: 0.33,
     basePop: 0.0,
     maxPop: 0.3,
-    popAlphaMin: 3,
+    popAlphaMin: 8,
     popAlphaMax: 24,
     baseAlpha: 6,
   } as GrainParams,
@@ -35,7 +35,7 @@ export const GRAIN = {
   densityMaps: [
     { src: "/density-map-16x9.png", ar: 16 / 9, scale: 1.5, offsetY: -0.10, zone3: { scale: 1.25, offsetX: 0.10, offsetY: 0.075 } },
     { src: "/density-map-1x1.png",  ar: 1,      scale: 1,   offsetY: 0,     zone3: null },
-    { src: "/density-map-9x16.png", ar: 9 / 16, scale: 1,   offsetY: 0,     zone3: { scale: 1.75, offsetX: 0, offsetY: 0.15 } },
+    { src: "/density-map-9x16.png", ar: 9 / 16, scale: 1,   offsetY: 0,     zone3: { scale: 1.75, offsetX: 0, offsetY: 0, anchor: "br" as const } },
   ],
   densityMapFallback: "/density-map.png",
   overrideHoldMs: 1000,
@@ -110,7 +110,7 @@ export function useGrain(
 
     let currentEntryScale = 1;
     let currentEntryOffsetY = 0;
-    let currentZone3: { scale: number; offsetX: number; offsetY: number } | null = null;
+    let currentZone3: { scale: number; offsetX: number; offsetY: number; anchor?: "br" } | null = null;
 
     function pickDensityEntry() {
       const viewportAr = window.innerWidth / window.innerHeight;
@@ -167,8 +167,13 @@ export function useGrain(
       const z3 = inZone3 && currentZone3 ? currentZone3 : null;
       drawW *= ds * (z3 ? z3.scale : 1);
       drawH *= ds * (z3 ? z3.scale : 1);
-      drawX = (w - drawW) / 2 + (z3 ? w * z3.offsetX : 0);
-      drawY = (h - drawH) / 2 + h * (z3 ? z3.offsetY : currentEntryOffsetY);
+      if (z3?.anchor === "br") {
+        drawX = w - drawW + w * z3.offsetX;
+        drawY = h - drawH + h * z3.offsetY;
+      } else {
+        drawX = (w - drawW) / 2 + (z3 ? w * z3.offsetX : 0);
+        drawY = (h - drawH) / 2 + h * (z3 ? z3.offsetY : currentEntryOffsetY);
+      }
 
       offCtx.drawImage(densityImg, drawX, drawY, drawW, drawH);
       const mapData = offCtx.getImageData(0, 0, w, h).data;
