@@ -122,10 +122,6 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
     <GrainContext.Provider value={{ displayParams, activeOverrides, elapsed, handleKnob, showTuner, setShowTuner, grainEnabled, setGrainEnabled }}>
       {grainEnabled && (
         <>
-          {/* Vignette — top & bottom */}
-          <div className="pointer-events-none fixed inset-x-0 top-0 z-30 h-[20vh] bg-linear-to-b from-black/60 to-transparent" />
-          <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 h-[20vh] bg-linear-to-t from-black/60 to-transparent" />
-
           {/* Animated grain canvas */}
           <canvas
             ref={grainRef}

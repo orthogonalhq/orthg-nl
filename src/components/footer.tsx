@@ -29,6 +29,7 @@ export function Footer({ children }: FooterProps) {
               Investors
             </a>
             <button
+              data-tuner-toggle
               onClick={() => setShowTuner((v: boolean) => !v)}
               className="cursor-pointer border-r border-white/[0.06] px-5 py-3 text-[11px] uppercase tracking-[0.2em] text-white/25 transition-colors hover:text-accent"
             >
