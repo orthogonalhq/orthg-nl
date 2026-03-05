@@ -17,7 +17,7 @@ export const GRAIN = {
     basePop: 0.0,
     maxPop: 0.3,
     popAlphaMin: 20,
-    popAlphaMax: 60,
+    popAlphaMax: 40,
     baseAlpha: 5,
   } as GrainParams,
 
@@ -26,7 +26,7 @@ export const GRAIN = {
     basePop: 0.0,
     maxPop: 0.3,
     popAlphaMin: 35,
-    popAlphaMax: 75,
+    popAlphaMax: 50,
     baseAlpha: 6,
   } as GrainParams,
 
