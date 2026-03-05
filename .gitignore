@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# design source
+*.psd
+
 # sqlite
 *.db
 *.db-shm
