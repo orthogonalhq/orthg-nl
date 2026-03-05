@@ -66,6 +66,8 @@ export function useGrain(
   overridesRef: React.RefObject<Overrides>,
   displayRef: React.RefObject<GrainParams>,
   scrollAttenuationRef?: React.RefObject<number>,
+  scaleRef?: React.RefObject<number>,
+  bottomBoostRef?: React.RefObject<number>,
 ) {
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -80,9 +82,12 @@ export function useGrain(
     let data!: Uint8ClampedArray;
     let densityMap!: Float32Array;
 
+    let currentScale = scaleRef?.current ?? GRAIN.scale;
+
     function resize() {
-      w = Math.ceil(window.innerWidth * GRAIN.scale);
-      h = Math.ceil(window.innerHeight * GRAIN.scale);
+      currentScale = scaleRef?.current ?? GRAIN.scale;
+      w = Math.ceil(window.innerWidth * currentScale);
+      h = Math.ceil(window.innerHeight * currentScale);
       canvas!.width = w;
       canvas!.height = h;
       imageData = ctx!.createImageData(w, h);
@@ -182,6 +187,12 @@ export function useGrain(
     function draw(time: number) {
       frame = requestAnimationFrame(draw);
 
+      // Resize canvas when scaleRef changes
+      const newScale = scaleRef?.current ?? GRAIN.scale;
+      if (newScale !== currentScale) {
+        resize();
+      }
+
       const now = Date.now();
       const t = (Math.sin((time / GRAIN.breathMs) * Math.PI * 2 - Math.PI / 2) + 1) / 2;
       const overrides = overridesRef.current;
@@ -208,6 +219,10 @@ export function useGrain(
       // Scroll attenuation: scale popAlphaMax by scroll position
       if (scrollAttenuationRef?.current !== undefined) {
         p.popAlphaMax = p.popAlphaMax * scrollAttenuationRef.current;
+      }
+      // Bottom zone boost: ramp popAlphaMax +50%
+      if (bottomBoostRef?.current !== undefined) {
+        p.popAlphaMax = p.popAlphaMax * bottomBoostRef.current;
       }
 
       displayRef.current = p;
@@ -244,5 +259,6 @@ export function useGrain(
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canvasRef, overridesRef, displayRef]);
 }

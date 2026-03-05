@@ -45,25 +45,40 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
   const [showTuner, setShowTuner] = useState(false);
   const [grainEnabled, setGrainEnabled] = useState(true);
 
-  // Scroll-based effects: attenuation + pixel zoom
+  // Scroll-based effects across 3 zones
   const scrollAttenuationRef = useRef(1);
+  const scaleRef = useRef(GRAIN.scale);
+  const bottomBoostRef = useRef(1);
   const [pixelScale, setPixelScale] = useState(1);
   useEffect(() => {
     function onScroll() {
       const scrollY = window.scrollY;
       const vh = window.innerHeight;
-      const t = Math.min(scrollY / vh, 1); // 0 at top, 1 at 100vh, clamped
-      // popAlphaMax: linear ramp from 1.0 to 0.25
-      scrollAttenuationRef.current = 1 - t * 0.75;
-      // Pixel scale: 1x at top, 2x at 100vh
-      setPixelScale(1 + t);
+      const maxScroll = document.documentElement.scrollHeight - vh;
+
+      // Zone 1: first 100vh — fade grain alpha, slight CSS zoom
+      const tTop = Math.min(scrollY / vh, 1);
+      scrollAttenuationRef.current = 1 - tTop * 0.75;
+      setPixelScale(1 + tTop);
+
+      // Zone 3: last 100vh — ramp canvas resolution + boost popAlphaMax
+      const bottomStart = maxScroll - vh;
+      if (scrollY > bottomStart && maxScroll > vh) {
+        const tBottom = (scrollY - bottomStart) / vh; // 0 → 1
+        const eased = tBottom * tBottom; // ease-in
+        scaleRef.current = GRAIN.scale + eased * (2 - GRAIN.scale); // 0.5 → 2.0
+        bottomBoostRef.current = 1 + eased * 0.5; // 1.0 → 1.5 (+50%)
+      } else {
+        scaleRef.current = GRAIN.scale;
+        bottomBoostRef.current = 1;
+      }
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useGrain(grainRef, overridesRef, displayRef, scrollAttenuationRef);
+  useGrain(grainRef, overridesRef, displayRef, scrollAttenuationRef, scaleRef, bottomBoostRef);
 
   // Sync display params from the grain loop at ~20fps
   useEffect(() => {
