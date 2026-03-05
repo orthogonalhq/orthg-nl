@@ -57,6 +57,14 @@ export const KNOBS: { key: keyof GrainParams; label: string; min: number; max: n
 
 export type Overrides = Record<string, { value: number; expires: number; _releaseVal?: number; _releaseTime?: number }>;
 
+export interface Bubble {
+  x: number;  // canvas-space x
+  y: number;  // canvas-space y
+  time: number; // Date.now() when created
+  tendrils: number[]; // angles in radians
+  seed: number; // for deterministic fractal variation
+}
+
 export function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
@@ -66,8 +74,8 @@ export function useGrain(
   overridesRef: React.RefObject<Overrides>,
   displayRef: React.RefObject<GrainParams>,
   scrollAttenuationRef?: React.RefObject<number>,
-  scaleRef?: React.RefObject<number>,
-  bottomBoostRef?: React.RefObject<number>,
+  densityScaleRef?: React.RefObject<number>,
+  bubblesRef?: React.RefObject<Bubble[]>,
 ) {
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -82,12 +90,11 @@ export function useGrain(
     let data!: Uint8ClampedArray;
     let densityMap!: Float32Array;
 
-    let currentScale = scaleRef?.current ?? GRAIN.scale;
+    let currentDensityScale = densityScaleRef?.current ?? 1;
 
     function resize() {
-      currentScale = scaleRef?.current ?? GRAIN.scale;
-      w = Math.ceil(window.innerWidth * currentScale);
-      h = Math.ceil(window.innerHeight * currentScale);
+      w = Math.ceil(window.innerWidth * GRAIN.scale);
+      h = Math.ceil(window.innerHeight * GRAIN.scale);
       canvas!.width = w;
       canvas!.height = h;
       imageData = ctx!.createImageData(w, h);
@@ -131,6 +138,7 @@ export function useGrain(
       offscreen.height = h;
       const offCtx = offscreen.getContext("2d")!;
 
+      const ds = currentDensityScale;
       const imgAspect = densityImg.width / densityImg.height;
       const canvasAspect = w / h;
       let drawW: number, drawH: number, drawX: number, drawY: number;
@@ -146,6 +154,12 @@ export function useGrain(
         drawX = 0;
         drawY = (h - drawH) / 2;
       }
+
+      // Apply density scale: shrink and anchor to bottom-center
+      drawW *= ds;
+      drawH *= ds;
+      drawX = w - drawW;         // anchor to right
+      drawY = h - drawH;        // anchor to bottom
 
       offCtx.drawImage(densityImg, drawX, drawY, drawW, drawH);
       const mapData = offCtx.getImageData(0, 0, w, h).data;
@@ -187,10 +201,11 @@ export function useGrain(
     function draw(time: number) {
       frame = requestAnimationFrame(draw);
 
-      // Resize canvas when scaleRef changes
-      const newScale = scaleRef?.current ?? GRAIN.scale;
-      if (newScale !== currentScale) {
-        resize();
+      // Rebuild density map when densityScaleRef changes
+      const newDensityScale = densityScaleRef?.current ?? 1;
+      if (newDensityScale !== currentDensityScale) {
+        currentDensityScale = newDensityScale;
+        buildDensityMap();
       }
 
       const now = Date.now();
@@ -220,10 +235,6 @@ export function useGrain(
       if (scrollAttenuationRef?.current !== undefined) {
         p.popAlphaMax = p.popAlphaMax * scrollAttenuationRef.current;
       }
-      // Bottom zone boost: ramp popAlphaMax +50%
-      if (bottomBoostRef?.current !== undefined) {
-        p.popAlphaMax = p.popAlphaMax * bottomBoostRef.current;
-      }
 
       displayRef.current = p;
 
@@ -248,6 +259,87 @@ export function useGrain(
         data[i + 3] = isPop
           ? p.popAlphaMin + Math.random() * (p.popAlphaMax - p.popAlphaMin)
           : p.baseAlpha;
+      }
+
+      // Fractal neural tendrils: suppress pops in organic branching patterns
+      if (bubblesRef?.current) {
+        const bubbles = bubblesRef.current;
+        const maxAge = 400;
+        const baseRadius = Math.max(w, h) * 0.12;
+        const tendrilReach = baseRadius * 1.8; // tendrils extend further
+        const tendrilWidth = 0.35; // angular width in radians
+
+        for (let b = bubbles.length - 1; b >= 0; b--) {
+          const bubble = bubbles[b];
+          const age = now - bubble.time;
+          if (age > maxAge + 300) {
+            bubbles.splice(b, 1);
+            continue;
+          }
+
+          const expandT = Math.min(age / maxAge, 1);
+          const fadeOut = age > maxAge ? 1 - (age - maxAge) / 300 : 1;
+          const seed = bubble.seed;
+
+          const bx = bubble.x;
+          const by = bubble.y;
+          const maxR = Math.ceil(tendrilReach * expandT);
+          const x0 = Math.max(0, Math.floor(bx - maxR));
+          const x1 = Math.min(w - 1, Math.ceil(bx + maxR));
+          const y0 = Math.max(0, Math.floor(by - maxR));
+          const y1 = Math.min(h - 1, Math.ceil(by + maxR));
+
+          for (let y = y0; y <= y1; y++) {
+            for (let x = x0; x <= x1; x++) {
+              const dx = x - bx;
+              const dy = y - by;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+
+              const angle = Math.atan2(dy, dx);
+
+              // Fractal edge distortion on base shape
+              const fractal =
+                0.25 * Math.sin(angle * 3 + seed) +
+                0.15 * Math.sin(angle * 7 + seed * 1.7) +
+                0.1 * Math.sin(angle * 13 + seed * 2.3) +
+                0.08 * Math.sin(angle * 23 + seed * 3.1);
+              const coreRadius = baseRadius * expandT * (0.5 + 0.5 * (0.5 + fractal));
+
+              // Tendril extensions
+              let tendrilStrength = 0;
+              for (const tAngle of bubble.tendrils) {
+                let angleDiff = Math.abs(angle - tAngle);
+                if (angleDiff > Math.PI) angleDiff = Math.PI * 2 - angleDiff;
+                if (angleDiff < tendrilWidth) {
+                  const proximity = 1 - angleDiff / tendrilWidth;
+                  const tRadius = tendrilReach * expandT * proximity;
+                  if (dist < tRadius) {
+                    // Taper along length
+                    const along = dist / tRadius;
+                    tendrilStrength = Math.max(tendrilStrength, (1 - along * along) * proximity);
+                  }
+                }
+              }
+
+              // Combined: inside core or on a tendril
+              let suppression = 0;
+              if (dist < coreRadius) {
+                const edge = 1 - dist / coreRadius;
+                suppression = Math.min(edge * 3, 1); // sharp edge
+              }
+              suppression = Math.max(suppression, tendrilStrength);
+
+              if (suppression <= 0) continue;
+              suppression *= fadeOut;
+
+              const idx = (y * w + x) * 4;
+              const alpha = data[idx + 3];
+              if (alpha <= p.baseAlpha + 1) continue;
+
+              data[idx + 3] = lerp(alpha, p.baseAlpha, suppression);
+            }
+          }
+        }
       }
 
       ctx!.putImageData(imageData, 0, 0);

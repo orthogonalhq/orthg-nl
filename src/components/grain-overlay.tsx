@@ -11,6 +11,7 @@ import {
 import {
   type GrainParams,
   type Overrides,
+  // type Bubble,
   GRAIN,
   GRAIN_KEYS,
   useGrain,
@@ -47,8 +48,7 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
 
   // Scroll-based effects across 3 zones
   const scrollAttenuationRef = useRef(1);
-  const scaleRef = useRef(GRAIN.scale);
-  const bottomBoostRef = useRef(1);
+  const densityScaleRef = useRef(1);
   const [pixelScale, setPixelScale] = useState(1);
   useEffect(() => {
     function onScroll() {
@@ -60,17 +60,18 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
       const tTop = Math.min(scrollY / vh, 1);
       scrollAttenuationRef.current = 1 - tTop * 0.75;
       setPixelScale(1 + tTop);
+      densityScaleRef.current = 1;
 
-      // Zone 3: last 100vh — ramp canvas resolution + boost popAlphaMax
+      // Zone 3: last 100vh — fade back in, shrink density map
       const bottomStart = maxScroll - vh;
       if (scrollY > bottomStart && maxScroll > vh) {
-        const tBottom = (scrollY - bottomStart) / vh; // 0 → 1
-        const eased = tBottom * tBottom; // ease-in
-        scaleRef.current = GRAIN.scale + eased * (2 - GRAIN.scale); // 0.5 → 2.0
-        bottomBoostRef.current = 1 + eased * 0.5; // 1.0 → 1.5 (+50%)
-      } else {
-        scaleRef.current = GRAIN.scale;
-        bottomBoostRef.current = 1;
+        const tBottom = 1 - (scrollY - bottomStart) / vh; // 1 → 0 (inverted)
+        // attenuation: 0.25 at entry → 1.25 at bottom (higher pop than zone 1 start)
+        scrollAttenuationRef.current = 1.25 - tBottom * 1.0;
+        // CSS zoom: 2x at entry → 1x at bottom (back to zone 1 default)
+        setPixelScale(1 + tBottom);
+        // Density map: 1.0 at entry → 0.47 at bottom (shrink face, 15% smaller)
+        densityScaleRef.current = 0.47 + tBottom * 0.53;
       }
     }
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -78,7 +79,24 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useGrain(grainRef, overridesRef, displayRef, scrollAttenuationRef, scaleRef, bottomBoostRef);
+  // TODO: Click bubbles — fractal neural tendrils that push pops away from click point
+  // const bubblesRef = useRef<Bubble[]>([]);
+  // useEffect(() => {
+  //   function onClick(e: MouseEvent) {
+  //     const x = e.clientX * GRAIN.scale;
+  //     const y = e.clientY * GRAIN.scale;
+  //     const count = 5 + Math.floor(Math.random() * 4);
+  //     const tendrils: number[] = [];
+  //     for (let i = 0; i < count; i++) {
+  //       tendrils.push(Math.random() * Math.PI * 2);
+  //     }
+  //     bubblesRef.current.push({ x, y, time: Date.now(), tendrils, seed: Math.random() * 1000 });
+  //   }
+  //   window.addEventListener("click", onClick);
+  //   return () => window.removeEventListener("click", onClick);
+  // }, []);
+
+  useGrain(grainRef, overridesRef, displayRef, scrollAttenuationRef, densityScaleRef);
 
   // Sync display params from the grain loop at ~20fps
   useEffect(() => {
