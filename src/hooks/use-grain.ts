@@ -1,0 +1,248 @@
+"use client";
+
+import { useEffect } from "react";
+
+export interface GrainParams {
+  churnRate: number;
+  basePop: number;
+  maxPop: number;
+  popAlphaMin: number;
+  popAlphaMax: number;
+  baseAlpha: number;
+}
+
+export const GRAIN = {
+  lo: {
+    churnRate: 0.04,
+    basePop: 0.0,
+    maxPop: 0.3,
+    popAlphaMin: 3,
+    popAlphaMax: 29,
+    baseAlpha: 2,
+  } as GrainParams,
+
+  hi: {
+    churnRate: 1.0,
+    basePop: 0.0,
+    maxPop: 0.3,
+    popAlphaMin: 3,
+    popAlphaMax: 24,
+    baseAlpha: 2,
+  } as GrainParams,
+
+  breathMs: 120000,
+  scale: 0.5,
+  densityMaps: [
+    { src: "/density-map-16x9.png", ar: 16 / 9 },
+    { src: "/density-map-1x1.png",  ar: 1 },
+    { src: "/density-map-9x16.png", ar: 9 / 16 },
+  ],
+  densityMapFallback: "/density-map.png",
+  overrideHoldMs: 1000,
+  releaseEaseMs: 15000,
+};
+
+export const GRAIN_KEYS: (keyof GrainParams)[] = [
+  "churnRate", "basePop", "maxPop", "popAlphaMin", "popAlphaMax", "baseAlpha",
+];
+
+export const KNOBS: { key: keyof GrainParams; label: string; min: number; max: number; step: number }[] = [
+  { key: "churnRate",   label: "Churn",     min: 0.01, max: 1,    step: 0.01   },
+  { key: "basePop",     label: "Base Pop",   min: 0,    max: 0.05, step: 0.0005 },
+  { key: "maxPop",      label: "Max Pop",    min: 0.001,max: 0.3,  step: 0.001  },
+  { key: "popAlphaMin", label: "Pop α Min",  min: 1,    max: 60,   step: 1      },
+  { key: "popAlphaMax", label: "Pop α Max",  min: 1,    max: 80,   step: 1      },
+  { key: "baseAlpha",   label: "Base α",     min: 0,    max: 10,   step: 0.5    },
+];
+
+export type Overrides = Record<string, { value: number; expires: number; _releaseVal?: number; _releaseTime?: number }>;
+
+export function lerp(a: number, b: number, t: number) {
+  return a + (b - a) * t;
+}
+
+export function useGrain(
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
+  overridesRef: React.RefObject<Overrides>,
+  displayRef: React.RefObject<GrainParams>,
+  scrollAttenuationRef?: React.RefObject<number>,
+) {
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let w = 0;
+    let h = 0;
+    let imageData!: ImageData;
+    let data!: Uint8ClampedArray;
+    let densityMap!: Float32Array;
+
+    function resize() {
+      w = Math.ceil(window.innerWidth * GRAIN.scale);
+      h = Math.ceil(window.innerHeight * GRAIN.scale);
+      canvas!.width = w;
+      canvas!.height = h;
+      imageData = ctx!.createImageData(w, h);
+      data = imageData.data;
+      densityMap = new Float32Array(w * h);
+      loadDensitySource();
+      buildDensityMap();
+    }
+
+    const densityImg = new Image();
+    let densityLoaded = false;
+    let currentSrc = "";
+
+    function pickDensitySource() {
+      const viewportAr = window.innerWidth / window.innerHeight;
+      let best = GRAIN.densityMaps[0];
+      let bestDist = Math.abs(Math.log(best.ar / viewportAr));
+      for (const entry of GRAIN.densityMaps) {
+        const dist = Math.abs(Math.log(entry.ar / viewportAr));
+        if (dist < bestDist) {
+          best = entry;
+          bestDist = dist;
+        }
+      }
+      return best.src;
+    }
+
+    function loadDensitySource() {
+      const src = pickDensitySource();
+      if (src === currentSrc) return;
+      currentSrc = src;
+      densityLoaded = false;
+      densityImg.src = src;
+    }
+
+    function buildDensityMap() {
+      if (!densityLoaded || w === 0) return;
+
+      const offscreen = document.createElement("canvas");
+      offscreen.width = w;
+      offscreen.height = h;
+      const offCtx = offscreen.getContext("2d")!;
+
+      const imgAspect = densityImg.width / densityImg.height;
+      const canvasAspect = w / h;
+      let drawW: number, drawH: number, drawX: number, drawY: number;
+
+      if (imgAspect > canvasAspect) {
+        drawH = h;
+        drawW = h * imgAspect;
+        drawX = (w - drawW) / 2;
+        drawY = 0;
+      } else {
+        drawW = w;
+        drawH = w / imgAspect;
+        drawX = 0;
+        drawY = (h - drawH) / 2;
+      }
+
+      offCtx.drawImage(densityImg, drawX, drawY, drawW, drawH);
+      const mapData = offCtx.getImageData(0, 0, w, h).data;
+
+      for (let i = 0; i < densityMap.length; i++) {
+        const r = mapData[i * 4];
+        const g = mapData[i * 4 + 1];
+        const b = mapData[i * 4 + 2];
+        densityMap[i] = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      }
+    }
+
+    densityImg.onload = () => {
+      densityLoaded = true;
+      buildDensityMap();
+    };
+    densityImg.onerror = () => {
+      if (currentSrc !== GRAIN.densityMapFallback) {
+        currentSrc = GRAIN.densityMapFallback;
+        densityImg.src = GRAIN.densityMapFallback;
+      }
+    };
+    loadDensitySource();
+
+    resize();
+
+    for (let i = 0; i < data.length; i += 4) {
+      const v = Math.random() * 255;
+      data[i] = v;
+      data[i + 1] = v;
+      data[i + 2] = v;
+      data[i + 3] = 2;
+    }
+
+    window.addEventListener("resize", resize);
+
+    let frame: number;
+
+    function draw(time: number) {
+      frame = requestAnimationFrame(draw);
+
+      const now = Date.now();
+      const t = (Math.sin((time / GRAIN.breathMs) * Math.PI * 2 - Math.PI / 2) + 1) / 2;
+      const overrides = overridesRef.current;
+
+      const p = {} as GrainParams;
+      for (const key of GRAIN_KEYS) {
+        const ov = overrides[key];
+        const sineVal = lerp(GRAIN.lo[key], GRAIN.hi[key], t);
+
+        if (ov && now < ov.expires) {
+          p[key] = ov.value;
+          ov._releaseVal = ov.value;
+          ov._releaseTime = ov.expires;
+        } else if (ov && ov._releaseTime && now < ov._releaseTime + GRAIN.releaseEaseMs) {
+          const elapsed = now - ov._releaseTime;
+          const easeT = Math.min(elapsed / GRAIN.releaseEaseMs, 1);
+          const smooth = 1 - (1 - easeT) * (1 - easeT);
+          p[key] = lerp(ov._releaseVal!, sineVal, smooth);
+        } else {
+          p[key] = sineVal;
+        }
+      }
+
+      // Scroll attenuation: scale popAlphaMax by scroll position
+      if (scrollAttenuationRef?.current !== undefined) {
+        p.popAlphaMax = p.popAlphaMax * scrollAttenuationRef.current;
+      }
+
+      displayRef.current = p;
+
+      const totalPixels = (data.length / 4) | 0;
+      const pixelsToUpdate = (totalPixels * p.churnRate) | 0;
+
+      for (let n = 0; n < pixelsToUpdate; n++) {
+        const px = (Math.random() * totalPixels) | 0;
+        const i = px * 4;
+
+        const density = densityMap ? densityMap[px] || 0 : 0;
+        const popChance = p.basePop + density * density * p.maxPop;
+        const isPop = Math.random() < popChance;
+
+        const v = isPop
+          ? 200 + Math.random() * 55
+          : Math.random() * 255;
+
+        data[i] = v;
+        data[i + 1] = v;
+        data[i + 2] = v;
+        data[i + 3] = isPop
+          ? p.popAlphaMin + Math.random() * (p.popAlphaMax - p.popAlphaMin)
+          : p.baseAlpha;
+      }
+
+      ctx!.putImageData(imageData, 0, 0);
+    }
+
+    frame = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", resize);
+    };
+  }, [canvasRef, overridesRef, displayRef]);
+}
