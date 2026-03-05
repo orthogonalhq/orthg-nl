@@ -125,7 +125,7 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
           {/* Animated grain canvas */}
           <canvas
             ref={grainRef}
-            className="pointer-events-none fixed inset-0 z-20 h-full w-full"
+            className="pointer-events-none fixed inset-0 z-1 h-full w-full"
             style={{
               imageRendering: "pixelated",
               transform: `scale(${pixelScale})`,

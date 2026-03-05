@@ -245,10 +245,12 @@ export function useGrain(
         }
       }
 
-      // Scroll attenuation: scale pop alpha and base alpha by scroll position
+      // Scroll attenuation: scale pop alphas and base alpha by scroll position
       if (scrollAttenuationRef?.current !== undefined) {
-        p.popAlphaMax = p.popAlphaMax * scrollAttenuationRef.current;
-        p.baseAlpha *= Math.sqrt(scrollAttenuationRef.current);
+        const att = scrollAttenuationRef.current;
+        p.popAlphaMin = p.popAlphaMin * att;
+        p.popAlphaMax = p.popAlphaMax * att;
+        p.baseAlpha *= Math.sqrt(att);
       }
 
       displayRef.current = p;
