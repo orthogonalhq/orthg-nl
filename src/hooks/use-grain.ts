@@ -16,8 +16,8 @@ export const GRAIN = {
     churnRate: 0.13,
     basePop: 0.0,
     maxPop: 0.3,
-    popAlphaMin: 4,
-    popAlphaMax: 30,
+    popAlphaMin: 20,
+    popAlphaMax: 60,
     baseAlpha: 5,
   } as GrainParams,
 
@@ -25,8 +25,8 @@ export const GRAIN = {
     churnRate: 0.33,
     basePop: 0.0,
     maxPop: 0.3,
-    popAlphaMin: 8,
-    popAlphaMax: 24,
+    popAlphaMin: 35,
+    popAlphaMax: 75,
     baseAlpha: 6,
   } as GrainParams,
 
