@@ -61,8 +61,8 @@ export function Architecture() {
               {LAYERS.map((layer, i) => (
                 <div key={layer.name} className="contents">
                   {/* Left: layer label */}
-                  <div className={`px-6 md:pl-10 md:pr-5 py-5 md:border-r border-white/[0.06] overflow-visible min-w-0 ${
-                    i < LAYERS.length - 1 ? "border-b border-white/[0.06]" : ""
+                  <div className={`px-6 md:pl-10 md:pr-5 py-5 md:border-r border-white/[0.06] overflow-visible min-w-0 border-b md:border-b-0 ${
+                    i < LAYERS.length - 1 ? "md:border-b-1" : ""
                   }`}>
                     <div className="flex w-full items-start justify-between gap-4">
                       <div className="min-w-0 overflow-visible">
