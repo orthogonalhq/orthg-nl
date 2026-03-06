@@ -237,7 +237,7 @@ export function TabPanel({ lines, tabKey, defaultContent, cachedEngine }: TabPan
 
   return (
     <div className="scanlines border-t border-white/[0.06] lg:border-t-0 bg-terminal min-h-[280px] flex flex-col">
-      <div className="p-6 md:p-10 flex-1 overflow-y-auto">
+      <div className="p-6 md:p-10 flex-1 overflow-y-auto bg-black/30">
         {phase === "default" && defaultContent}
         {phase === "glitch-out" && (
           <GlitchOutLines lines={prevRenderedText} onComplete={handleGlitchOutComplete} />
