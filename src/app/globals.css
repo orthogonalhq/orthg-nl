@@ -90,6 +90,7 @@ body {
 /* ── Typography tokens ────────────────────────────────────────────────
    Semantic color classes — tune brightness here, never in components.
    Mobile overrides live in the @media block below. */
+.t-section-head { color: rgb(255 255 255 / 0.78); }
 .t-heading-dim  { color: rgb(255 255 255 / 0.50); }
 .t-card-title   { color: rgb(255 255 255 / 0.90); }
 .t-stat-value   { color: rgb(255 255 255 / 0.80); }
@@ -206,6 +207,7 @@ body {
 /* Mobile contrast adjustments — compress opacity range for phone screens */
 @media (max-width: 767px) {
   /* Typography tokens: compress opacity range for small screens */
+  .t-section-head { color: rgb(255 255 255 / 0.74); }
   .t-card-title   { color: rgb(255 255 255 / 0.85); }
   .t-stat-value   { color: rgb(255 255 255 / 0.75); }
   .t-body         { color: rgb(255 255 255 / 0.58); }

@@ -19,9 +19,10 @@ export function SectionHeading({
   size = "default",
   className = "",
 }: SectionHeadingProps) {
+  const colorCls = size === "hero" ? "" : "t-section-head";
   return (
     <Tag
-      className={`font-mono ${SIZES[size]} font-semibold tracking-[-0.02em] leading-tight ${className}`}
+      className={`font-mono ${SIZES[size]} font-semibold tracking-[-0.02em] leading-tight ${colorCls} ${className}`}
     >
       {children}
     </Tag>
