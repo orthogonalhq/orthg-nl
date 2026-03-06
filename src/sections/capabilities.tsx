@@ -290,39 +290,35 @@ export function Capabilities() {
               />
             </div>
 
-            {/* Mobile: accordion layout */}
-            <div className="lg:hidden divide-y divide-white/[0.06]">
-              {CAPABILITY_TABS.map((cap) => (
-                <div key={cap.key}>
+            {/* Mobile: button grid + terminal */}
+            <div className="lg:hidden">
+              <div className="grid grid-cols-2 gap-3 p-4 md:p-6">
+                {CAPABILITY_TABS.map((cap) => (
                   <button
+                    key={cap.key}
                     onClick={() => handleTabClick(cap.key)}
-                    className={`w-full px-6 md:px-8 py-5 flex items-start gap-3 text-left transition-colors ${
+                    className={`border p-3 text-left transition-colors flex items-start gap-2.5 ${
                       activeTab === cap.key
-                        ? "bg-tab-active"
-                        : "hover:bg-tab-hover"
+                        ? "border-accent/30 bg-tab-active"
+                        : "border-white/[0.06] hover:border-white/[0.12] hover:bg-tab-hover"
                     }`}
                   >
-                    <cap.icon className={`w-6 h-6 -ml-4 mt-0.5 shrink-0 ${
+                    <cap.icon className={`w-5 h-5 mt-0.5 shrink-0 ${
                       activeTab === cap.key ? "text-accent/60" : "text-accent/40"
                     }`} />
-                    <div className="flex-1 min-w-0">
+                    <div>
                       <CardTitle className="mb-1">{cap.title}</CardTitle>
-                      <p className="terminal-text text-xs t-card-desc leading-relaxed">{cap.desc}</p>
+                      <p className="terminal-text text-[10px] t-card-desc leading-relaxed">{cap.desc}</p>
                     </div>
-                    <span className={`terminal-text text-[10px] mt-1 shrink-0 transition-transform duration-200 ${
-                      activeTab === cap.key ? "text-accent/40 rotate-90" : "t-ghost"
-                    }`}>▸</span>
                   </button>
-                  {activeTab === cap.key && (
-                    <TabPanel
-                      tabKey={cap.key}
-                      lines={cap.content}
-                      defaultContent={null}
-                      cachedEngine={cache.getEngine(cap.key)}
-                    />
-                  )}
-                </div>
-              ))}
+                ))}
+              </div>
+              <TabPanel
+                tabKey={activeTab}
+                lines={activeTabData?.content ?? null}
+                defaultContent={null}
+                cachedEngine={activeTab ? cache.getEngine(activeTab) : null}
+              />
             </div>
           </div>
         </Reveal>
