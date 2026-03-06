@@ -101,15 +101,15 @@ body {
 .t-nav          { color: rgb(255 255 255 / 0.45); }
 .t-sub-label    { color: rgb(255 255 255 / 0.38); }
 .t-meta         { color: rgb(255 255 255 / 0.34); }
-.t-panel-meta   { color: rgb(255 255 255 / 0.24); }
-.t-ghost        { color: rgb(255 255 255 / 0.18); }
-.t-faint        { color: rgb(255 255 255 / 0.14); }
+.t-panel-meta   { color: rgb(255 255 255 / 0.28); }
+.t-ghost        { color: rgb(255 255 255 / 0.22); }
+.t-faint        { color: rgb(255 255 255 / 0.18); }
 
 /* ── Surface tokens ─────────────────────────────────────────────────
    Near-opaque fills — blocks most grain, lets a hint of texture through. */
-.bg-terminal    { background-color: rgba(17, 17, 17, 0.80); }
-.bg-tab-active  { background-color: rgba(28, 28, 28, 0.80); }
-.bg-tab-hover   { background-color: rgba(22, 22, 22, 0.80); }
+.bg-terminal    { background-color: rgba(30, 30, 30, 0.85); }
+.bg-tab-active  { background-color: rgba(46, 46, 46, 0.85); }
+.bg-tab-hover   { background-color: rgba(38, 38, 38, 0.85); }
 
 /* ── Border overrides ──────────────────────────────────────────────
    Bump structural borders from 6% → 10% globally. */
@@ -229,14 +229,14 @@ body {
   .t-nav          { color: rgb(255 255 255 / 0.42); }
   .t-sub-label    { color: rgb(255 255 255 / 0.36); }
   .t-meta         { color: rgb(255 255 255 / 0.32); }
-  .t-panel-meta   { color: rgb(255 255 255 / 0.22); }
-  .t-ghost        { color: rgb(255 255 255 / 0.20); }
-  .t-faint        { color: rgb(255 255 255 / 0.16); }
+  .t-panel-meta   { color: rgb(255 255 255 / 0.26); }
+  .t-ghost        { color: rgb(255 255 255 / 0.24); }
+  .t-faint        { color: rgb(255 255 255 / 0.20); }
 
   /* Surface tokens: boost for OLED screens */
-  .bg-terminal    { background-color: rgba(22, 22, 22, 0.80); }
-  .bg-tab-active  { background-color: rgba(34, 34, 34, 0.80); }
-  .bg-tab-hover   { background-color: rgba(28, 28, 28, 0.80); }
+  .bg-terminal    { background-color: rgba(36, 36, 36, 0.85); }
+  .bg-tab-active  { background-color: rgba(54, 54, 54, 0.85); }
+  .bg-tab-hover   { background-color: rgba(44, 44, 44, 0.85); }
 
   /* Borders: boost structural lines further on mobile */
   [class*="border-white"][class*="0.06"],
