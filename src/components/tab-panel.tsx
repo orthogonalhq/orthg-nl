@@ -56,9 +56,9 @@ export function parseLineToSegs(line: string): { segs: Seg[]; spinResult?: Seg[]
       const status = dim ? rawStatus.slice(1) : rawStatus;
       return {
         segs: [
-          { text: labelStr, cls: "t-panel-label" },
+          { text: labelStr, cls: "t-nav" },
           { text: "│ ", cls: "t-ghost" },
-          { text: desc },
+          { text: desc, cls: "t-body" },
         ],
         spinResult: [{ text: status, cls: dim ? "t-meta" : "text-green-400/40" }],
       };
@@ -66,14 +66,14 @@ export function parseLineToSegs(line: string): { segs: Seg[]; spinResult?: Seg[]
 
     return {
       segs: [
-        { text: labelStr, cls: "t-panel-label" },
+        { text: labelStr, cls: "t-nav" },
         { text: "│ ", cls: "t-ghost" },
-        { text: afterPipe },
+        { text: afterPipe, cls: "t-body" },
       ],
     };
   }
 
-  return { segs: [{ text: line }] };
+  return { segs: [{ text: line, cls: "t-card-desc" }] };
 }
 
 /** Flatten an engine snapshot's output lines to plain text strings */

@@ -18,7 +18,7 @@ export function CTA() {
         </SectionHeading>
         <BodyText>
           Open source. Autonomous. Yours.
-          <br className="hidden sm:block" />
+          <br/>
           Join the waitlist for early access.
         </BodyText>
 
