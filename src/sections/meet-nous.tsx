@@ -161,8 +161,8 @@ export function MeetNous() {
                       onClick={() => handleTabClick(tab.key)}
                       className={`border p-3 text-left transition-colors ${
                         activeTab === tab.key
-                          ? "border-accent/30 bg-white/[0.03]"
-                          : "border-white/[0.06] hover:border-white/[0.12] hover:bg-white/[0.02]"
+                          ? "border-accent/30 bg-tab-active"
+                          : "border-white/[0.06] hover:border-white/[0.12] hover:bg-tab-hover"
                       }`}
                     >
                       <p className="terminal-text text-[10px] uppercase tracking-[0.2em] t-nav mb-1">{tab.label}</p>

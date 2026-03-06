@@ -12,7 +12,7 @@ import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="scanlines phosphor relative min-h-svh bg-black">
+    <div className="scanlines phosphor relative z-10 min-h-svh">
       <Header />
       <main>
         <Hero />

@@ -236,7 +236,7 @@ export function TabPanel({ lines, tabKey, defaultContent, cachedEngine }: TabPan
   }, []);
 
   return (
-    <div className="border-t border-white/[0.06] lg:border-t-0 bg-[rgba(255,255,255,0.01)] min-h-[280px] flex flex-col">
+    <div className="scanlines border-t border-white/[0.06] lg:border-t-0 bg-terminal min-h-[280px] flex flex-col">
       <div className="p-6 md:p-10 flex-1 overflow-y-auto">
         {phase === "default" && defaultContent}
         {phase === "glitch-out" && (

@@ -103,6 +103,12 @@ body {
 .t-ghost        { color: rgb(255 255 255 / 0.20); }
 .t-faint        { color: rgb(255 255 255 / 0.14); }
 
+/* ── Surface tokens ─────────────────────────────────────────────────
+   Near-opaque fills — blocks most grain, lets a hint of texture through. */
+.bg-terminal    { background-color: rgba(8, 8, 8, 0.80); }
+.bg-tab-active  { background-color: rgba(15, 15, 15, 0.80); }
+.bg-tab-hover   { background-color: rgba(10, 10, 10, 0.80); }
+
 /* Terminal panel styling */
 .terminal-text {
   font-family: var(--font-fira-code), ui-monospace, monospace;
@@ -212,6 +218,11 @@ body {
   .t-panel-meta   { color: rgb(255 255 255 / 0.26); }
   .t-ghost        { color: rgb(255 255 255 / 0.22); }
   .t-faint        { color: rgb(255 255 255 / 0.16); }
+
+  /* Surface tokens: boost for OLED screens */
+  .bg-terminal    { background-color: rgba(13, 13, 13, 0.80); }
+  .bg-tab-active  { background-color: rgba(20, 20, 20, 0.80); }
+  .bg-tab-hover   { background-color: rgba(15, 15, 15, 0.80); }
 
   /* Borders: boost structural lines */
   [class*="border-white"][class*="0.06"],

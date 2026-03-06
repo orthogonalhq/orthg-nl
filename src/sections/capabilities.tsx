@@ -266,8 +266,8 @@ export function Capabilities() {
                     onClick={() => handleTabClick(cap.key)}
                     className={`w-full px-6 md:px-8 py-5 flex items-start gap-4 text-left transition-colors ${
                       activeTab === cap.key
-                        ? "bg-white/[0.03]"
-                        : "hover:bg-white/[0.02]"
+                        ? "bg-tab-active"
+                        : "hover:bg-tab-hover"
                     }`}
                   >
                     <cap.icon className={`w-6 h-6 -ml-4 mt-0.5 shrink-0 ${
@@ -298,8 +298,8 @@ export function Capabilities() {
                     onClick={() => handleTabClick(cap.key)}
                     className={`w-full px-6 md:px-8 py-5 flex items-start gap-3 text-left transition-colors ${
                       activeTab === cap.key
-                        ? "bg-white/[0.03]"
-                        : "hover:bg-white/[0.02]"
+                        ? "bg-tab-active"
+                        : "hover:bg-tab-hover"
                     }`}
                   >
                     <cap.icon className={`w-6 h-6 -ml-4 mt-0.5 shrink-0 ${

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function InvestorsPage() {
   return (
-    <div className="flex min-h-svh flex-col bg-black">
+    <div className="relative z-10 flex min-h-svh flex-col">
       <Header />
       {/* Main content */}
       <main className="flex flex-1 flex-col items-center px-6 pt-20 pb-12 gap-8">
