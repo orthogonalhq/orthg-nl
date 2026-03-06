@@ -18,6 +18,8 @@ interface TabPanelProps {
   defaultContent: ReactNode;
   /** Cached headless engine for this tab (from useTerminalCache) */
   cachedEngine?: HeadlessEngine | null;
+  /** All possible content arrays — used to lock height to the tallest tab */
+  allLines?: string[][];
 }
 
 /**
@@ -170,7 +172,12 @@ function GlitchOutLines({
   );
 }
 
-export function TabPanel({ lines, tabKey, defaultContent, cachedEngine }: TabPanelProps) {
+/** Strip separators and status suffixes to get display-ready ghost text */
+function toGhostLines(raw: string[]): string[] {
+  return raw.filter((l) => l !== "---").map((l) => l.replace(/ =\S+$/, ""));
+}
+
+export function TabPanel({ lines, tabKey, defaultContent, cachedEngine, allLines }: TabPanelProps) {
   const [phase, setPhase] = useState<Phase>("default");
   const [prevRenderedText, setPrevRenderedText] = useState<string[]>([]);
   const [targetRenderedText, setTargetRenderedText] = useState<string[]>([]);
@@ -235,23 +242,41 @@ export function TabPanel({ lines, tabKey, defaultContent, cachedEngine }: TabPan
     setPhase("show");
   }, []);
 
+  // Find the longest tab's ghost lines to lock height
+  const longestGhost = allLines
+    ? allLines.reduce<string[]>((best, arr) => {
+        const g = toGhostLines(arr);
+        return g.length > best.length ? g : best;
+      }, [])
+    : null;
+
   return (
     <div className="scanlines border-t border-white/[0.06] lg:border-t-0 bg-terminal min-h-[280px] flex flex-col">
-      <div className="p-6 md:p-10 flex-1 overflow-y-auto bg-black/30">
-        {phase === "default" && defaultContent}
-        {phase === "glitch-out" && (
-          <GlitchOutLines lines={prevRenderedText} onComplete={handleGlitchOutComplete} />
+      <div className="p-6 md:p-10 flex-1 overflow-hidden bg-black/30 relative">
+        {/* Invisible sizer — reserves height of the tallest tab */}
+        {longestGhost && (
+          <div className="invisible terminal-text text-[12px] leading-[1.8]" aria-hidden="true">
+            {longestGhost.map((text, i) => (
+              <p key={i} style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{text}</p>
+            ))}
+          </div>
         )}
-        {phase === "morph" && (
-          <MorphLines
-            sourceLines={prevRenderedText}
-            targetLines={targetRenderedText}
-            onComplete={handleMorphComplete}
-          />
-        )}
-        {phase === "show" && activeEngine && (
-          <CachedEngineViewer engine={activeEngine} lines={activeLines} />
-        )}
+        <div className={longestGhost ? "absolute inset-0 p-6 md:p-10 overflow-y-auto" : ""}>
+          {phase === "default" && defaultContent}
+          {phase === "glitch-out" && (
+            <GlitchOutLines lines={prevRenderedText} onComplete={handleGlitchOutComplete} />
+          )}
+          {phase === "morph" && (
+            <MorphLines
+              sourceLines={prevRenderedText}
+              targetLines={targetRenderedText}
+              onComplete={handleMorphComplete}
+            />
+          )}
+          {phase === "show" && activeEngine && (
+            <CachedEngineViewer engine={activeEngine} lines={activeLines} />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -132,6 +132,7 @@ export function MeetNous() {
   };
 
   const activeTabData = TABS.find((t) => t.key === activeTab);
+  const allLines = TABS.map((t) => t.content);
 
   return (
     <section ref={sectionRef} id="meet-nous" className="relative px-6 md:px-12 lg:px-20 py-20 md:py-28">
@@ -178,6 +179,7 @@ export function MeetNous() {
                 lines={activeTabData?.content ?? null}
                 defaultContent={<TerminalSequence />}
                 cachedEngine={activeTab ? cache.getEngine(activeTab) : null}
+                allLines={allLines}
               />
             </div>
           </div>

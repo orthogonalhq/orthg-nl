@@ -242,6 +242,7 @@ export function Capabilities() {
   };
 
   const activeTabData = CAPABILITY_TABS.find((t) => t.key === activeTab);
+  const allLines = CAPABILITY_TABS.map((t) => t.content);
 
   return (
     <section ref={sectionRef} id="capabilities" className="relative px-6 md:px-12 lg:px-20 py-20 md:py-28">
@@ -287,6 +288,7 @@ export function Capabilities() {
                 lines={activeTabData?.content ?? null}
                 defaultContent={<AgentSessionSequence />}
                 cachedEngine={activeTab ? cache.getEngine(activeTab) : null}
+                allLines={allLines}
               />
             </div>
 
@@ -318,6 +320,7 @@ export function Capabilities() {
                 lines={activeTabData?.content ?? null}
                 defaultContent={null}
                 cachedEngine={activeTab ? cache.getEngine(activeTab) : null}
+                allLines={allLines}
               />
             </div>
           </div>
