@@ -11,7 +11,7 @@ export function Differentiation() {
           <SectionLabel>Differentiation</SectionLabel>
           <SectionHeading size="large" className="mb-8">
             They built the neurons.
-            <br className="hidden sm:block" />
+            <br />
             <span className="t-heading-dim">We&apos;re building the brain.</span>
           </SectionHeading>
         </Reveal>

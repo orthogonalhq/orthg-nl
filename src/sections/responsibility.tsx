@@ -34,7 +34,7 @@ export function Responsibility() {
         <Reveal>
           <SectionHeader label="Responsibility">
             Democratized intelligence.
-            <br className="hidden sm:block" />
+            <br />
             Structural accountability.
           </SectionHeader>
         </Reveal>

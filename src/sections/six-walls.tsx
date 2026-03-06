@@ -19,7 +19,7 @@ export function SixWalls() {
         <Reveal>
           <SectionHeader label="The problem" center>
             Six walls between you
-            <br className="hidden sm:block" />
+            <br />
             and sovereign AI.
           </SectionHeader>
         </Reveal>

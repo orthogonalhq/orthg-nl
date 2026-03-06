@@ -10,7 +10,7 @@ export function Ecosystem() {
         <Reveal>
           <SectionHeader label="Ecosystem">
             Not a walled garden.
-            <br className="hidden sm:block" />
+            <br />
             An open foundation.
           </SectionHeader>
         </Reveal>

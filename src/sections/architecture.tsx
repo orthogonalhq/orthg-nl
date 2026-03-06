@@ -46,7 +46,7 @@ export function Architecture() {
         <Reveal>
           <SectionHeader label="Architecture" center>
             A cognitive architecture
-            <br className="hidden sm:block" />
+            <br />
             inspired by the brain.
           </SectionHeader>
         </Reveal>
