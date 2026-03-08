@@ -4,7 +4,7 @@ export function Header() {
   return (
     <header className="terminal-text absolute top-0 left-0 right-0 z-40 flex items-center border-b border-white/[0.06] animate-fade-in-up">
       <div className="border-r border-white/[0.06] px-5 py-3">
-        <a href="#hero">
+        <a href="/">
           <Logo />
         </a>
       </div>
