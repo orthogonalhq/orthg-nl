@@ -33,6 +33,7 @@ export const GRAIN = {
   breathMs: 120000,
   scale: 1,
   densityMaps: [
+    { src: "/density-map-16x9.png", ar: 4,      scale: 1.25, offsetY: -0.08, offsetX: 0.22, zone3: null },
     { src: "/density-map-16x9.png", ar: 16 / 9, scale: 1.5, offsetY: -0.10, zone3: { scale: 1.25, offsetX: 0.10, offsetY: 0.075 } },
     { src: "/density-map-1x1.png",  ar: 1,      scale: 1,   offsetY: 0,     zone3: null },
     { src: "/density-map-9x16.png", ar: 9 / 16, scale: 1,   offsetY: 0,     zone3: { scale: 1.75, offsetX: 0, offsetY: 0, anchor: "br" as const } },
@@ -109,7 +110,9 @@ export function useGrain(
     let currentSrc = "";
 
     let currentEntryScale = 1;
+    let currentEntryOffsetX = 0;
     let currentEntryOffsetY = 0;
+    let currentEntryAr = 0;
     let currentZone3: { scale: number; offsetX: number; offsetY: number; anchor?: "br" } | null = null;
 
     function pickDensityEntry() {
@@ -128,9 +131,11 @@ export function useGrain(
 
     function loadDensitySource() {
       const entry = pickDensityEntry();
-      if (entry.src === currentSrc) return;
+      if (entry.ar === currentEntryAr) return;
+      currentEntryAr = entry.ar;
       currentSrc = entry.src;
       currentEntryScale = entry.scale;
+      currentEntryOffsetX = entry.offsetX ?? 0;
       currentEntryOffsetY = entry.offsetY;
       currentZone3 = entry.zone3;
       densityLoaded = false;
@@ -171,7 +176,7 @@ export function useGrain(
         drawX = w - drawW + w * z3.offsetX;
         drawY = h - drawH + h * z3.offsetY;
       } else {
-        drawX = (w - drawW) / 2 + (z3 ? w * z3.offsetX : 0);
+        drawX = (w - drawW) / 2 + w * (z3 ? z3.offsetX : currentEntryOffsetX);
         drawY = (h - drawH) / 2 + h * (z3 ? z3.offsetY : currentEntryOffsetY);
       }
 
