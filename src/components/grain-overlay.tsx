@@ -26,6 +26,12 @@ interface GrainContextValue {
   setShowTuner: (v: boolean | ((prev: boolean) => boolean)) => void;
   grainEnabled: boolean;
   setGrainEnabled: (v: boolean) => void;
+  pixelZoom: number;
+  pixelZoomOverride: number | null;
+  setPixelZoomOverride: (v: number | null) => void;
+  densityZoom: number;
+  densityZoomOverride: number | null;
+  setDensityZoomOverride: (v: number | null) => void;
 }
 
 const GrainContext = createContext<GrainContextValue | null>(null);
@@ -50,6 +56,23 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
   const scrollAttenuationRef = useRef(1);
   const densityScaleRef = useRef(1);
   const [pixelScale, setPixelScale] = useState(1);
+  const [densityScale, setDensityScale] = useState(1);
+
+  const pixelZoomOverrideRef = useRef<number | null>(null);
+  const densityZoomOverrideRef = useRef<number | null>(null);
+  const [pixelZoomOverride, setPixelZoomOverrideState] = useState<number | null>(null);
+  const [densityZoomOverride, setDensityZoomOverrideState] = useState<number | null>(null);
+
+  function setPixelZoomOverride(v: number | null) {
+    pixelZoomOverrideRef.current = v;
+    setPixelZoomOverrideState(v);
+  }
+  function setDensityZoomOverride(v: number | null) {
+    densityZoomOverrideRef.current = v;
+    setDensityZoomOverrideState(v);
+    if (v !== null) densityScaleRef.current = v;
+  }
+
   useEffect(() => {
     function onScroll() {
       const scrollY = window.scrollY;
@@ -59,19 +82,22 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
       // Zone 1: first 100vh — fade grain alpha, slight CSS zoom
       const tTop = Math.min(scrollY / vh, 1);
       scrollAttenuationRef.current = 1 - tTop * 0.75;
-      setPixelScale(1 + tTop);
-      densityScaleRef.current = 1;
+      let newPixelScale = 1 + tTop;
+      let newDensityScale = 1;
 
       // Zone 3: last 100vh — fade back in, shrink density map
       const bottomStart = maxScroll - vh;
       if (scrollY > bottomStart && maxScroll > vh) {
-        const tBottom = 1 - (scrollY - bottomStart) / vh; // 1 → 0 (inverted)
-        // attenuation: 0.25 at entry → 1.25 at bottom (higher pop than zone 1 start)
+        const tBottom = 1 - (scrollY - bottomStart) / vh;
         scrollAttenuationRef.current = 1.25 - tBottom * 1.0;
-        // CSS zoom: 2x at entry → 1x at bottom (back to zone 1 default)
-        setPixelScale(1 + tBottom);
-        // Density map: 1.0 at entry → 0.47 at bottom (shrink face, 15% smaller)
-        densityScaleRef.current = 0.47 + tBottom * 0.53;
+        newPixelScale = 1 + tBottom;
+        newDensityScale = 0.47 + tBottom * 0.53;
+      }
+
+      if (pixelZoomOverrideRef.current === null) setPixelScale(newPixelScale);
+      if (densityZoomOverrideRef.current === null) {
+        densityScaleRef.current = newDensityScale;
+        setDensityScale(newDensityScale);
       }
     }
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -119,7 +145,7 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <GrainContext.Provider value={{ displayParams, activeOverrides, elapsed, handleKnob, showTuner, setShowTuner, grainEnabled, setGrainEnabled }}>
+    <GrainContext.Provider value={{ displayParams, activeOverrides, elapsed, handleKnob, showTuner, setShowTuner, grainEnabled, setGrainEnabled, pixelZoom: pixelZoomOverride ?? pixelScale, pixelZoomOverride, setPixelZoomOverride, densityZoom: densityZoomOverride ?? densityScale, densityZoomOverride, setDensityZoomOverride }}>
       {grainEnabled && (
         <>
           {/* Animated grain canvas */}
@@ -128,7 +154,7 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
             className="pointer-events-none fixed inset-0 z-1 h-full w-full"
             style={{
               imageRendering: "pixelated",
-              transform: `scale(${pixelScale})`,
+              transform: `scale(${pixelZoomOverride ?? pixelScale})`,
               willChange: "transform",
             }}
           />

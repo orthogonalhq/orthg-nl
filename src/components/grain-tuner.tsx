@@ -5,7 +5,7 @@ import { KNOBS } from "@/hooks/use-grain";
 import { useGrainContext } from "./grain-overlay";
 
 export function GrainTuner() {
-  const { displayParams, activeOverrides, elapsed, handleKnob, showTuner, setShowTuner } = useGrainContext();
+  const { displayParams, activeOverrides, elapsed, handleKnob, showTuner, setShowTuner, pixelZoom, pixelZoomOverride, setPixelZoomOverride, densityZoom, densityZoomOverride, setDensityZoomOverride } = useGrainContext();
   const panelRef = useRef<HTMLDivElement>(null);
   const savedOffset = useRef({ x: 0, y: 0 });
   const liveOffset = useRef({ x: 0, y: 0 });
@@ -97,6 +97,61 @@ export function GrainTuner() {
 
       {/* Body */}
       <div className="px-6 py-5">
+        {/* Zoom controls */}
+        {(
+          [
+            { label: "Pixel Zoom", value: pixelZoom, override: pixelZoomOverride, set: setPixelZoomOverride, min: 1, max: 3, step: 0.01 },
+            { label: "Density Zoom", value: densityZoom, override: densityZoomOverride, set: setDensityZoomOverride, min: 1, max: 2, step: 0.01 },
+          ] as const
+        ).map(({ label, value, override, set, min, max, step }) => {
+          const pct = Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
+          const isOverridden = override !== null;
+          return (
+            <div key={label} className="py-[6px]">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className={`uppercase tracking-[0.15em] text-[11px] ${isOverridden ? "text-accent" : "t-panel-label"}`}>
+                  <span className={`mr-1.5 ${isOverridden ? "text-accent/50" : "t-ghost"}`}>$</span>
+                  {label}
+                </span>
+                <span className="flex items-center gap-2">
+                  {isOverridden && (
+                    <button
+                      onClick={() => set(null)}
+                      className="uppercase tracking-[0.15em] text-[9px] text-accent/50 hover:text-accent transition-colors"
+                    >
+                      manual
+                    </button>
+                  )}
+                  {!isOverridden && (
+                    <span className="uppercase tracking-widest text-[9px] t-ghost">scroll</span>
+                  )}
+                  <span className={`tabular-nums text-[12px] ${isOverridden ? "text-accent" : "t-card-desc"}`}>
+                    {value.toFixed(2)}
+                  </span>
+                </span>
+              </div>
+              <div className="relative h-[3px] w-full bg-white/[0.04]">
+                <div
+                  className={`absolute inset-y-0 left-0 ${isOverridden ? "bg-accent/60" : "bg-white/[0.12]"}`}
+                  style={{ width: `${pct}%` }}
+                />
+                <input
+                  type="range"
+                  min={min}
+                  max={max}
+                  step={step}
+                  value={value}
+                  onChange={(e) => set(parseFloat(e.target.value))}
+                  className="absolute inset-0 w-full opacity-0 cursor-pointer"
+                />
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Divider */}
+        <div className="border-t border-white/6 my-3" />
+
         {KNOBS.map(({ key, label, min, max, step }) => {
           const val = displayParams[key];
           const pct = Math.min(100, Math.max(0, ((val - min) / (max - min)) * 100));
