@@ -1,27 +1,17 @@
 {
-  "name": "orthg-nl",
+  "name": "orthogonal",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "@libsql/client": "^0.17.0",
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:web": "npm run dev -w @orthogonal/web",
+    "dev:docs": "npm run dev -w @orthogonal/docs",
+    "build": "npm run build --workspaces --if-present",
+    "build:web": "npm run build -w @orthogonal/web",
+    "build:docs": "npm run build -w @orthogonal/docs",
+    "lint": "npm run lint --workspaces --if-present"
   }
 }
