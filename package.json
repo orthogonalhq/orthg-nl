@@ -2,16 +2,17 @@
   "name": "orthogonal",
   "version": "0.1.0",
   "private": true,
-  "workspaces": [
-    "apps/*"
-  ],
   "scripts": {
-    "dev": "npm run dev --workspaces --if-present",
-    "dev:web": "npm run dev -w @orthogonal/web",
-    "dev:docs": "npm run dev -w @orthogonal/docs",
-    "build": "npm run build --workspaces --if-present",
-    "build:web": "npm run build -w @orthogonal/web",
-    "build:docs": "npm run build -w @orthogonal/docs",
-    "lint": "npm run lint --workspaces --if-present"
-  }
+    "dev": "turbo dev",
+    "dev:web": "turbo dev --filter=@orthogonal/web",
+    "dev:docs": "turbo dev --filter=@orthogonal/docs",
+    "build": "turbo build",
+    "build:web": "turbo build --filter=@orthogonal/web",
+    "build:docs": "turbo build --filter=@orthogonal/docs",
+    "lint": "turbo lint"
+  },
+  "devDependencies": {
+    "turbo": "^2"
+  },
+  "packageManager": "pnpm@10.7.0"
 }
