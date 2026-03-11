@@ -264,6 +264,99 @@ body {
   .border-accent\/30 { border-color: rgb(250 93 43 / 0.38); }
 }
 
+/* ── Article prose ──────────────────────────────────────────────────
+   Minimal reading styles for /blog and /research MDX content. */
+.prose-orthogonal {
+  color: rgb(255 255 255 / 0.62);
+  line-height: 1.75;
+}
+
+.prose-orthogonal h2 {
+  color: rgb(255 255 255 / 0.85);
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-orthogonal h3 {
+  color: rgb(255 255 255 / 0.80);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-orthogonal p {
+  margin-bottom: 1.25rem;
+}
+
+.prose-orthogonal a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose-orthogonal a:hover {
+  color: var(--accent-glow);
+}
+
+.prose-orthogonal code {
+  font-family: var(--font-fira-code), ui-monospace, monospace;
+  font-size: 0.875em;
+  background: rgb(255 255 255 / 0.06);
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+
+.prose-orthogonal pre {
+  background: rgb(255 255 255 / 0.04);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.prose-orthogonal pre code {
+  background: none;
+  padding: 0;
+}
+
+.prose-orthogonal strong {
+  color: rgb(255 255 255 / 0.85);
+  font-weight: 600;
+}
+
+.prose-orthogonal ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.prose-orthogonal ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.prose-orthogonal li {
+  margin-bottom: 0.25rem;
+}
+
+.prose-orthogonal blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  color: rgb(255 255 255 / 0.55);
+  margin-bottom: 1.25rem;
+}
+
+.prose-orthogonal hr {
+  border: none;
+  border-top: 1px solid rgb(255 255 255 / 0.08);
+  margin: 2rem 0;
+}
+
 /* Film grain overlay */
 .grain {
   opacity: 0.04;

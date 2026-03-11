@@ -40,14 +40,7 @@ export default function InvestorsPage() {
           </a>
         </div>
       </main>
-      <Footer>
-        <a
-          href="/"
-          className="cursor-pointer border-r border-white/[0.06] px-5 py-3 text-[11px] uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent"
-        >
-          Home
-        </a>
-      </Footer>
+      <Footer />
     </div>
   );
 }

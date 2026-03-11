@@ -13,7 +13,7 @@ export function PanelBar({ label, meta, metaCls = "t-panel-meta" }: PanelBarProp
         {label}
       </span>
       {meta && (
-        <span className={`terminal-text text-[10px] ${metaCls}`}>{meta}</span>
+        <span className={`terminal-text text-[10px] capitalize ${metaCls}`}>{meta}</span>
       )}
     </div>
   );
