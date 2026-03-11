@@ -1,15 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
-import { useGrainContext } from "@/components/grain-overlay";
+import { GrainZone2 } from "@/components/grain-zone2";
 
 export default function InvestorsLayout({ children }: { children: React.ReactNode }) {
-  const { setGrainEnabled } = useGrainContext();
-
-  useEffect(() => {
-    setGrainEnabled(false);
-    return () => setGrainEnabled(true);
-  }, [setGrainEnabled]);
-
-  return <>{children}</>;
+  return (
+    <>
+      <GrainZone2 />
+      {children}
+    </>
+  );
 }
