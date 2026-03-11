@@ -50,17 +50,21 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
   const transitionRafRef = useRef(0);
 
   // Compute target values for current scroll position (zone1/zone3 logic)
+  // Zone3 anchors to <main> bottom, not page bottom, so the footer doesn't shift it
   function getScrollTargets() {
     const scrollY = window.scrollY;
     const vh = window.innerHeight;
-    const maxScroll = document.documentElement.scrollHeight - vh;
+    const footer = document.querySelector("footer");
+    const footerH = footer ? footer.offsetHeight : 0;
+    const contentBottom = document.documentElement.scrollHeight - footerH;
+    const maxScroll = contentBottom - vh;
     const tTop = Math.min(scrollY / vh, 1);
     let att = 1 - tTop * 0.75;
     let scale = 1 + tTop;
     let density = 1;
     const bottomStart = maxScroll - vh;
     if (scrollY > bottomStart && maxScroll > vh) {
-      const tBottom = 1 - (scrollY - bottomStart) / vh;
+      const tBottom = Math.max(0, 1 - (scrollY - bottomStart) / vh);
       att = 1.25 - tBottom * 1.0;
       scale = 1 + tBottom;
       density = 0.47 + tBottom * 0.53;
