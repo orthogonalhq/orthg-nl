@@ -6,6 +6,7 @@ import { Capabilities } from "@/sections/capabilities";
 import { Ecosystem } from "@/sections/ecosystem";
 
 import { Responsibility } from "@/sections/responsibility";
+import { RecentPosts } from "@/sections/recent-posts";
 import { CTA } from "@/sections/cta";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -26,6 +27,7 @@ export default function Home() {
           <Capabilities />
           <Ecosystem />
           <Responsibility />
+          <RecentPosts />
         </div>
         <CTA />
       </main>

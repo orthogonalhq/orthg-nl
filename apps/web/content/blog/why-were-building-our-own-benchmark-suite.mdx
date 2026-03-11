@@ -1,0 +1,107 @@
+---
+title: "Why We're Building Our Own Benchmark Suite"
+description: "No existing benchmark tells us which model fits which cognitive role. So we're building o2Bench — an open source suite that evaluates models against specific functions in an agent architecture."
+date: "2026-03-11"
+author: "Orthogonal"
+category: "product"
+---
+
+We're building Nous, an open source AI operating system. The core of the architecture is a multi-model agent mesh — different models assigned to different cognitive roles, working together as a system.
+
+To make that work, we need to answer a deceptively simple question for every user who installs Nous: **which models should go where?**
+
+We can't answer it. And after looking at every public benchmark available, neither can anyone else.
+
+---
+
+## The Business Problem
+
+When a new user sets up Nous, the system needs to configure itself. It scans their hardware — GPU, VRAM, RAM, CPU — and figures out which models can actually run on their machine. Tools like [llmfit](https://github.com/AlexsJones/llmfit) solve this well. We know what fits.
+
+But "fits on your hardware" isn't "fits the role." Nous doesn't use one model for everything. The architecture has distinct cognitive functions — routing incoming requests, planning multi-step workflows, calling tools, compressing conversations into long-term memory, reviewing other agents' work for quality. Each function has different requirements. A router needs to be fast and accurate at classification. A memory distillation model needs to compress without losing meaning. A reviewer needs to catch errors without flooding the system with false flags.
+
+No existing benchmark tells us which model is best at any of these specific jobs. MMLU tells us a model is generally smart. HumanEval tells us it can code. SWE-bench tells us it can fix bugs. None of them answer: "Is this 7B model a reliable reviewer of that 70B model's output?" or "Which model loses the least information when compressing a 32K conversation into 2K?"
+
+We've been making these assignments based on intuition and manual testing. That works when one person is configuring one system. It doesn't scale to thousands of users with different hardware, different use cases, and different model preferences.
+
+We need data. The data doesn't exist. So we're going to create it.
+
+---
+
+## What We're Building
+
+**o2Bench** — an open source benchmark suite that evaluates models against specific cognitive roles in an agent architecture.
+
+Six benchmarks, each measuring a distinct function:
+
+**Self-eval** — can a model accurately judge its own confidence? This drives autonomy decisions. An overconfident model acts when it shouldn't. An underconfident model escalates everything and bottlenecks the system.
+
+**Eval** — can a small, cheap model reliably review a larger model's work? This is the pattern we use for critical tasks — a lightweight reviewer gating a more capable worker. We need to know at what capability gap this pattern breaks down.
+
+**Memory** — can a model compress information without losing what matters? And critically, what happens after three rounds of re-compression? In a persistent memory system, distillation cascades. Stability under recursive compression is the signal nobody measures.
+
+**Planning** — can a model decompose a complex goal into a task graph with correct dependencies and appropriate granularity for multi-agent delegation?
+
+**Functions** — can a model reliably call tools, interpret the results correctly, and stay within its declared permissions? Existing benchmarks cover the call. We're extending to what happens after.
+
+**Routing** — can a model classify incoming requests by type and complexity fast enough to not bottleneck the system?
+
+Each benchmark produces a single score (0–100) per model with sub-dimension detail available on drill-down. The scores feed directly into the Nous routing layer — during onboarding, the system combines hardware fitness data with cognitive role fitness data to auto-configure model assignments.
+
+---
+
+## How We're Doing It
+
+We're prioritizing by gap. Self-eval and Eval have virtually no public benchmark coverage and they're the most critical for our governance architecture. We build those first. Functions and Routing have strong existing benchmarks we can bootstrap from. Those come last.
+
+Every benchmark has two tracks. A **canonical track** where every model runs through the same standardized harness — that's the published score, the apples-to-apples comparison. And a **harnessed track** where submissions include custom scaffolding — that's the practically useful number, the best performance you can actually get from a model in production.
+
+Orthogonal publishes authoritative results on every major model release. The community can run the suite locally and submit results tagged with hardware context and quantization level. Both sets live in a public database.
+
+The benchmark suite, methodology, test sets, scoring functions, and results will all be open source. This isn't proprietary research. The questions o2Bench answers are relevant to anyone building multi-model agent systems, not just Nous users.
+
+---
+
+## Timeline
+
+We're being honest about pace. Building good benchmarks is slow work. The bottleneck isn't tooling — it's annotating high-quality test sets.
+
+**Now:** Nous ships onboarding with a curated profile database — model-to-role assignments built from public benchmark data and our own testing during development. This is the pragmatic solution that gets users running.
+
+**Late 2026:** First results on Self-eval and Eval. These are the governance pillars — the most novel research and the most critical for our architecture.
+
+**Through 2027:** Memory, Planning, Functions, and Routing results follow as test sets are built and validated.
+
+**Ongoing:** Once the full suite is operational, it runs automatically against every major model release. New model drops, scores publish, the Nous profile database updates, every user's routing layer gets better.
+
+---
+
+## Why Open Source
+
+We considered keeping this internal. The scores feed our product. The cognitive role taxonomy is specific to our architecture. There's an argument for competitive advantage.
+
+But benchmark results aren't a moat. They change with every model release. Anyone can run the same evaluations. And the research value of defining what "cognitive role fitness" means for agent architectures is worth more as a community standard than as a proprietary dataset.
+
+If o2Bench becomes the way people evaluate models for agent systems — the way SWE-bench became the standard for agentic coding — that puts Orthogonal at the center of a conversation we want to be leading. The benchmark is the research contribution. The product that uses it is the business.
+
+---
+
+## What This Produces
+
+For Nous users: a system that configures itself intelligently on first launch. Your hardware scan tells us what can run. o2Bench scores tell us what should run where. The intersection is your routing config — automatic, informed, and improving with every model release we benchmark.
+
+For the agent ecosystem: a public framework for evaluating models against cognitive functions. If you're building any kind of multi-model system and assigning roles to models, this data is useful regardless of whether you use Nous.
+
+For Orthogonal: credibility. We're a new company. Publishing rigorous, open research is how we earn the right to be taken seriously before we have scale. The work speaks first.
+
+---
+
+## Get Involved
+
+The o2Bench specification is written. We're refining it internally before public release. If you're building agent architectures and want early access to the spec, or if you want to contribute to test set development — particularly for the annotation-heavy Memory and Planning pillars — reach out.
+
+[research@orthogonal.ai](mailto:research@orthogonal.ai)
+
+---
+
+*Orthogonal is building Nous, an open source AI operating system for sovereign intelligence. o2Bench is our model-level cognitive role benchmark suite. NousBench, our companion program for system-level agent evaluation, is in early development. Both will be open source.*
