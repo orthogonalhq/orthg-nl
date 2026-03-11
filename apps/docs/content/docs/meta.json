@@ -1,0 +1,17 @@
+{
+  "title": "Documentation",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "installation",
+    "quickstart",
+    "---Architecture---",
+    "cortex",
+    "memory",
+    "subconscious",
+    "autonomic",
+    "---Agent Team Skills---",
+    "agent-team-skills"
+  ]
+}
