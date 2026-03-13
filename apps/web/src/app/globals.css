@@ -211,13 +211,25 @@ body {
   overflow-y: auto;
 }
 
-/* Hide native scrollbar on desktop only — mobile keeps native scroll + pull-to-refresh */
+/* Desktop: app shell (body hidden, scroll-root scrolls, native scrollbar hidden) */
 @media (pointer: fine) {
   #scroll-root {
     scrollbar-width: none;
   }
   #scroll-root::-webkit-scrollbar {
     display: none;
+  }
+}
+
+/* Mobile: undo app shell — let body scroll natively for pull-to-refresh */
+@media (pointer: coarse) {
+  html, body {
+    overflow: visible !important;
+    height: auto !important;
+  }
+  #scroll-root {
+    height: auto !important;
+    overflow: visible !important;
   }
 }
 
