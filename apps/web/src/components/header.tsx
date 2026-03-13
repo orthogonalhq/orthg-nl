@@ -18,14 +18,18 @@ export function Header() {
 
   useEffect(() => {
     const root = document.getElementById("scroll-root");
-    if (!root) return;
 
     function onScroll() {
-      setScrolled(root!.scrollTop > 10);
+      const top = (root?.scrollTop ?? 0) || window.scrollY;
+      setScrolled(top > 10);
     }
 
-    root.addEventListener("scroll", onScroll, { passive: true });
-    return () => root.removeEventListener("scroll", onScroll);
+    root?.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      root?.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (

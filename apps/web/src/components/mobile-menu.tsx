@@ -17,6 +17,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
   // Two-phase open/close for animation
   function handleOpen() {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    document.body.style.overflow = "hidden";
     setOpen(true);
     // Next frame: trigger enter animation
     requestAnimationFrame(() => requestAnimationFrame(() => setVisible(true)));
@@ -24,6 +25,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
 
   function handleClose() {
     setVisible(false);
+    document.body.style.overflow = "";
     // Wait for exit animation before unmounting
     timeoutRef.current = setTimeout(() => setOpen(false), 300);
   }
@@ -38,8 +40,11 @@ export function MobileMenu({ links }: MobileMenuProps) {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Cleanup timeout on unmount
-  useEffect(() => () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); }, []);
+  // Cleanup on unmount
+  useEffect(() => () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    document.body.style.overflow = "";
+  }, []);
 
   const allLinks = [{ label: "Home", href: "/" }, ...links];
 
