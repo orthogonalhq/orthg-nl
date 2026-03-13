@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Montserrat_Alternates, IBM_Plex_Mono, Fira_Code } from "next/font/google";
 import { GrainProvider } from "@/components/grain-overlay";
+import { Header } from "@/components/header";
 import { ScrollBar } from "@/components/scroll-bar";
 import "./globals.css";
 
@@ -43,6 +44,7 @@ export default function RootLayout({
         className={`${geist.variable} ${montserratAlternates.variable} ${ibmPlexMono.variable} ${firaCode.variable} antialiased h-full overflow-hidden`}
       >
         <GrainProvider>
+          <Header />
           <div id="scroll-root" className="h-full">
             {children}
           </div>

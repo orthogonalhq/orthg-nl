@@ -1,5 +1,4 @@
 import { getBlogPost, getBlogPosts, slugify } from '@/lib/source';
-import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { GrainZone2 } from '@/components/grain-zone2';
 import { PanelBar } from '@/components/panel-bar';
@@ -19,7 +18,6 @@ export default async function BlogPost(props: {
   return (
     <div className="scanlines phosphor relative z-10 min-h-svh">
       <GrainZone2 />
-      <Header />
       <main className="mx-auto max-w-3xl px-6 md:px-12 pt-28 pb-20">
         <Link
           href="/blog"
