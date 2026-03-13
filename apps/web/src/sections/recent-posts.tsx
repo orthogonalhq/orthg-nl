@@ -50,6 +50,7 @@ export function RecentPosts() {
           </SectionHeader>
         </Reveal>
 
+        <div className="bg-black/10 backdrop-blur-xl">
         <Reveal delay={100}>
           <div className="border-y border-white/[0.06] overflow-hidden">
             <PanelBar label="nous::feed" meta="Recent" />
@@ -97,6 +98,7 @@ export function RecentPosts() {
             </div>
           </div>
         </Reveal>
+        </div>
       </div>
     </section>
   );

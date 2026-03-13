@@ -34,7 +34,7 @@ export default function ResearchIndex() {
           </h1>
         </div>
 
-        <div className="border-y border-white/[0.06] overflow-hidden">
+        <div className="border-y border-white/[0.06] bg-black/10 backdrop-blur-xl overflow-hidden">
           <PanelBar label="nous::research" meta={`${papers.length} Paper${papers.length !== 1 ? 's' : ''}`} />
 
           <div className="divide-y divide-white/[0.06]">

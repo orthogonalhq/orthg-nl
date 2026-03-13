@@ -52,6 +52,7 @@ export function Architecture() {
         </Reveal>
 
         {/* Architecture diagram — single bordered container with stacked layers */}
+        <div className="bg-black/10 backdrop-blur-xl">
         <Reveal delay={100}>
           <div className="border-y border-white/[0.06]">
             <PanelBar label="nous::layers" meta="Cognitive Stack" />
@@ -92,6 +93,7 @@ export function Architecture() {
             </div>
           </div>
         </Reveal>
+        </div>
       </div>
     </section>
   );

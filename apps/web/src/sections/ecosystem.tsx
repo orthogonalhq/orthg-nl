@@ -15,6 +15,7 @@ export function Ecosystem() {
           </SectionHeader>
         </Reveal>
 
+        <div className="bg-black/10 backdrop-blur-xl">
         <Reveal delay={100}>
           <div className="border-y border-white/[0.06] overflow-hidden">
             <PanelBar label="nous::ecosystem" meta="Open Source" />
@@ -61,6 +62,7 @@ export function Ecosystem() {
             </div>
           </div>
         </Reveal>
+        </div>
       </div>
     </section>
   );

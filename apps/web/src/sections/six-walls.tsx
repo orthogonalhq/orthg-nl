@@ -25,6 +25,7 @@ export function SixWalls() {
         </Reveal>
 
         {/* 2x3 grid — compact, inside a single bordered container */}
+        <div className="bg-black/10 backdrop-blur-xl">
         <Reveal delay={100}>
           <div className="border-y border-white/[0.06] divide-y divide-white/[0.06]">
             <PanelBar label="nous::security" meta="6 Critical" metaCls="text-red-400/30" />
@@ -54,6 +55,7 @@ export function SixWalls() {
             </div>
           </div>
         </Reveal>
+        </div>
       </div>
     </section>
   );

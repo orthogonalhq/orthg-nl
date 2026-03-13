@@ -1,6 +1,5 @@
 import { Reveal } from "@/components/reveal";
-import { SectionLabel } from "@/components/section-label";
-import { SectionHeading } from "@/components/section-heading";
+import { SectionHeader } from "@/components/section-header";
 import { BodyText } from "@/components/body-text";
 
 export function Differentiation() {
@@ -8,12 +7,11 @@ export function Differentiation() {
     <section id="differentiation" className="relative px-6 md:px-12 lg:px-20 py-28 md:py-40">
       <div className="mx-auto max-w-4xl text-center px-4 lg:px-0">
         <Reveal>
-          <SectionLabel>Differentiation</SectionLabel>
-          <SectionHeading size="large" className="mb-8">
+          <SectionHeader label="Differentiation" center size="large">
             They built the neurons.
             <br />
             <span className="t-heading-dim">We&apos;re building the brain.</span>
-          </SectionHeading>
+          </SectionHeader>
         </Reveal>
 
         <Reveal delay={100}>
