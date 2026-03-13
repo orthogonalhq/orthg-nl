@@ -463,7 +463,7 @@ export function PricingContent() {
                   Custom pricing for your requirements.
                 </BodyText>
                 <a
-                  href="/#cta"
+                  href="mailto:hello@orthg.nl"
                   className="mt-8 inline-block border border-accent/60 px-8 py-3 font-accent text-xs uppercase tracking-[0.15em] text-accent transition-all duration-200 hover:bg-accent hover:text-white hover:border-accent"
                 >
                   Contact us

@@ -39,9 +39,12 @@ export function Footer() {
             <span className="text-[10px] uppercase tracking-[0.2em] t-ghost block mb-4">
               &gt; connect
             </span>
-            <p className="text-[12px] t-ghost">
-              <span className="terminal-prefix">$</span>
-            </p>
+            <a
+              href="mailto:hello@orthg.nl"
+              className="block text-[12px] uppercase tracking-[0.15em] t-nav transition-colors hover:text-accent"
+            >
+              hello@orthg.nl
+            </a>
           </div>
 
           {/* About */}
