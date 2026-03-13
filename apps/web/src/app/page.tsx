@@ -17,18 +17,12 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <div className="relative">
-          {/* Rail lines connecting terminal boxes */}
-          <div className="rail-mask pointer-events-none absolute inset-0 z-10 px-6 md:px-12 lg:px-20">
-            <div className="mx-auto h-full max-w-5xl border-l border-r border-white/[0.06]" />
-          </div>
-          <MeetNous />
-          <Architecture />
-          <Capabilities />
-          <Ecosystem />
-          <Responsibility />
-          <RecentPosts />
-        </div>
+        <MeetNous />
+        <Architecture />
+        <Capabilities />
+        <Ecosystem />
+        <Responsibility />
+        <RecentPosts />
         <CTA />
       </main>
       <Footer />
