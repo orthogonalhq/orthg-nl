@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Montserrat_Alternates, IBM_Plex_Mono, Fira_Code } from "next/font/google";
 import { GrainProvider } from "@/components/grain-overlay";
+import { ScrollBar } from "@/components/scroll-bar";
 import "./globals.css";
 
 const geist = Geist({
@@ -37,11 +38,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark h-full overflow-hidden">
       <body
-        className={`${geist.variable} ${montserratAlternates.variable} ${ibmPlexMono.variable} ${firaCode.variable} antialiased`}
+        className={`${geist.variable} ${montserratAlternates.variable} ${ibmPlexMono.variable} ${firaCode.variable} antialiased h-full overflow-hidden`}
       >
-        <GrainProvider>{children}</GrainProvider>
+        <GrainProvider>
+          <div id="scroll-root" className="h-full">
+            {children}
+          </div>
+          <ScrollBar />
+        </GrainProvider>
       </body>
     </html>
   );

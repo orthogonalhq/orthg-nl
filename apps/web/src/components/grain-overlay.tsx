@@ -51,12 +51,17 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
 
   // Compute target values for current scroll position (zone1/zone3 logic)
   // Zone3 anchors to <main> bottom, not page bottom, so the footer doesn't shift it
+  function getScrollRoot() {
+    return document.getElementById("scroll-root") ?? document.documentElement;
+  }
+
   function getScrollTargets() {
-    const scrollY = window.scrollY;
+    const root = getScrollRoot();
+    const scrollY = root.scrollTop;
     const vh = window.innerHeight;
     const footer = document.querySelector("footer");
     const footerH = footer ? footer.offsetHeight : 0;
-    const contentBottom = document.documentElement.scrollHeight - footerH;
+    const contentBottom = root.scrollHeight - footerH;
     const maxScroll = contentBottom - vh;
     const tTop = Math.min(scrollY / vh, 1);
     let att = 1 - tTop * 0.75;
@@ -112,14 +117,15 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
 
   // Normal scroll handler (skipped during transition — rAF loop handles it)
   useEffect(() => {
+    const root = getScrollRoot();
     function onScroll() {
       if (lockZone2Ref.current || transitionRef.current.active) return;
       const { att, scale, density } = getScrollTargets();
       applyGrain(att, scale, density);
     }
-    window.addEventListener("scroll", onScroll, { passive: true });
+    root.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => root.removeEventListener("scroll", onScroll);
   }, []);
 
   useGrain(grainRef, overridesRef, displayRef, scrollAttenuationRef, densityScaleRef);
