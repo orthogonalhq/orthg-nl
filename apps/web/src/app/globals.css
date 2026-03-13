@@ -206,14 +206,19 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Hide native scrollbar on scroll-root — replaced by custom ScrollBar component */
+/* scroll-root is always the scroll container */
 #scroll-root {
   overflow-y: auto;
-  scrollbar-width: none;
 }
 
-#scroll-root::-webkit-scrollbar {
-  display: none;
+/* Hide native scrollbar on desktop only — mobile keeps native scroll + pull-to-refresh */
+@media (pointer: fine) {
+  #scroll-root {
+    scrollbar-width: none;
+  }
+  #scroll-root::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Rail line mask — responsive fade points */

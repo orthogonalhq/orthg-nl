@@ -86,8 +86,13 @@ export function ScrollBar() {
     }
   }
 
-  // Scroll + resize listeners
+  // Skip entirely on touch devices — let native scrollbar handle it
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      if (trackRef.current) trackRef.current.style.display = "none";
+      return;
+    }
+
     const root = getScrollRoot();
     if (!root) return;
 
