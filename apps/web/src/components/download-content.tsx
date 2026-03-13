@@ -219,11 +219,18 @@ function ComingSoonBadge() {
 export function DownloadContent() {
   const [platform, setPlatform] = useState<Platform>("macos");
   const [cliTab, setCliTab] = useState<CLITab>("macos");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const detected = detectPlatform();
-    setPlatform(detected);
-    setCliTab(CLI_DEFAULT[detected]);
+    const mobile =
+      typeof navigator !== "undefined" &&
+      /android|iphone|ipad|ipod/i.test(navigator.userAgent);
+    setIsMobile(mobile);
+    if (!mobile) {
+      const detected = detectPlatform();
+      setPlatform(detected);
+      setCliTab(CLI_DEFAULT[detected]);
+    }
   }, []);
 
   const hero = PLATFORMS[platform];
@@ -246,38 +253,74 @@ export function DownloadContent() {
               </span>
               {!RELEASED && <ComingSoonBadge />}
             </div>
-            <SectionHeader center size="large">
-              Download Nous
-            </SectionHeader>
-            <BodyText className="max-w-xl mx-auto">
-              Install the open source AI operating system on your machine.
-              <br className="hidden sm:inline" />
-              Self-hosted. Model-agnostic. Yours.
-            </BodyText>
+            {isMobile ? (
+              <>
+                <SectionHeader center size="large">
+                  Nous Companion
+                </SectionHeader>
+                <BodyText className="max-w-xl mx-auto">
+                  Chat and voice interface for your self-hosted Nous agent.
+                  Connect from anywhere &mdash; your AI stays on your machine.
+                </BodyText>
+              </>
+            ) : (
+              <>
+                <SectionHeader center size="large">
+                  Download Nous
+                </SectionHeader>
+                <BodyText className="max-w-xl mx-auto">
+                  Install the open source AI operating system on your machine.
+                  <br className="hidden sm:inline" />
+                  Self-hosted. Model-agnostic. Yours.
+                </BodyText>
+              </>
+            )}
           </Reveal>
 
           <Reveal delay={100}>
-            <div className="mt-10 flex flex-col items-center gap-3">
-              {RELEASED ? (
-                <a
-                  href={hero.href}
-                  className="inline-flex items-center gap-3 border border-accent/60 px-8 py-3.5 font-accent text-xs uppercase tracking-[0.15em] text-accent transition-all duration-200 hover:bg-accent hover:text-white hover:border-accent"
-                >
-                  {hero.icon}
-                  <DownloadIcon />
-                  Download for {hero.label}
-                </a>
-              ) : (
-                <span className="inline-flex items-center gap-3 border border-white/[0.06] px-8 py-3.5 font-accent text-xs uppercase tracking-[0.15em] t-meta cursor-default">
-                  {hero.icon}
-                  <DownloadIcon />
-                  Download for {hero.label}
+            {isMobile ? (
+              <div className="mt-10 flex flex-col items-center gap-3">
+                <div className="flex flex-wrap justify-center gap-3">
+                  {[
+                    { label: "iOS", icon: <AppleIcon /> },
+                    { label: "Android", icon: <AndroidIcon /> },
+                  ].map(({ label, icon }) => (
+                    <span
+                      key={label}
+                      className="inline-flex items-center gap-2 border border-white/[0.06] px-5 py-2.5 font-accent text-xs uppercase tracking-[0.15em] t-meta cursor-default"
+                    >
+                      {icon}
+                      {label} &mdash; Coming soon
+                    </span>
+                  ))}
+                </div>
+                <span className="terminal-text text-[11px] t-meta">
+                  Desktop downloads available below
                 </span>
-              )}
-              <span className="terminal-text text-[11px] t-meta">
-                {RELEASED ? hero.detail : "Release builds are not yet available"}
-              </span>
-            </div>
+              </div>
+            ) : (
+              <div className="mt-10 flex flex-col items-center gap-3">
+                {RELEASED ? (
+                  <a
+                    href={hero.href}
+                    className="inline-flex items-center gap-3 border border-accent/60 px-8 py-3.5 font-accent text-xs uppercase tracking-[0.15em] text-accent transition-all duration-200 hover:bg-accent hover:text-white hover:border-accent"
+                  >
+                    {hero.icon}
+                    <DownloadIcon />
+                    Download for {hero.label}
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-3 border border-white/[0.06] px-8 py-3.5 font-accent text-xs uppercase tracking-[0.15em] t-meta cursor-default">
+                    {hero.icon}
+                    <DownloadIcon />
+                    Download for {hero.label}
+                  </span>
+                )}
+                <span className="terminal-text text-[11px] t-meta">
+                  {RELEASED ? hero.detail : "Release builds are not yet available"}
+                </span>
+              </div>
+            )}
           </Reveal>
         </div>
       </section>
@@ -302,7 +345,7 @@ export function DownloadContent() {
                 <div className="grid grid-cols-1 sm:grid-cols-2">
                   {/* Interior dividers only — vertical between cols, horizontal between rows */}
                   {allPlatforms.map(({ key, info }, i) => {
-                    const isActive = key === platform;
+                    const isActive = !isMobile && key === platform;
                     const isCli = key === "cli";
                     const isLeftCol = i % 2 === 0;
                     const isLast = i === allPlatforms.length - 1;
