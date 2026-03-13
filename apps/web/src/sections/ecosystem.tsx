@@ -28,38 +28,32 @@ export function Ecosystem() {
             </div>
 
             {/* Three pillars */}
-            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
-              <div className="p-6 md:p-8">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="terminal-prefix">›</span>
-                  <span className="terminal-text text-accent text-xs uppercase tracking-[0.2em]">Marketplace</span>
+            {(() => {
+              const pillars = [
+                { label: "Marketplace", desc: "Discover and install community-built skills and packages. Publish your own. Earn revenue as a creator.", cmd: "nous install <skill>" },
+                { label: "Open Source", desc: "The runtime is public. The architecture is auditable. Fork it, extend it, contribute back.", cmd: "git clone nous-core" },
+                { label: "Nous Cloud", desc: "Don\u2019t want to self-host? We run it for you. Sovereign by default \u2014 your data stays yours.", cmd: "nous deploy --sovereign" },
+              ];
+              return (
+                <div className="grid grid-cols-1 md:grid-cols-3">
+                  {pillars.map((p, i) => (
+                    <div
+                      key={p.label}
+                      className={`p-6 md:p-8 border-white/[0.06] ${
+                        i < pillars.length - 1 ? "border-b md:border-b-0 md:border-r" : ""
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="terminal-prefix">›</span>
+                        <span className="terminal-text text-accent text-xs uppercase tracking-[0.2em]">{p.label}</span>
+                      </div>
+                      <p className="terminal-text text-xs t-card-desc leading-relaxed">{p.desc}</p>
+                      <p className="terminal-text text-[10px] t-faint mt-3">{p.cmd}</p>
+                    </div>
+                  ))}
                 </div>
-                <p className="terminal-text text-xs t-card-desc leading-relaxed">
-                  Discover and install community-built skills and packages. Publish your own. Earn revenue as a creator.
-                </p>
-                <p className="terminal-text text-[10px] t-faint mt-3">nous install &lt;skill&gt;</p>
-              </div>
-              <div className="p-6 md:p-8">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="terminal-prefix">›</span>
-                  <span className="terminal-text text-accent text-xs uppercase tracking-[0.2em]">Open Source</span>
-                </div>
-                <p className="terminal-text text-xs t-card-desc leading-relaxed">
-                  The runtime is public. The architecture is auditable. Fork it, extend it, contribute back.
-                </p>
-                <p className="terminal-text text-[10px] t-faint mt-3">git clone nous-core</p>
-              </div>
-              <div className="p-6 md:p-8">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="terminal-prefix">›</span>
-                  <span className="terminal-text text-accent text-xs uppercase tracking-[0.2em]">Nous Cloud</span>
-                </div>
-                <p className="terminal-text text-xs t-card-desc leading-relaxed">
-                  Don&apos;t want to self-host? We run it for you. Sovereign by default — your data stays yours.
-                </p>
-                <p className="terminal-text text-[10px] t-faint mt-3">nous deploy --sovereign</p>
-              </div>
-            </div>
+              );
+            })()}
           </div>
         </Reveal>
         </div>
