@@ -2,7 +2,7 @@ import { SectionLabel } from "@/components/section-label";
 import { SectionHeading } from "@/components/section-heading";
 
 interface SectionHeaderProps {
-  label: string;
+  label?: string;
   center?: boolean;
   size?: "hero" | "large" | "default" | "small";
   className?: string;
@@ -19,7 +19,7 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className={`mb-8 ${center ? "text-center" : "pr-4"} ${className}`}>
-      <SectionLabel>{label}</SectionLabel>
+      {label && <SectionLabel>{label}</SectionLabel>}
       <SectionHeading size={size}>{children}</SectionHeading>
     </div>
   );
