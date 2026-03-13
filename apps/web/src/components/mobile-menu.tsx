@@ -76,10 +76,12 @@ export function MobileMenu({ links }: MobileMenuProps) {
       {/* Full-screen overlay — portaled to body to escape stacking contexts */}
       {open && createPortal(
         <div
-          className="fixed inset-0 z-[60] flex flex-col overflow-y-auto transition-opacity duration-300 ease-out"
+          className="fixed inset-0 z-[60] flex flex-col overflow-y-auto"
           style={{
             backgroundColor: "#0a0a0a",
             opacity: visible ? 1 : 0,
+            transition: "opacity 0.3s ease-out",
+            willChange: "opacity",
           }}
         >
           {/* Top bar — logo left, close right (mirrors header) */}
@@ -113,11 +115,12 @@ export function MobileMenu({ links }: MobileMenuProps) {
                 key={item.href}
                 href={item.href}
                 onClick={handleClose}
-                className="font-mono text-3xl font-semibold tracking-[-0.02em] text-white/80 transition-all duration-300 hover:text-accent"
+                className="font-mono text-3xl font-semibold tracking-[-0.02em] text-white/80 hover:text-accent"
                 style={{
                   opacity: visible ? 1 : 0,
                   transform: visible ? "translateY(0)" : "translateY(12px)",
-                  transitionDelay: `${80 + i * 50}ms`,
+                  transition: `opacity 0.3s ease-out ${80 + i * 50}ms, transform 0.3s ease-out ${80 + i * 50}ms, color 0.15s`,
+                  willChange: "opacity, transform",
                 }}
               >
                 {item.label}

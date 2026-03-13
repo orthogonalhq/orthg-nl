@@ -182,14 +182,38 @@ body {
   text-shadow: none;
 }
 
-/* Hide native scrollbar — replaced by custom ScrollBar component */
+/* Dark thin scrollbar for all scrollable containers */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Hide native scrollbar on scroll-root — replaced by custom ScrollBar component */
 #scroll-root {
   overflow-y: auto;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
 #scroll-root::-webkit-scrollbar {
-  display: none; /* Chromium / Safari */
+  display: none;
 }
 
 /* Rail line mask — responsive fade points */

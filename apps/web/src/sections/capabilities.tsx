@@ -86,7 +86,7 @@ const CAPABILITY_TABS = [
       "nous      │ \"4.8 stars, 10 min from your office.\"",
       "nous      │ \"want me to book a consult?\" =context preserved",
       "---",
-      "One conversation. Two surfaces. Zero repetition. \u2588",
+      "One conversation. Two surfaces. Zero repetition. ",
     ],
   },
   {
