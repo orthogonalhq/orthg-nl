@@ -51,18 +51,23 @@ export function Responsibility() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2">
-              {PRINCIPLES.map((p, idx) => (
+              {PRINCIPLES.map((p, idx) => {
+                const isLeftCol = idx % 2 === 0;
+                const isLast = idx === PRINCIPLES.length - 1;
+                const isTopRow = idx < 2;
+                return (
                 <div
                   key={p.label}
-                  className={`p-6 md:p-8 ${
-                    idx % 2 === 0 ? "md:border-r" : ""
-                  } ${idx < 2 ? "border-b" : ""} border-white/[0.06]`}
+                  className={`p-6 md:p-8 border-white/[0.06] ${
+                    isLeftCol ? "md:border-r" : ""
+                  } ${!isLast ? "border-b" : ""} ${!isTopRow ? "md:border-b-0" : ""}`}
                 >
                   <span className="terminal-text text-[10px] uppercase tracking-[0.2em] t-sub-label">{p.label}</span>
                   <CardTitle className="mt-3 mb-3">{p.title}</CardTitle>
                   <BodyText>{p.body}</BodyText>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </Reveal>

@@ -304,8 +304,8 @@ export function DownloadContent() {
                   {allPlatforms.map(({ key, info }, i) => {
                     const isActive = key === platform;
                     const isCli = key === "cli";
-                    // Interior borders: right on left-col items, bottom on top-row items
                     const isLeftCol = i % 2 === 0;
+                    const isLast = i === allPlatforms.length - 1;
                     const isTopRow = i < 2;
 
                     return (
@@ -313,7 +313,7 @@ export function DownloadContent() {
                         key={key}
                         className={`relative p-6 flex flex-col border-white/[0.06] ${
                           isActive && !isCli ? "bg-white/[0.02]" : ""
-                        } ${isLeftCol ? "sm:border-r" : ""} ${isTopRow ? "border-b" : ""}`}
+                        } ${isLeftCol ? "sm:border-r" : ""} ${!isLast ? "border-b" : ""} ${!isTopRow ? "sm:border-b-0" : ""}`}
                       >
                         {isActive && !isCli && (
                           <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 terminal-text text-[10px] uppercase tracking-[0.15em] bg-accent text-black px-1.5 py-0.5 whitespace-nowrap">
