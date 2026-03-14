@@ -94,18 +94,18 @@ body {
 @layer components {
   .t-hero-head    { color: rgb(255 255 255 / 1.00); }
   .t-section-head { color: rgb(255 255 255 / 0.95); }
-  .t-heading-dim  { color: rgb(255 255 255 / 0.60); }
+  .t-heading-dim  { color: rgb(255 255 255 / 0.70); }
   .t-card-title   { color: rgb(255 255 255 / 1.00); }
   .t-stat-value   { color: rgb(255 255 255 / 0.88); }
   .t-body         { color: rgb(255 255 255 / 0.80); }
-  .t-card-desc    { color: rgb(255 255 255 / 0.68); }
-  .t-panel-label  { color: rgb(255 255 255 / 0.65); }
-  .t-nav          { color: rgb(255 255 255 / 0.55); }
-  .t-sub-label    { color: rgb(255 255 255 / 0.48); }
-  .t-meta         { color: rgb(255 255 255 / 0.44); }
-  .t-panel-meta   { color: rgb(255 255 255 / 0.38); }
-  .t-ghost        { color: rgb(255 255 255 / 0.32); }
-  .t-faint        { color: rgb(255 255 255 / 0.30); }
+  .t-card-desc    { color: rgb(255 255 255 / 0.78); }
+  .t-panel-label  { color: rgb(255 255 255 / 0.75); }
+  .t-nav          { color: rgb(255 255 255 / 0.65); }
+  .t-sub-label    { color: rgb(255 255 255 / 0.58); }
+  .t-meta         { color: rgb(255 255 255 / 0.54); }
+  .t-panel-meta   { color: rgb(255 255 255 / 0.48); }
+  .t-ghost        { color: rgb(255 255 255 / 0.42); }
+  .t-faint        { color: rgb(255 255 255 / 0.40); }
 }
 
 /* ── Surface tokens ─────────────────────────────────────────────────
@@ -255,15 +255,15 @@ body {
     .t-card-title   { color: rgb(255 255 255 / 0.95); }
     .t-stat-value   { color: rgb(255 255 255 / 0.83); }
     .t-body         { color: rgb(255 255 255 / 0.75); }
-    .t-heading-dim  { color: rgb(255 255 255 / 0.58); }
-    .t-card-desc    { color: rgb(255 255 255 / 0.65); }
-    .t-panel-label  { color: rgb(255 255 255 / 0.62); }
-    .t-nav          { color: rgb(255 255 255 / 0.52); }
-    .t-sub-label    { color: rgb(255 255 255 / 0.46); }
-    .t-meta         { color: rgb(255 255 255 / 0.42); }
-    .t-panel-meta   { color: rgb(255 255 255 / 0.36); }
-    .t-ghost        { color: rgb(255 255 255 / 0.34); }
-    .t-faint        { color: rgb(255 255 255 / 0.32); }
+    .t-heading-dim  { color: rgb(255 255 255 / 0.68); }
+    .t-card-desc    { color: rgb(255 255 255 / 0.75); }
+    .t-panel-label  { color: rgb(255 255 255 / 0.72); }
+    .t-nav          { color: rgb(255 255 255 / 0.62); }
+    .t-sub-label    { color: rgb(255 255 255 / 0.56); }
+    .t-meta         { color: rgb(255 255 255 / 0.52); }
+    .t-panel-meta   { color: rgb(255 255 255 / 0.46); }
+    .t-ghost        { color: rgb(255 255 255 / 0.44); }
+    .t-faint        { color: rgb(255 255 255 / 0.42); }
   }
 
   /* Surface tokens: boost for OLED screens */
