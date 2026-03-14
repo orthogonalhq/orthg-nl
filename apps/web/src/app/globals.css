@@ -96,16 +96,16 @@ body {
   .t-section-head { color: rgb(255 255 255 / 0.85); }
   .t-heading-dim  { color: rgb(255 255 255 / 0.50); }
   .t-card-title   { color: rgb(255 255 255 / 0.90); }
-  .t-stat-value   { color: rgb(255 255 255 / 0.80); }
-  .t-body         { color: rgb(255 255 255 / 0.62); }
-  .t-card-desc    { color: rgb(255 255 255 / 0.55); }
+  .t-stat-value   { color: rgb(255 255 255 / 0.78); }
+  .t-body         { color: rgb(255 255 255 / 0.70); }
+  .t-card-desc    { color: rgb(255 255 255 / 0.58); }
   .t-panel-label  { color: rgb(255 255 255 / 0.55); }
   .t-nav          { color: rgb(255 255 255 / 0.45); }
   .t-sub-label    { color: rgb(255 255 255 / 0.38); }
   .t-meta         { color: rgb(255 255 255 / 0.34); }
   .t-panel-meta   { color: rgb(255 255 255 / 0.28); }
   .t-ghost        { color: rgb(255 255 255 / 0.22); }
-  .t-faint        { color: rgb(255 255 255 / 0.18); }
+  .t-faint        { color: rgb(255 255 255 / 0.20); }
 }
 
 /* ── Surface tokens ─────────────────────────────────────────────────
@@ -253,17 +253,17 @@ body {
     .t-hero-head    { color: rgb(255 255 255 / 0.90); }
     .t-section-head { color: rgb(255 255 255 / 0.80); }
     .t-card-title   { color: rgb(255 255 255 / 0.85); }
-    .t-stat-value   { color: rgb(255 255 255 / 0.75); }
-    .t-body         { color: rgb(255 255 255 / 0.58); }
+    .t-stat-value   { color: rgb(255 255 255 / 0.73); }
+    .t-body         { color: rgb(255 255 255 / 0.65); }
     .t-heading-dim  { color: rgb(255 255 255 / 0.48); }
-    .t-card-desc    { color: rgb(255 255 255 / 0.52); }
+    .t-card-desc    { color: rgb(255 255 255 / 0.55); }
     .t-panel-label  { color: rgb(255 255 255 / 0.52); }
     .t-nav          { color: rgb(255 255 255 / 0.42); }
     .t-sub-label    { color: rgb(255 255 255 / 0.36); }
     .t-meta         { color: rgb(255 255 255 / 0.32); }
     .t-panel-meta   { color: rgb(255 255 255 / 0.26); }
     .t-ghost        { color: rgb(255 255 255 / 0.24); }
-    .t-faint        { color: rgb(255 255 255 / 0.20); }
+    .t-faint        { color: rgb(255 255 255 / 0.22); }
   }
 
   /* Surface tokens: boost for OLED screens */
