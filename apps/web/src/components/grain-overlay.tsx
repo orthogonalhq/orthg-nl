@@ -57,7 +57,7 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
 
   function getScrollTargets() {
     const root = getScrollRoot();
-    const scrollY = root.scrollTop;
+    const scrollY = root.scrollTop || window.scrollY;
     const vh = window.innerHeight;
     const footer = document.querySelector("footer");
     const footerH = footer ? footer.offsetHeight : 0;
@@ -124,8 +124,12 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
       applyGrain(att, scale, density);
     }
     root.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => root.removeEventListener("scroll", onScroll);
+    return () => {
+      root.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   useGrain(grainRef, overridesRef, displayRef, scrollAttenuationRef, densityScaleRef);
