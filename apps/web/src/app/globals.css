@@ -92,20 +92,20 @@ body {
    Mobile overrides live in the @media block below.
    Placed in @layer components so Tailwind utility classes (hover:text-accent etc.) can override them. */
 @layer components {
-  .t-hero-head    { color: rgb(255 255 255 / 0.93); }
-  .t-section-head { color: rgb(255 255 255 / 0.85); }
-  .t-heading-dim  { color: rgb(255 255 255 / 0.50); }
-  .t-card-title   { color: rgb(255 255 255 / 0.90); }
-  .t-stat-value   { color: rgb(255 255 255 / 0.78); }
-  .t-body         { color: rgb(255 255 255 / 0.70); }
-  .t-card-desc    { color: rgb(255 255 255 / 0.58); }
-  .t-panel-label  { color: rgb(255 255 255 / 0.55); }
-  .t-nav          { color: rgb(255 255 255 / 0.45); }
-  .t-sub-label    { color: rgb(255 255 255 / 0.38); }
-  .t-meta         { color: rgb(255 255 255 / 0.34); }
-  .t-panel-meta   { color: rgb(255 255 255 / 0.28); }
-  .t-ghost        { color: rgb(255 255 255 / 0.22); }
-  .t-faint        { color: rgb(255 255 255 / 0.20); }
+  .t-hero-head    { color: rgb(255 255 255 / 1.00); }
+  .t-section-head { color: rgb(255 255 255 / 0.95); }
+  .t-heading-dim  { color: rgb(255 255 255 / 0.60); }
+  .t-card-title   { color: rgb(255 255 255 / 1.00); }
+  .t-stat-value   { color: rgb(255 255 255 / 0.88); }
+  .t-body         { color: rgb(255 255 255 / 0.80); }
+  .t-card-desc    { color: rgb(255 255 255 / 0.68); }
+  .t-panel-label  { color: rgb(255 255 255 / 0.65); }
+  .t-nav          { color: rgb(255 255 255 / 0.55); }
+  .t-sub-label    { color: rgb(255 255 255 / 0.48); }
+  .t-meta         { color: rgb(255 255 255 / 0.44); }
+  .t-panel-meta   { color: rgb(255 255 255 / 0.38); }
+  .t-ghost        { color: rgb(255 255 255 / 0.32); }
+  .t-faint        { color: rgb(255 255 255 / 0.30); }
 }
 
 /* ── Surface tokens ─────────────────────────────────────────────────
@@ -250,20 +250,20 @@ body {
 @media (max-width: 767px) {
   /* Typography tokens: compress opacity range for small screens */
   @layer components {
-    .t-hero-head    { color: rgb(255 255 255 / 0.90); }
-    .t-section-head { color: rgb(255 255 255 / 0.80); }
-    .t-card-title   { color: rgb(255 255 255 / 0.85); }
-    .t-stat-value   { color: rgb(255 255 255 / 0.73); }
-    .t-body         { color: rgb(255 255 255 / 0.65); }
-    .t-heading-dim  { color: rgb(255 255 255 / 0.48); }
-    .t-card-desc    { color: rgb(255 255 255 / 0.55); }
-    .t-panel-label  { color: rgb(255 255 255 / 0.52); }
-    .t-nav          { color: rgb(255 255 255 / 0.42); }
-    .t-sub-label    { color: rgb(255 255 255 / 0.36); }
-    .t-meta         { color: rgb(255 255 255 / 0.32); }
-    .t-panel-meta   { color: rgb(255 255 255 / 0.26); }
-    .t-ghost        { color: rgb(255 255 255 / 0.24); }
-    .t-faint        { color: rgb(255 255 255 / 0.22); }
+    .t-hero-head    { color: rgb(255 255 255 / 1.00); }
+    .t-section-head { color: rgb(255 255 255 / 0.90); }
+    .t-card-title   { color: rgb(255 255 255 / 0.95); }
+    .t-stat-value   { color: rgb(255 255 255 / 0.83); }
+    .t-body         { color: rgb(255 255 255 / 0.75); }
+    .t-heading-dim  { color: rgb(255 255 255 / 0.58); }
+    .t-card-desc    { color: rgb(255 255 255 / 0.65); }
+    .t-panel-label  { color: rgb(255 255 255 / 0.62); }
+    .t-nav          { color: rgb(255 255 255 / 0.52); }
+    .t-sub-label    { color: rgb(255 255 255 / 0.46); }
+    .t-meta         { color: rgb(255 255 255 / 0.42); }
+    .t-panel-meta   { color: rgb(255 255 255 / 0.36); }
+    .t-ghost        { color: rgb(255 255 255 / 0.34); }
+    .t-faint        { color: rgb(255 255 255 / 0.32); }
   }
 
   /* Surface tokens: boost for OLED screens */
