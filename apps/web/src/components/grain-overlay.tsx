@@ -74,6 +74,12 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
       scale = 1 + tBottom;
       density = 0.47 + tBottom * 0.53;
     }
+    // Zone 4: past content bottom (footer area) — hold zone 3 final values
+    if (scrollY > maxScroll) {
+      att = 1.25;
+      scale = 1;
+      density = 0.47;
+    }
     return { att, scale, density };
   }
 
