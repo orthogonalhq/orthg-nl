@@ -35,20 +35,22 @@ function ExternalIcon({ className = "" }: { className?: string }) {
 /* ------------------------------------------------------------------ */
 function MegaLink({ item, onClick }: { item: NavLink; onClick: () => void }) {
   const inner = (
-    <>
-      <span className="flex items-center gap-2">
-        <NavIcon name={item.icon} size={14} className="t-ghost" />
-        <span className="font-mono text-ui font-semibold t-card-title">
-          {item.label}
+    <span className="flex items-start gap-3">
+      <NavIcon name={item.icon} size={14} className="t-ghost shrink-0 mt-1" />
+      <span>
+        <span className="flex items-center gap-2">
+          <span className="font-mono text-ui font-semibold t-card-title">
+            {item.label}
+          </span>
+          {item.external && <ExternalIcon />}
         </span>
-        {item.external && <ExternalIcon />}
+        {item.description && (
+          <span className="text-caption t-ghost leading-snug mt-1 block">
+            {item.description}
+          </span>
+        )}
       </span>
-      {item.description && (
-        <span className="text-caption t-ghost leading-snug mt-1 block">
-          {item.description}
-        </span>
-      )}
-    </>
+    </span>
   );
 
   const cls =

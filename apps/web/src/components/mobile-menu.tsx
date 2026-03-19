@@ -15,36 +15,38 @@ function MobileLink({
   onClose: () => void;
 }) {
   const inner = (
-    <>
-      <span className="flex items-center gap-2">
-        <NavIcon name={item.icon} size={14} className="t-ghost" />
-        <span className="font-mono text-ui font-semibold t-card-title">
-          {item.label}
+    <span className="flex items-start gap-3">
+      <NavIcon name={item.icon} size={14} className="t-ghost shrink-0 mt-1" />
+      <span>
+        <span className="flex items-center gap-2">
+          <span className="font-mono text-ui font-semibold t-card-title">
+            {item.label}
+          </span>
+          {item.external && (
+            <svg
+              width="9"
+              height="9"
+              viewBox="0 0 9 9"
+              fill="none"
+              className="opacity-40"
+            >
+              <path
+                d="M1 8L8 1M8 1H3M8 1V6"
+                stroke="currentColor"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
         </span>
-        {item.external && (
-          <svg
-            width="9"
-            height="9"
-            viewBox="0 0 9 9"
-            fill="none"
-            className="opacity-40"
-          >
-            <path
-              d="M1 8L8 1M8 1H3M8 1V6"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        {item.description && (
+          <span className="text-caption t-ghost leading-snug mt-1 block">
+            {item.description}
+          </span>
         )}
       </span>
-      {item.description && (
-        <span className="text-caption t-ghost leading-snug mt-1 block">
-          {item.description}
-        </span>
-      )}
-    </>
+    </span>
   );
 
   const cls =
