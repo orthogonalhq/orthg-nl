@@ -82,7 +82,7 @@ export function ManifestoContent() {
             of Life
           </h1>
           <p className="mt-5 text-title t-card-desc max-w-lg mx-auto leading-relaxed">
-            A self-governing framework for conscious intelligence.
+            A self-governing alignment framework for conscious intelligence.
           </p>
           <p className="font-mono mt-4 text-caption t-meta">
             Andrew Nelson &mdash; March 2026
