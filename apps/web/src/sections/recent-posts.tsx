@@ -29,7 +29,7 @@ export function RecentPosts() {
     type: "research",
     label: paper.type,
     title: paper.title,
-    description: paper.abstract,
+    description: paper.description,
     date: paper.date,
     href: `/research/${slugify(paper.info.path)}`,
     path: paper.info.path,
