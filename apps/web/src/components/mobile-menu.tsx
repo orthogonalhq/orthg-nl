@@ -50,7 +50,7 @@ function MobileLink({
   );
 
   const cls =
-    "block px-5 py-3 transition-colors hover:bg-white/[0.03] rounded";
+    "block px-5 py-3 bg-white/[0.01] hover:bg-white/[0.03] transition-colors rounded";
 
   return item.external ? (
     <a
@@ -266,7 +266,7 @@ export function MobileMenu() {
                         opacity: isOpen ? 1 : 0,
                       }}
                     >
-                      <div className="px-3 pb-4">
+                      <div className="px-3 pb-4 flex flex-col gap-2">
                         {section.items.map((item) => (
                           <MobileLink
                             key={item.href}
