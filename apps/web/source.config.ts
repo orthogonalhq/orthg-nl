@@ -22,7 +22,7 @@ export const research = defineCollections({
     description: z.string(),
     date: z.string().date(),
     authors: z.array(z.string()),
-    type: z.enum(['spec', 'methodology', 'benchmark', 'architecture']),
+    type: z.enum(['spec', 'methodology', 'benchmark', 'architecture', 'research']),
     abstract: z.string(),
     image: z.string().optional(),
   }),

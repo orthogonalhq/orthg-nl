@@ -19,13 +19,16 @@ export default function BlogIndex() {
       <main className="mx-auto max-w-5xl px-6 md:px-12 lg:px-20 pt-28 pb-20">
         <Link
           href="/"
-          className="terminal-text text-xs uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent mb-8 inline-block"
+          className="font-mono text-[10px] uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent mb-8 inline-block"
         >
           ← Home
         </Link>
         <div className="mb-8 pr-4">
-          <span className="terminal-text text-[10px] uppercase tracking-[0.2em] t-sub-label">Blog</span>
-          <h1 className="font-mono text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-tight t-section-head mt-2">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] t-meta mb-5">
+            <span className="bg-accent text-black font-normal px-0.5">&gt;</span>
+            <span className="ml-1.5">Blog</span>
+          </p>
+          <h1 className="font-mono text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-tight t-section-head">
             Announcements, product updates,
             <br />
             and founder perspectives.
@@ -44,17 +47,17 @@ export default function BlogIndex() {
               >
                 <div className="flex items-start justify-between gap-6">
                   <div>
-                    <span className="terminal-text text-[10px] uppercase tracking-[0.2em] t-sub-label">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] t-meta">
                       {post.category}
                     </span>
-                    <h2 className="terminal-text text-sm t-card-title mt-2 mb-1 group-hover:text-accent transition-colors">
+                    <h2 className="font-mono text-sm t-card-title mt-2 mb-1 group-hover:text-accent transition-colors">
                       {post.title}
                     </h2>
-                    <p className="terminal-text text-xs t-card-desc leading-relaxed max-w-xl">
+                    <p className="font-mono text-[12px] t-card-desc leading-relaxed max-w-xl">
                       {post.description}
                     </p>
                   </div>
-                  <span className="terminal-text text-[10px] t-faint shrink-0 pt-5">
+                  <span className="font-mono text-[10px] t-meta shrink-0 pt-5">
                     {post.date}
                   </span>
                 </div>

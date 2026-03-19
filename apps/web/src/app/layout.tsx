@@ -18,7 +18,7 @@ const montserratAlternates = Montserrat_Alternates({
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
-  weight: ["600"],
+  weight: ["400", "600"],
   subsets: ["latin"],
 });
 
