@@ -3,6 +3,7 @@ import { Footer } from '@/components/footer';
 import { GrainZone2 } from '@/components/grain-zone2';
 import { PanelBar } from '@/components/panel-bar';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -46,7 +47,7 @@ export default function ResearchIndex() {
                 className="group block px-6 md:px-10 py-6 md:py-8 transition-colors hover:bg-white/[0.02]"
               >
                 <div className="flex items-start justify-between gap-6">
-                  <div>
+                  <div className="min-w-0">
                     <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-white/4 border border-white/6 text-tag font-mono t-meta">
                       {paper.type}
                     </span>
@@ -58,9 +59,14 @@ export default function ResearchIndex() {
                     </p>
                     <p className="font-mono text-label t-ghost mt-2">{paper.authors.join(', ')}</p>
                   </div>
-                  <span className="font-mono text-label t-meta shrink-0 pt-5">
-                    {paper.date}
-                  </span>
+                  <div className="shrink-0 flex flex-col items-end gap-3 pt-1">
+                    <span className="font-mono text-label t-meta">
+                      {paper.date}
+                    </span>
+                    {paper.image && (
+                      <Image src={paper.image.startsWith("/") ? paper.image : `/${paper.image}`} alt="" width={192} height={128} className="w-24 h-16 object-cover rounded border border-white/6" />
+                    )}
+                  </div>
                 </div>
               </Link>
             ))}

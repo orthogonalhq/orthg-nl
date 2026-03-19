@@ -3,6 +3,7 @@ import { Footer } from '@/components/footer';
 import { GrainZone2 } from '@/components/grain-zone2';
 import { PanelBar } from '@/components/panel-bar';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -46,7 +47,7 @@ export default function BlogIndex() {
                 className="group block px-6 md:px-10 py-6 md:py-8 transition-colors hover:bg-white/[0.02]"
               >
                 <div className="flex items-start justify-between gap-6">
-                  <div>
+                  <div className="min-w-0">
                     <span className="font-mono text-label uppercase tracking-[0.2em] t-meta">
                       {post.category}
                     </span>
@@ -57,9 +58,14 @@ export default function BlogIndex() {
                       {post.description}
                     </p>
                   </div>
-                  <span className="font-mono text-label t-meta shrink-0 pt-5">
-                    {post.date}
-                  </span>
+                  <div className="shrink-0 flex flex-col items-end gap-3 pt-1">
+                    <span className="font-mono text-label t-meta">
+                      {post.date}
+                    </span>
+                    {post.image && (
+                      <Image src={post.image.startsWith("/") ? post.image : `/${post.image}`} alt="" width={192} height={128} className="w-24 h-16 object-cover rounded border border-white/6" />
+                    )}
+                  </div>
                 </div>
               </Link>
             ))}

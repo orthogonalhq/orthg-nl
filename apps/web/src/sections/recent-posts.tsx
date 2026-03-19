@@ -3,6 +3,7 @@ import { SectionHeader } from "@/components/section-header";
 import { PanelBar } from "@/components/panel-bar";
 import { getBlogPosts, getResearchPapers, slugify } from "@/lib/source";
 import Link from "next/link";
+import Image from "next/image";
 
 interface FeedItem {
   type: "blog" | "research";
@@ -12,6 +13,7 @@ interface FeedItem {
   date: string;
   href: string;
   path: string;
+  image?: string;
 }
 
 export function RecentPosts() {
@@ -23,6 +25,7 @@ export function RecentPosts() {
     date: post.date,
     href: `/blog/${slugify(post.info.path)}`,
     path: post.info.path,
+    image: post.image,
   }));
 
   const researchItems: FeedItem[] = getResearchPapers().map((paper) => ({
@@ -33,6 +36,7 @@ export function RecentPosts() {
     date: paper.date,
     href: `/research/${slugify(paper.info.path)}`,
     path: paper.info.path,
+    image: paper.image,
   }));
 
   const items = [...blogItems, ...researchItems]
@@ -63,7 +67,7 @@ export function RecentPosts() {
                   className="group block px-6 md:px-10 py-6 md:py-8 transition-colors hover:bg-white/[0.02]"
                 >
                   <div className="flex items-start justify-between gap-6">
-                    <div>
+                    <div className="min-w-0">
                       <span className="terminal-text text-label uppercase tracking-[0.2em] t-sub-label">
                         {item.type} · {item.label}
                       </span>
@@ -74,9 +78,14 @@ export function RecentPosts() {
                         {item.description}
                       </p>
                     </div>
-                    <span className="terminal-text text-label t-faint shrink-0 pt-5">
-                      {item.date}
-                    </span>
+                    <div className="shrink-0 flex flex-col items-end gap-3 pt-1">
+                      <span className="terminal-text text-label t-faint">
+                        {item.date}
+                      </span>
+                      {item.image && (
+                        <Image src={item.image.startsWith("/") ? item.image : `/${item.image}`} alt="" width={192} height={128} className="w-24 h-16 object-cover rounded border border-white/6" />
+                      )}
+                    </div>
                   </div>
                 </Link>
               ))}
