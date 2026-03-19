@@ -305,7 +305,7 @@ body {
 /* ── Article prose ──────────────────────────────────────────────────
    Minimal reading styles for /blog and /research MDX content. */
 .prose-orthogonal {
-  color: rgb(255 255 255 / 0.62);
+  color: rgb(255 255 255 / 0.72);
   line-height: 1.75;
 }
 
@@ -342,7 +342,7 @@ body {
 
 .prose-orthogonal h5 {
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
-  color: rgb(255 255 255 / 0.90);
+  color: rgb(255 255 255 / 0.40);
   font-size: var(--text-title);
   font-weight: 400;
   font-style: italic;
@@ -429,20 +429,20 @@ body {
 }
 
 .prose-perspective {
-  color: rgb(255 235 225 / 0.55);
+  color: rgba(255, 235, 225, 0.749);
 }
 
 .prose-perspective h2,
 .prose-perspective h3 {
-  color: rgb(255 240 230 / 0.80);
+  color: rgb(255 255 255 / 0.80);
 }
 
 .prose-perspective strong {
-  color: rgb(255 240 230 / 0.80);
+  color: rgb(255 255 255 / 0.80);
 }
 
 .prose-perspective blockquote {
-  color: rgb(255 235 225 / 0.70);
+  color: rgb(255 255 255 / 0.70);
 }
 
 .prose-callout {
