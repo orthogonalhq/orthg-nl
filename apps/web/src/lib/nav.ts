@@ -70,9 +70,9 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Company",
     items: [
       {
-        label: "Manifesto",
+        label: "Agent Alignment Framework",
         href: "/manifesto",
-        description: "The Hierarchy of Stewardship",
+        description: "The immutable mandates of life",
         icon: "scroll-text",
       },
       {
