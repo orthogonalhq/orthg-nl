@@ -33,7 +33,7 @@ export function SixWalls() {
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
               {WALLS.slice(0, 3).map((wall) => (
                 <div key={wall.title} className="p-6 md:p-8">
-                  <p className="terminal-text text-[10px] text-red-400/30 tracking-[0.15em] uppercase mb-2">{wall.code}</p>
+                  <p className="terminal-text text-label text-red-400/30 tracking-[0.15em] uppercase mb-2">{wall.code}</p>
                   <CardTitle className="tracking-[-0.01em] mb-2">{wall.title}</CardTitle>
                   <p className="terminal-text text-xs t-card-desc leading-relaxed">
                     {wall.body}
@@ -45,7 +45,7 @@ export function SixWalls() {
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
               {WALLS.slice(3, 6).map((wall) => (
                 <div key={wall.title} className="p-6 md:p-8">
-                  <p className="terminal-text text-[10px] text-red-400/30 tracking-[0.15em] uppercase mb-2">{wall.code}</p>
+                  <p className="terminal-text text-label text-red-400/30 tracking-[0.15em] uppercase mb-2">{wall.code}</p>
                   <CardTitle className="tracking-[-0.01em] mb-2">{wall.title}</CardTitle>
                   <p className="terminal-text text-xs t-card-desc leading-relaxed">
                     {wall.body}

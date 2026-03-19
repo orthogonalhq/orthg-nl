@@ -20,7 +20,7 @@ export function Hero() {
         {/* Hero heading */}
         <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           <SectionHeading as="h1" size="hero" className="phosphor-pulse">Nous</SectionHeading>
-          <p className="terminal-text text-[11px] uppercase tracking-[0.25em] t-sub-label mt-2">
+          <p className="terminal-text text-caption uppercase tracking-[0.25em] t-sub-label mt-2">
            A Neural Orchestration Unification System
           </p>
           <BodyText className="max-w-lg text-xl text-accent mt-4">
@@ -46,7 +46,7 @@ export function Hero() {
 
         {/* Terminal status line */}
         <div
-          className="mt-6 md:mt-10 terminal-text text-[11px] t-ghost flex items-center gap-3 animate-fade-in-up"
+          className="mt-6 md:mt-10 terminal-text text-caption t-ghost flex items-center gap-3 animate-fade-in-up"
           style={{ animationDelay: "0.7s" }}
         >
           <span className="text-green-400/30">●</span>

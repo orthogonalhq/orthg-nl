@@ -311,7 +311,7 @@ export function Capabilities() {
                     }`} />
                     <div>
                       <CardTitle className="mb-1">{cap.title}</CardTitle>
-                      <p className="terminal-text text-[10px] t-card-desc leading-relaxed">{cap.desc}</p>
+                      <p className="terminal-text text-label t-card-desc leading-relaxed">{cap.desc}</p>
                     </div>
                   </button>
                 ))}

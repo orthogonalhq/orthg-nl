@@ -9,11 +9,11 @@ interface PanelBarProps {
 export function PanelBar({ label, meta, metaCls = "t-panel-meta" }: PanelBarProps) {
   return (
     <div className="border-b border-white/[0.06] px-6 md:px-10 py-3 flex items-center justify-between">
-      <span className="terminal-text text-[11px] uppercase tracking-[0.2em] t-panel-label">
+      <span className="terminal-text text-caption uppercase tracking-[0.2em] t-panel-label">
         {label}
       </span>
       {meta && (
-        <span className={`terminal-text text-[10px] capitalize ${metaCls}`}>{meta}</span>
+        <span className={`terminal-text text-label capitalize ${metaCls}`}>{meta}</span>
       )}
     </div>
   );

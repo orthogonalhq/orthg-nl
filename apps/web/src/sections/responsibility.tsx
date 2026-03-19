@@ -62,7 +62,7 @@ export function Responsibility() {
                     isLeftCol ? "md:border-r" : ""
                   } ${!isLast ? "border-b" : ""} ${!isTopRow ? "md:border-b-0" : ""}`}
                 >
-                  <span className="terminal-text text-[10px] uppercase tracking-[0.2em] t-sub-label">{p.label}</span>
+                  <span className="terminal-text text-label uppercase tracking-[0.2em] t-sub-label">{p.label}</span>
                   <CardTitle className="mt-3 mb-3">{p.title}</CardTitle>
                   <BodyText>{p.body}</BodyText>
                 </div>

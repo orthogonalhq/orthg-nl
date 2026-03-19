@@ -68,14 +68,14 @@ export function Architecture() {
                     <div className="flex w-full items-start justify-between gap-4">
                       <div className="min-w-0 overflow-visible">
                         <div className="flex items-baseline gap-2">
-                          <span className={`text-[10px] leading-none relative -top-px ${layer.status === "active" ? "text-green-400/40" : "t-ghost"}`}>●</span>
+                          <span className={`text-label leading-none relative -top-px ${layer.status === "active" ? "text-green-400/40" : "t-ghost"}`}>●</span>
                           <span className="font-mono text-sm font-semibold text-accent">{layer.name}</span>
                         </div>
-                        <div className="terminal-text text-[10px] t-meta mt-1 pl-[18px] whitespace-nowrap">
+                        <div className="terminal-text text-label t-meta mt-1 pl-[18px] whitespace-nowrap">
                           ← {layer.brain}
                         </div>
                       </div>
-                      <span className="terminal-text text-[10px] t-faint shrink-0 pt-1 text-right">PID {layer.pid}</span>
+                      <span className="terminal-text text-label t-faint shrink-0 pt-1 text-right">PID {layer.pid}</span>
                     </div>
                   </div>
 

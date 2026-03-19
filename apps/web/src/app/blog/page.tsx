@@ -19,12 +19,12 @@ export default function BlogIndex() {
       <main className="mx-auto max-w-5xl px-6 md:px-12 lg:px-20 pt-28 pb-20">
         <Link
           href="/"
-          className="font-mono text-[10px] uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent mb-8 inline-block"
+          className="font-mono text-label uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent mb-8 inline-block"
         >
           ← Home
         </Link>
         <div className="mb-8 pr-4">
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] t-meta mb-5">
+          <p className="font-mono text-label uppercase tracking-[0.2em] t-meta mb-5">
             <span className="bg-accent text-black font-normal px-0.5">&gt;</span>
             <span className="ml-1.5">Blog</span>
           </p>
@@ -47,17 +47,17 @@ export default function BlogIndex() {
               >
                 <div className="flex items-start justify-between gap-6">
                   <div>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] t-meta">
+                    <span className="font-mono text-label uppercase tracking-[0.2em] t-meta">
                       {post.category}
                     </span>
-                    <h2 className="font-mono text-sm t-card-title mt-2 mb-1 group-hover:text-accent transition-colors">
+                    <h2 className="font-mono text-title t-card-title mt-2 mb-1 group-hover:text-accent transition-colors">
                       {post.title}
                     </h2>
-                    <p className="font-mono text-[12px] t-card-desc leading-relaxed max-w-xl">
+                    <p className="font-mono text-body t-card-desc leading-relaxed max-w-xl">
                       {post.description}
                     </p>
                   </div>
-                  <span className="font-mono text-[10px] t-meta shrink-0 pt-5">
+                  <span className="font-mono text-label t-meta shrink-0 pt-5">
                     {post.date}
                   </span>
                 </div>

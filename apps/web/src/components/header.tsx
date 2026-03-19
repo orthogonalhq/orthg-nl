@@ -38,13 +38,13 @@ function MegaLink({ item, onClick }: { item: NavLink; onClick: () => void }) {
     <>
       <span className="flex items-center gap-2">
         <NavIcon name={item.icon} size={14} className="t-ghost" />
-        <span className="font-mono text-[13px] font-semibold t-card-title">
+        <span className="font-mono text-ui font-semibold t-card-title">
           {item.label}
         </span>
         {item.external && <ExternalIcon />}
       </span>
       {item.description && (
-        <span className="text-[11px] t-ghost leading-snug mt-1 block">
+        <span className="text-caption t-ghost leading-snug mt-1 block">
           {item.description}
         </span>
       )}
@@ -181,7 +181,7 @@ export function Header() {
             item.type === "mega" ? (
               <button
                 key={item.label}
-                className={`flex items-center gap-1.5 px-5 py-3 text-[11px] uppercase tracking-[0.2em] transition-all duration-200 cursor-pointer rounded ${
+                className={`flex items-center gap-1.5 px-5 py-3 text-caption uppercase tracking-[0.2em] transition-all duration-200 cursor-pointer rounded ${
                   activeMenu === item.label
                     ? "text-white bg-white/2"
                     : "t-nav hover:text-white hover:bg-white/2"
@@ -216,7 +216,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-5 py-3 text-[11px] uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent"
+                className="px-5 py-3 text-caption uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent"
                 onClick={() => setActiveMenu(null)}
               >
                 {item.label}
@@ -241,8 +241,8 @@ export function Header() {
       >
         {activeMega && (
           <div className="border-b border-white/6 bg-[#0a0a0a]">
-            <div className="mx-auto max-w-5xl px-6 md:px-12 lg:px-20 py-6">
-              <span className="text-[10px] uppercase tracking-[0.2em] t-ghost block mb-4">
+            <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-20 py-6">
+              <span className="text-label uppercase tracking-[0.2em] t-ghost block mb-4">
                 &gt; {activeMega.label.toLowerCase()}
               </span>
 

@@ -25,7 +25,7 @@ export function Differentiation() {
 
         <Reveal delay={200}>
           <div className="border border-white/[0.06] pt-6 pb-6 px-8 max-w-lg mx-auto">
-            <p className="terminal-text text-[10px] t-ghost uppercase tracking-[0.2em] mb-4">
+            <p className="terminal-text text-label t-ghost uppercase tracking-[0.2em] mb-4">
               <span className="terminal-prefix">&gt;</span>signal intercept
             </p>
             <p className="font-mono text-base sm:text-lg t-nav italic leading-relaxed">

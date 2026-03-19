@@ -21,7 +21,7 @@ export default async function BlogPost(props: {
       <main className="mx-auto max-w-3xl px-6 md:px-12 pt-28 pb-20">
         <Link
           href="/blog"
-          className="font-mono text-[10px] uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent mb-8 inline-block"
+          className="font-mono text-label uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent mb-8 inline-block"
         >
           ← All posts
         </Link>
@@ -30,7 +30,7 @@ export default async function BlogPost(props: {
           <PanelBar label="nous::blog" meta={post.category} />
 
           <div className="px-6 md:px-10 py-8 md:py-10 border-b border-white/[0.06]">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] t-meta">
+            <span className="font-mono text-label uppercase tracking-[0.2em] t-meta">
               {post.date} · {post.author}
             </span>
             <h1 className="font-mono text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-tight t-section-head mt-3">

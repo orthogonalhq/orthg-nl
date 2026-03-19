@@ -64,17 +64,17 @@ export function RecentPosts() {
                 >
                   <div className="flex items-start justify-between gap-6">
                     <div>
-                      <span className="terminal-text text-[10px] uppercase tracking-[0.2em] t-sub-label">
+                      <span className="terminal-text text-label uppercase tracking-[0.2em] t-sub-label">
                         {item.type} · {item.label}
                       </span>
-                      <h3 className="terminal-text text-sm t-card-title mt-2 mb-1 group-hover:text-accent transition-colors">
+                      <h3 className="terminal-text text-title t-card-title mt-2 mb-1 group-hover:text-accent transition-colors">
                         {item.title}
                       </h3>
-                      <p className="terminal-text text-xs t-card-desc leading-relaxed max-w-xl">
+                      <p className="terminal-text text-body t-card-desc leading-relaxed max-w-xl">
                         {item.description}
                       </p>
                     </div>
-                    <span className="terminal-text text-[10px] t-faint shrink-0 pt-5">
+                    <span className="terminal-text text-label t-faint shrink-0 pt-5">
                       {item.date}
                     </span>
                   </div>

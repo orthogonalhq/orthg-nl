@@ -48,7 +48,7 @@ export function Ecosystem() {
                         <span className="terminal-text text-accent text-xs uppercase tracking-[0.2em]">{p.label}</span>
                       </div>
                       <p className="terminal-text text-xs t-card-desc leading-relaxed">{p.desc}</p>
-                      <p className="terminal-text text-[10px] t-faint mt-3">{p.cmd}</p>
+                      <p className="terminal-text text-label t-faint mt-3">{p.cmd}</p>
                     </div>
                   ))}
                 </div>

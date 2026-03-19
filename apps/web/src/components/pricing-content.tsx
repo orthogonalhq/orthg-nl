@@ -118,7 +118,7 @@ function RoutingCell({ strategy: s }: { strategy: RoutingStrategy }) {
         </div>
         {s.badge && (
           <span
-            className={`shrink-0 text-[10px] uppercase tracking-[0.15em] px-2 py-0.5 ${
+            className={`shrink-0 text-label uppercase tracking-[0.15em] px-2 py-0.5 ${
               s.badge.variant === "success"
                 ? "bg-emerald-400/10 text-emerald-400"
                 : "bg-white/[0.06] t-card-title"
@@ -134,11 +134,11 @@ function RoutingCell({ strategy: s }: { strategy: RoutingStrategy }) {
       <div>
         <BurnMeter filled={s.burnFilled} color={s.burnColor} />
 
-        <p className="terminal-text text-[10px] t-meta mt-1.5">
+        <p className="terminal-text text-label t-meta mt-1.5">
           {s.burnLabel ? `Credit burn: ${s.burnLabel}` : "\u00A0"}
         </p>
 
-        <p className="terminal-text text-[10px] t-faint mt-1">
+        <p className="terminal-text text-label t-faint mt-1">
           {s.bestFor}
         </p>
       </div>
@@ -203,7 +203,7 @@ export function PricingContent() {
                 }`}
               >
                 Annual
-                <span className="ml-2 text-[10px] text-emerald-400">save 20%</span>
+                <span className="ml-2 text-label text-emerald-400">save 20%</span>
               </button>
             </div>
           </Reveal>
@@ -243,7 +243,7 @@ export function PricingContent() {
                     }`}
                   >
                     {tier.highlighted && (
-                      <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 terminal-text text-[10px] uppercase tracking-[0.15em] bg-accent text-black px-1.5 py-0.5 whitespace-nowrap">
+                      <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 terminal-text text-label uppercase tracking-[0.15em] bg-accent text-black px-1.5 py-0.5 whitespace-nowrap">
                         most popular
                       </span>
                     )}
@@ -328,7 +328,7 @@ export function PricingContent() {
                     }`}
                   >
                     {tier.highlighted && (
-                      <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 terminal-text text-[10px] uppercase tracking-[0.15em] bg-accent text-black px-1.5 py-0.5 whitespace-nowrap">
+                      <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 terminal-text text-label uppercase tracking-[0.15em] bg-accent text-black px-1.5 py-0.5 whitespace-nowrap">
                         best value
                       </span>
                     )}
@@ -352,7 +352,7 @@ export function PricingContent() {
                         <p className="terminal-text text-xs text-emerald-400">
                           Free with every seat
                         </p>
-                        <span className="terminal-text text-[10px] t-meta">
+                        <span className="terminal-text text-label t-meta">
                           {tier.valueMultiplier}
                         </span>
                       </div>
@@ -362,7 +362,7 @@ export function PricingContent() {
                           {tier.creditPool}
                         </p>
                         {tier.valueMultiplier && (
-                          <span className={`terminal-text text-[10px] ${
+                          <span className={`terminal-text text-label ${
                             tier.valueMultiplier === "1.00x" ? "t-meta" : "text-emerald-400"
                           }`}>
                             {tier.valueMultiplier}
@@ -396,7 +396,7 @@ export function PricingContent() {
               </div>
 
               <div className="px-6 md:px-10 py-4 border-t border-white/[0.06]">
-                <p className="terminal-text text-[11px] t-meta">
+                <p className="terminal-text text-caption t-meta">
                   Need more? Enable overage at the same rates — no penalty, no surprises. You control the cap.
                 </p>
               </div>

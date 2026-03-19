@@ -19,12 +19,12 @@ export default function ResearchIndex() {
       <main className="mx-auto max-w-5xl px-6 md:px-12 lg:px-20 pt-28 pb-20">
         <Link
           href="/"
-          className="font-mono text-[10px] uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent mb-8 inline-block"
+          className="font-mono text-label uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent mb-8 inline-block"
         >
           ← Home
         </Link>
         <div className="mb-8 pr-4">
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] t-meta mb-5">
+          <p className="font-mono text-label uppercase tracking-[0.2em] t-meta mb-5">
             <span className="bg-accent text-black font-normal px-0.5">&gt;</span>
             <span className="ml-1.5">Research</span>
           </p>
@@ -47,18 +47,18 @@ export default function ResearchIndex() {
               >
                 <div className="flex items-start justify-between gap-6">
                   <div>
-                    <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-white/4 border border-white/6 text-[9px] font-mono t-meta">
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-white/4 border border-white/6 text-tag font-mono t-meta">
                       {paper.type}
                     </span>
-                    <h2 className="font-mono text-sm t-card-title mt-2 mb-1 group-hover:text-accent transition-colors">
+                    <h2 className="font-mono text-title t-card-title mt-2 mb-1 group-hover:text-accent transition-colors">
                       {paper.title}
                     </h2>
-                    <p className="font-mono text-[12px] t-meta leading-relaxed max-w-xl">
+                    <p className="font-mono text-body t-meta leading-relaxed max-w-xl">
                       {paper.description}
                     </p>
-                    <p className="font-mono text-[10px] t-ghost mt-2">{paper.authors.join(', ')}</p>
+                    <p className="font-mono text-label t-ghost mt-2">{paper.authors.join(', ')}</p>
                   </div>
-                  <span className="font-mono text-[10px] t-meta shrink-0 pt-5">
+                  <span className="font-mono text-label t-meta shrink-0 pt-5">
                     {paper.date}
                   </span>
                 </div>

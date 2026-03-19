@@ -3,7 +3,7 @@ import { NAV_ITEMS, type NavLink } from "@/lib/nav";
 
 function FooterLink({ item }: { item: NavLink }) {
   const cls =
-    "block text-[12px] uppercase tracking-[0.15em] t-nav transition-colors hover:text-accent";
+    "block text-caption uppercase tracking-[0.15em] t-nav transition-colors hover:text-accent";
 
   return item.external ? (
     <a
@@ -27,7 +27,7 @@ function FooterLink({ item }: { item: NavLink }) {
 function FooterGroup({ label, items }: { label: string; items: NavLink[] }) {
   return (
     <div>
-      <span className="text-[10px] uppercase tracking-[0.2em] t-ghost block mb-4">
+      <span className="text-label uppercase tracking-[0.2em] t-ghost block mb-4">
         &gt; {label.toLowerCase()}
       </span>
       <div className="space-y-2">
@@ -71,12 +71,12 @@ export function Footer() {
 
           {/* Col 3: Connect */}
           <div className="md:px-6">
-            <span className="text-[10px] uppercase tracking-[0.2em] t-ghost block mb-4">
+            <span className="text-label uppercase tracking-[0.2em] t-ghost block mb-4">
               &gt; connect
             </span>
             <a
               href="mailto:hello@orthg.nl"
-              className="block text-[12px] uppercase tracking-[0.15em] t-nav transition-colors hover:text-accent"
+              className="block text-caption uppercase tracking-[0.15em] t-nav transition-colors hover:text-accent"
             >
               hello@orthg.nl
             </a>
@@ -84,13 +84,13 @@ export function Footer() {
 
           {/* Col 4: Orthogonal */}
           <div className="md:px-6 md:pr-0">
-            <span className="text-[10px] uppercase tracking-[0.2em] t-ghost block mb-4">
+            <span className="text-label uppercase tracking-[0.2em] t-ghost block mb-4">
               &gt; orthogonal
             </span>
-            <p className="text-[12px] t-card-desc leading-relaxed">
+            <p className="text-caption t-card-desc leading-relaxed">
               Sovereign AI for everyone.
             </p>
-            <p className="text-[12px] t-card-desc leading-relaxed mt-2">
+            <p className="text-caption t-card-desc leading-relaxed mt-2">
               Building Nous, an open source AI operating system.
             </p>
           </div>
@@ -98,10 +98,10 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/6 py-4 flex items-center justify-between">
-          <span className="text-[10px] t-ghost">
+          <span className="text-label t-ghost">
             &copy; {new Date().getFullYear()} Orthogonal
           </span>
-          <span className="text-[10px] t-ghost flex items-center gap-1">
+          <span className="text-label t-ghost flex items-center gap-1">
             <span className="cursor-blink">&#9608;</span>
             <span className="uppercase tracking-[0.2em]">sys.ok</span>
           </span>

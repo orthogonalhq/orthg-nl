@@ -22,7 +22,7 @@ export default async function ResearchPaper(props: {
       <main className="mx-auto max-w-3xl px-6 md:px-12 pt-28 pb-20">
         <Link
           href="/research"
-          className="font-mono text-[10px] uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent mb-8 inline-block"
+          className="font-mono text-label uppercase tracking-[0.2em] t-nav transition-colors hover:text-accent mb-8 inline-block"
         >
           ← All papers
         </Link>
@@ -31,7 +31,7 @@ export default async function ResearchPaper(props: {
           <PanelBar label="nous::research" meta={paper.type} />
 
           <div className="px-6 md:px-10 py-8 md:py-10 border-b border-white/[0.06]">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] t-meta">
+            <span className="font-mono text-label uppercase tracking-[0.2em] t-meta">
               {paper.date} · {paper.authors.join(', ')}
             </span>
             <h1 className="font-mono text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-tight t-section-head mt-3">

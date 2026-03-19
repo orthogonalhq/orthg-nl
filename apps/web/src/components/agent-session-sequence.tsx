@@ -126,7 +126,7 @@ export function AgentSessionSequence() {
   }, [isVisible, runSequence]);
 
   return (
-    <div ref={ref} className="terminal-text text-[12px] leading-[1.8] t-panel-label relative">
+    <div ref={ref} className="terminal-text text-body leading-[1.8] t-panel-label relative">
       {/* Ghost lines — invisible but reserve final height */}
       <div className="invisible" aria-hidden="true">
         {GHOST_LINES.map((text, i) => (

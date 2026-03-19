@@ -208,7 +208,7 @@ function CopyButton({ text }: { text: string }) {
 
 function ComingSoonBadge() {
   return (
-    <span className="terminal-text text-[10px] uppercase tracking-[0.15em] bg-white/[0.06] t-meta px-2 py-0.5">
+    <span className="terminal-text text-label uppercase tracking-[0.15em] bg-white/[0.06] t-meta px-2 py-0.5">
       coming soon
     </span>
   );
@@ -294,7 +294,7 @@ export function DownloadContent() {
                     </span>
                   ))}
                 </div>
-                <span className="terminal-text text-[11px] t-meta">
+                <span className="terminal-text text-caption t-meta">
                   Desktop downloads available below
                 </span>
               </div>
@@ -316,7 +316,7 @@ export function DownloadContent() {
                     Download for {hero.label}
                   </span>
                 )}
-                <span className="terminal-text text-[11px] t-meta">
+                <span className="terminal-text text-caption t-meta">
                   {RELEASED ? hero.detail : "Release builds are not yet available"}
                 </span>
               </div>
@@ -359,7 +359,7 @@ export function DownloadContent() {
                         } ${isLeftCol ? "sm:border-r" : ""} ${!isLast ? "border-b" : ""} ${!isTopRow ? "sm:border-b-0" : ""}`}
                       >
                         {isActive && !isCli && (
-                          <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 terminal-text text-[10px] uppercase tracking-[0.15em] bg-accent text-black px-1.5 py-0.5 whitespace-nowrap">
+                          <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 terminal-text text-label uppercase tracking-[0.15em] bg-accent text-black px-1.5 py-0.5 whitespace-nowrap">
                             detected
                           </span>
                         )}
@@ -463,7 +463,7 @@ export function DownloadContent() {
 
                 {!RELEASED && (
                   <div className="border-t border-white/[0.06] px-6 md:px-10 py-4">
-                    <p className="terminal-text text-[11px] text-accent">
+                    <p className="terminal-text text-caption text-accent">
                       These commands will work once the first release is published.
                     </p>
                   </div>
@@ -514,19 +514,19 @@ export function DownloadContent() {
                     <div className="flex-1 border border-white/[0.06] rounded-[3px] overflow-hidden">
                       <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/[0.06] bg-white/[0.02]">
                         <ChatIcon />
-                        <span className="terminal-text text-[10px] uppercase tracking-[0.15em] t-panel-label">
+                        <span className="terminal-text text-label uppercase tracking-[0.15em] t-panel-label">
                           nous::chat
                         </span>
                       </div>
                       <div className="px-4 py-5 space-y-4">
                         <div className="flex gap-3">
-                          <span className="terminal-text text-[10px] t-meta shrink-0 pt-0.5">you</span>
+                          <span className="terminal-text text-label t-meta shrink-0 pt-0.5">you</span>
                           <p className="terminal-text text-xs t-card-desc leading-relaxed">
                             Draft a reply to the supplier email about the late shipment. Keep it firm but polite.
                           </p>
                         </div>
                         <div className="flex gap-3">
-                          <span className="terminal-text text-[10px] text-accent shrink-0 pt-0.5">nous</span>
+                          <span className="terminal-text text-label text-accent shrink-0 pt-0.5">nous</span>
                           <p className="terminal-text text-xs t-card-title leading-relaxed">
                             Done. I referenced the original delivery date from the contract and requested a revised timeline by Friday. Want me to send it?
                           </p>
@@ -552,8 +552,8 @@ export function DownloadContent() {
                           "Web, desktop, and mobile",
                         ].map((feature) => (
                           <div key={feature} className="flex items-center gap-2">
-                            <span className="text-accent text-[10px]">▸</span>
-                            <span className="terminal-text text-[11px] t-card-desc">{feature}</span>
+                            <span className="text-accent text-label">▸</span>
+                            <span className="terminal-text text-caption t-card-desc">{feature}</span>
                           </div>
                         ))}
                       </div>
@@ -600,7 +600,7 @@ export function DownloadContent() {
                     {SYSREQ.map((req, i) => (
                       <div key={req.label}>
                         <div className="flex items-baseline gap-4">
-                          <span className="terminal-text text-[10px] uppercase tracking-[0.2em] t-panel-label w-12 shrink-0">
+                          <span className="terminal-text text-label uppercase tracking-[0.2em] t-panel-label w-12 shrink-0">
                             {req.label}
                           </span>
                           <span className="terminal-text text-xs t-card-desc leading-relaxed">

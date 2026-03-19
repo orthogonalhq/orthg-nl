@@ -22,6 +22,16 @@
   --font-mono: var(--font-ibm-plex-mono);
   --font-brand: var(--font-montserrat-alt);
   --font-accent: var(--font-fira-code);
+
+  /* ── Type scale tokens ──────────────────────────────────────────
+     Usage: text-tag, text-label, text-caption, text-body, text-ui, text-title
+     Bump all values here to resize the entire site uniformly. */
+  --text-tag: 10px;       /* badges, type tags */
+  --text-label: 11px;     /* meta, dates, back links, nav triggers */
+  --text-caption: 12px;   /* panel bars, status, small descriptions */
+  --text-body: 14px;      /* card descriptions, footer links, body copy */
+  --text-ui: 15px;        /* mega menu titles, callouts, manifesto body */
+  --text-title: 16px;     /* card titles, mandates, post titles */
 }
 
 body {
@@ -320,7 +330,7 @@ body {
 .prose-orthogonal h4 {
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
   color: rgb(255 255 255 / 0.75);
-  font-size: 0.875rem;
+  font-size: var(--text-title);
   font-weight: 600;
   margin-top: 1.75rem;
   margin-bottom: 0.25rem;
@@ -333,7 +343,7 @@ body {
 .prose-orthogonal h5 {
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
   color: rgb(255 255 255 / 0.90);
-  font-size: 0.875rem;
+  font-size: var(--text-title);
   font-weight: 400;
   font-style: italic;
   margin-top: 0.25rem;
@@ -438,7 +448,7 @@ body {
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.5rem;
   color: rgb(255 255 255 / 0.72);
-  font-size: 0.875rem;
+  font-size: var(--text-body);
   line-height: 1.65;
 }
 

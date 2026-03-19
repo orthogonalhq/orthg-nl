@@ -97,7 +97,7 @@ export function EmailCapture({
           {formStatus === "loading" ? "Sending..." : buttonText}
         </button>
       </form>
-      <p className={`terminal-text mt-3 text-[11px] tracking-[0.15em] uppercase ${formStatus === "success" ? "text-green-400/80" : formStatus === "duplicate" ? "text-pink-300/80" : formStatus === "error" ? "text-accent/80" : "t-ghost"}`}>
+      <p className={`terminal-text mt-3 text-caption tracking-[0.15em] uppercase ${formStatus === "success" ? "text-green-400/80" : formStatus === "duplicate" ? "text-pink-300/80" : formStatus === "error" ? "text-accent/80" : "t-ghost"}`}>
         {glitchedStatus}
       </p>
     </div>

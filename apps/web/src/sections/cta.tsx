@@ -27,7 +27,7 @@ export function CTA() {
         </div>
 
         {/* Terminal prompt */}
-        <p className="terminal-text text-[11px] t-ghost mt-6">
+        <p className="terminal-text text-caption t-ghost mt-6">
           <span className="terminal-prefix">$</span> nous init --sovereign <span className="cursor-blink">&#9608;</span>
         </p>
 

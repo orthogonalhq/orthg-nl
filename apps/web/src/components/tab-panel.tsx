@@ -92,7 +92,7 @@ function CachedEngineViewer({ engine, lines }: { engine: HeadlessEngine; lines: 
   const ghostLines = lines.filter((l) => l !== "---").map((l) => l.replace(/ =\S+$/, ""));
 
   return (
-    <div className="terminal-text text-[12px] leading-[1.8] t-panel-label relative">
+    <div className="terminal-text text-body leading-[1.8] t-panel-label relative">
       <div className="invisible" aria-hidden="true">
         {ghostLines.map((text, i) => (
           <p key={i} style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{text}</p>
@@ -255,7 +255,7 @@ export function TabPanel({ lines, tabKey, defaultContent, cachedEngine, allLines
       <div className="p-6 md:p-10 flex-1 overflow-hidden bg-black/30 relative">
         {/* Invisible sizer — reserves height of the tallest tab */}
         {longestGhost && (
-          <div className="invisible terminal-text text-[12px] leading-[1.8]" aria-hidden="true">
+          <div className="invisible terminal-text text-body leading-[1.8]" aria-hidden="true">
             {longestGhost.map((text, i) => (
               <p key={i} style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{text}</p>
             ))}

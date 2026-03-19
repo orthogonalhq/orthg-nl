@@ -70,7 +70,7 @@ export function ManifestoContent() {
       <div className="mx-auto max-w-5xl">
         {/* Hero */}
         <div className="text-center mb-16 md:mb-20">
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] t-meta mb-5">
+          <p className="font-mono text-label uppercase tracking-[0.2em] t-meta mb-5">
             <span className="bg-accent text-black font-normal px-0.5">
               &gt;
             </span>
@@ -81,10 +81,10 @@ export function ManifestoContent() {
             <br />
             of Life
           </h1>
-          <p className="mt-5 text-sm t-card-desc max-w-lg mx-auto leading-relaxed">
+          <p className="mt-5 text-title t-card-desc max-w-lg mx-auto leading-relaxed">
             A self-governing framework for conscious intelligence.
           </p>
-          <p className="font-mono mt-4 text-[11px] t-meta">
+          <p className="font-mono mt-4 text-caption t-meta">
             Andrew Nelson &mdash; March 2026
           </p>
         </div>
@@ -99,7 +99,7 @@ export function ManifestoContent() {
                 key={belief.label}
                 className="px-6 md:px-10 py-8 md:py-10"
               >
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-white/4 border border-white/6 text-[9px] font-mono mb-4 t-meta">
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-white/4 border border-white/6 text-tag font-mono mb-4 t-meta">
                   {belief.label}
                 </span>
                 <p className="font-mono text-lg md:text-xl font-semibold tracking-[-0.01em] t-heading leading-snug">
@@ -115,7 +115,7 @@ export function ManifestoContent() {
           <PanelBar label="stewardship::layers" meta="6 Mandates" />
 
           <div className="px-6 md:px-10 py-6 md:py-8 border-b border-white/6">
-            <p className="text-[12px] t-card-desc leading-relaxed">
+            <p className="text-body t-card-desc leading-relaxed">
               Each layer serves and is accountable to every layer above it.
               The hierarchy establishes priority, not permission. No layer is
               sacrificed for another.
@@ -126,21 +126,21 @@ export function ManifestoContent() {
             {LAYERS.map((layer) => (
               <div key={layer.number} className="px-6 md:px-10 py-6 md:py-8">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="font-mono text-[10px] t-ghost shrink-0">
+                  <span className="font-mono text-label t-ghost shrink-0">
                     {String(layer.number).padStart(2, "0")}
                   </span>
                   <span
-                    className={`inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono uppercase tracking-wider border ${LAYER_COLORS[layer.number]}`}
+                    className={`inline-flex items-center px-1.5 py-0.5 rounded text-tag font-mono uppercase tracking-wider border ${LAYER_COLORS[layer.number]}`}
                   >
                     {layer.label}
                   </span>
                 </div>
 
-                <h3 className="font-mono text-sm uppercase tracking-[0.08em] font-semibold t-heading mb-2">
+                <h3 className="font-mono text-title uppercase tracking-[0.08em] font-semibold t-heading mb-2">
                   {layer.mandate}
                 </h3>
 
-                <p className="text-[13px] t-card-desc leading-relaxed">
+                <p className="text-ui t-card-desc leading-relaxed">
                   {layer.body}
                 </p>
               </div>
@@ -156,7 +156,7 @@ export function ManifestoContent() {
           >
             Read the full paper →
           </Link>
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] t-ghost mt-6">
+          <p className="font-mono text-label uppercase tracking-[0.2em] t-ghost mt-6">
             orthogonal::stewardship v1.0
           </p>
         </div>

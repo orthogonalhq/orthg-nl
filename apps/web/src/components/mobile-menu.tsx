@@ -18,7 +18,7 @@ function MobileLink({
     <>
       <span className="flex items-center gap-2">
         <NavIcon name={item.icon} size={14} className="t-ghost" />
-        <span className="font-mono text-[13px] font-semibold t-card-title">
+        <span className="font-mono text-ui font-semibold t-card-title">
           {item.label}
         </span>
         {item.external && (
@@ -40,7 +40,7 @@ function MobileLink({
         )}
       </span>
       {item.description && (
-        <span className="text-[11px] t-ghost leading-snug mt-1 block">
+        <span className="text-caption t-ghost leading-snug mt-1 block">
           {item.description}
         </span>
       )}

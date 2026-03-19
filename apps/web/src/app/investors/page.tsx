@@ -27,7 +27,7 @@ export default function InvestorsPage() {
 
         {/* Contact */}
         <div className="text-center">
-          <p className="text-[14px] tracking-[0.05em] t-nav mb-1">
+          <p className="text-body tracking-[0.05em] t-nav mb-1">
             For inquiries, contact
           </p>
           <a

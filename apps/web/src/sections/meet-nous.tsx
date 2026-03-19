@@ -167,7 +167,7 @@ export function MeetNous() {
                           : "border-white/[0.06] hover:border-white/[0.12] hover:bg-tab-hover"
                       }`}
                     >
-                      <p className="terminal-text text-[10px] uppercase tracking-[0.2em] t-nav mb-1">{tab.label}</p>
+                      <p className="terminal-text text-label uppercase tracking-[0.2em] t-nav mb-1">{tab.label}</p>
                       <p className="font-mono text-sm font-semibold t-stat-value">{tab.value}</p>
                     </button>
                   ))}
