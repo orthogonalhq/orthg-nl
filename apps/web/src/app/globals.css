@@ -441,6 +441,10 @@ body {
   color: rgb(255 240 230 / 0.80);
 }
 
+.prose-perspective blockquote {
+  color: rgb(255 235 225 / 0.70);
+}
+
 .prose-callout {
   border: 1px solid rgb(250 93 43 / 0.20);
   background: rgb(250 93 43 / 0.04);
