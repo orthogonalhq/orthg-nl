@@ -70,7 +70,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Company",
     items: [
       {
-        label: "Agent Alignment Framework",
+        label: "Alignment",
         href: "/manifesto",
         description: "The immutable mandates of life",
         icon: "scroll-text",
