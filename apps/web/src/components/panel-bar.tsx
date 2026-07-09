@@ -5,7 +5,7 @@ interface PanelBarProps {
   metaCls?: string;
 }
 
-/** Terminal-style header bar inside bordered containers (e.g. "nous::modules | 6 Loaded"). */
+/** Terminal-style header bar inside bordered containers (e.g. "orthogonal::research | 2 Papers"). */
 export function PanelBar({ label, meta, metaCls = "t-panel-meta" }: PanelBarProps) {
   return (
     <div className="border-b border-white/[0.06] px-6 md:px-10 py-3 flex items-center justify-between">

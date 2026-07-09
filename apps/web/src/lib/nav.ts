@@ -21,9 +21,10 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Products",
     items: [
       {
-        label: "Nous",
-        href: "/download",
-        description: "The sovereign AI operating system",
+        label: "Nue",
+        href: "https://nue.orthg.nl",
+        external: true,
+        description: "The personal agent operating system",
         icon: "terminal",
       },
       {
@@ -37,19 +38,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     type: "mega",
-    label: "Services",
-    items: [
-      {
-        label: "Agent Hosting",
-        href: "/agent-hosting",
-        description: "Infrastructure & intelligence packages",
-        icon: "server",
-      },
-    ],
-  },
-  {
-    type: "mega",
-    label: "Blogs",
+    label: "Research",
     items: [
       {
         label: "Research",

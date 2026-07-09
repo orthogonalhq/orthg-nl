@@ -28,7 +28,7 @@ export function BannerContent() {
   }, [handleKnob]);
 
   // Type scale (golden ratio ~1.618):
-  // Nous:        72px (hero)
+  // Nue:         72px (hero)
   // Orthogonal:  34px (72 / 2.12)
   // Tagline:     26px (34 / 1.3)
   // Subtitle:    16px (26 / 1.618)
@@ -67,7 +67,7 @@ export function BannerContent() {
         </div>
       </div>
 
-      {/* Nous group — vertically centered right */}
+      {/* Nue group — vertically centered right */}
       <div
         style={{
           position: "absolute",
@@ -93,7 +93,7 @@ export function BannerContent() {
             margin: 0,
           }}
         >
-          Nous
+          Nue
         </h1>
 
         {/* System subtitle */}

@@ -49,23 +49,21 @@ function findGroup(label: string) {
 
 export function Footer() {
   const products = findGroup("Products");
-  const services = findGroup("Services");
-  const blogs = findGroup("Blogs");
+  const research = findGroup("Research");
   const company = findGroup("Company");
 
   return (
     <footer className="terminal-text relative z-10 border-t border-white/6 bg-[#0a0a0a]">
       <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-white/6 py-10 md:py-14">
-          {/* Col 1: Products + Services */}
+          {/* Col 1: Products */}
           <div className="md:px-6 first:md:pl-0 space-y-8">
             {products && <FooterGroup label={products.label} items={products.items} />}
-            {services && <FooterGroup label={services.label} items={services.items} />}
           </div>
 
-          {/* Col 2: Blogs + Company */}
+          {/* Col 2: Research + Company */}
           <div className="md:px-6 space-y-8">
-            {blogs && <FooterGroup label={blogs.label} items={blogs.items} />}
+            {research && <FooterGroup label={research.label} items={research.items} />}
             {company && <FooterGroup label={company.label} items={company.items} />}
           </div>
 
@@ -88,10 +86,10 @@ export function Footer() {
               &gt; orthogonal
             </span>
             <p className="text-caption t-card-desc leading-relaxed">
-              Sovereign AI for everyone.
+              Sovereign AI infrastructure.
             </p>
             <p className="text-caption t-card-desc leading-relaxed mt-2">
-              Building Nous, an open source AI operating system.
+              Building Nue, APM, and the research layer for personal agents.
             </p>
           </div>
         </div>

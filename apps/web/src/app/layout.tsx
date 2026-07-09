@@ -30,7 +30,7 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
   title: "Orthogonal",
-  description: "Sovereign AI for everyone.",
+  description: "Orthogonal builds sovereign AI infrastructure, open agent systems, and research for privacy-first personal intelligence.",
 };
 
 export default function RootLayout({

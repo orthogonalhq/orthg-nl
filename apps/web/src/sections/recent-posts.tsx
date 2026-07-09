@@ -57,7 +57,7 @@ export function RecentPosts() {
         <div className="bg-black/10 backdrop-blur-xl">
         <Reveal delay={100}>
           <div className="border-y border-white/[0.06] overflow-hidden">
-            <PanelBar label="nous::feed" meta="Recent" />
+            <PanelBar label="orthogonal::feed" meta="Recent" />
 
             <div className="divide-y divide-white/[0.06]">
               {items.map((item) => (
