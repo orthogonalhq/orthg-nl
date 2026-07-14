@@ -28,6 +28,13 @@ export const NAV_ITEMS: NavItem[] = [
         icon: "terminal",
       },
       {
+        label: "Worktree",
+        href: "https://worktree.orthg.nl/",
+        external: true,
+        description: "Managed business agents",
+        icon: "worktree",
+      },
+      {
         label: "APM",
         href: "https://apm.orthg.nl",
         external: true,
