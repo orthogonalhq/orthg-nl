@@ -1,13 +1,21 @@
 "use client";
 
-import { use, useEffect, useId, useState } from "react";
+import { use, useId, useSyncExternalStore } from "react";
+
+function subscribe() {
+  return () => {};
+}
+
+function getClientSnapshot() {
+  return true;
+}
+
+function getServerSnapshot() {
+  return false;
+}
 
 export function Mermaid({ chart }: { chart: string }) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
   if (!mounted) return null;
   return <MermaidContent chart={chart} />;

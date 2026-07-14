@@ -77,7 +77,7 @@
 
 ### Header Style Examples *(from deck)*
 - "AI crossed the threshold. Most people haven't noticed yet."
-- "Meet Nous — the operating system for AI."
+- "Meet Nue — the operating system for AI."
 - "The thinnest layer makes the weightiest decisions."
 - "Memory that compounds."
 - "The workhorse you never see."
@@ -107,6 +107,6 @@
 ## Product & Company
 
 - **Company:** Orthogonal
-- **Product:** Nous — "the operating system for AI"
+- **Product:** Nue — "the operating system for AI"
 - **Domain:** orthg.nl
 - **Contact (IR):** ir@orthg.nl

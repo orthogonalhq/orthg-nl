@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   Terminal,
   Package,
@@ -29,6 +30,18 @@ export function NavIcon({
   className?: string;
 }) {
   if (!name) return null;
+  if (name === "worktree") {
+    return (
+      <Image
+        src="/worktree-logomark.png"
+        alt=""
+        width={size}
+        height={size}
+        className={className}
+      />
+    );
+  }
+
   const Icon = ICONS[name];
   if (!Icon) return null;
   return <Icon size={size} className={className} />;

@@ -29,7 +29,7 @@ export default async function ResearchPaper(props: {
         </Link>
 
         <div className="border-y border-white/[0.06] bg-black/50">
-          <PanelBar label="nous::research" meta={paper.type} />
+          <PanelBar label="orthogonal::research" meta={paper.type} />
 
           <div className={`px-6 md:px-10 py-8 md:py-10 ${paper.image ? '' : 'border-b border-white/6'}`}>
             <span className="font-mono text-label uppercase tracking-[0.2em] t-meta">

@@ -51,11 +51,11 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
 
   // Compute target values for current scroll position (zone1/zone3 logic)
   // Zone3 anchors to <main> bottom, not page bottom, so the footer doesn't shift it
-  function getScrollRoot() {
+  const getScrollRoot = useCallback(() => {
     return document.getElementById("scroll-root") ?? document.documentElement;
-  }
+  }, []);
 
-  function getScrollTargets() {
+  const getScrollTargets = useCallback(() => {
     const root = getScrollRoot();
     const scrollY = root.scrollTop || window.scrollY;
     const vh = window.innerHeight;
@@ -81,13 +81,13 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
       density = 0.47;
     }
     return { att, scale, density };
-  }
+  }, [getScrollRoot]);
 
-  function applyGrain(att: number, scale: number, density: number) {
+  const applyGrain = useCallback((att: number, scale: number, density: number) => {
     scrollAttenuationRef.current = att;
     setPixelScale(scale);
     densityScaleRef.current = density;
-  }
+  }, []);
 
   // Keep ref in sync and apply zone2 values eagerly
   useEffect(() => {
@@ -97,7 +97,7 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
     if (lockZone2) {
       transitionRef.current.active = false;
       cancelAnimationFrame(transitionRafRef.current);
-      applyGrain(0.25, 2, 1);
+      transitionRafRef.current = requestAnimationFrame(() => applyGrain(0.25, 2, 1));
     } else if (wasLocked) {
       // Start smooth transition from zone2 to scroll-based values
       transitionRef.current = { active: true, start: performance.now(), fromAtt: 0.25, fromScale: 2, fromDensity: 1 };
@@ -119,7 +119,7 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
       }
       transitionRafRef.current = requestAnimationFrame(tick);
     }
-  }, [lockZone2]);
+  }, [applyGrain, getScrollTargets, lockZone2]);
 
   // Normal scroll handler (skipped during transition — rAF loop handles it)
   useEffect(() => {
@@ -136,7 +136,7 @@ export function GrainProvider({ children }: { children: React.ReactNode }) {
       root.removeEventListener("scroll", onScroll);
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [applyGrain, getScrollRoot, getScrollTargets]);
 
   useGrain(grainRef, overridesRef, displayRef, scrollAttenuationRef, densityScaleRef);
 

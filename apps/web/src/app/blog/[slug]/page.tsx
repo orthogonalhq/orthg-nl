@@ -28,7 +28,7 @@ export default async function BlogPost(props: {
         </Link>
 
         <div className="border-y border-white/[0.06] bg-black/50">
-          <PanelBar label="nous::blog" meta={post.category} />
+          <PanelBar label="orthogonal::blog" meta={post.category} />
 
           <div className={`px-6 md:px-10 py-8 md:py-10 ${post.image ? '' : 'border-b border-white/6'}`}>
             <span className="font-mono text-label uppercase tracking-[0.2em] t-meta">

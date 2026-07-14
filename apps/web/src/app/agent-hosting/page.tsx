@@ -1,21 +1,5 @@
-import type { Metadata } from "next";
-import { Footer } from "@/components/footer";
-import { GrainZone2 } from "@/components/grain-zone2";
-import { PricingContent } from "@/components/pricing-content";
-
-export const metadata: Metadata = {
-  title: "Pricing — Orthogonal",
-  description: "Your intelligence. Your infrastructure. Pick your seat and add intelligence when you need it.",
-};
+import { redirect } from "next/navigation";
 
 export default function PricingPage() {
-  return (
-    <div className="scanlines phosphor relative z-10 min-h-svh">
-      <GrainZone2 />
-      <main>
-        <PricingContent />
-      </main>
-      <Footer />
-    </div>
-  );
+  redirect("https://nue.orthg.nl/pricing");
 }

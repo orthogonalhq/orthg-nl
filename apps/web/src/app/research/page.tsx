@@ -37,7 +37,7 @@ export default function ResearchIndex() {
         </div>
 
         <div className="border-y border-white/[0.06] bg-black/10 backdrop-blur-xl overflow-hidden">
-          <PanelBar label="nous::research" meta={`${papers.length} Paper${papers.length !== 1 ? 's' : ''}`} />
+          <PanelBar label="orthogonal::research" meta={`${papers.length} Paper${papers.length !== 1 ? 's' : ''}`} />
 
           <div className="divide-y divide-white/[0.06]">
             {papers.map((paper) => (

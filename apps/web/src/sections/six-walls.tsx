@@ -28,7 +28,7 @@ export function SixWalls() {
         <div className="bg-black/10 backdrop-blur-xl">
         <Reveal delay={100}>
           <div className="border-y border-white/[0.06] divide-y divide-white/[0.06]">
-            <PanelBar label="nous::security" meta="6 Critical" metaCls="text-red-400/30" />
+            <PanelBar label="orthogonal::security" meta="6 Critical" metaCls="text-red-400/30" />
             {/* Row 1 */}
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
               {WALLS.slice(0, 3).map((wall) => (
